@@ -64,7 +64,10 @@ REQUIRED_LAYERS = (
     "district_mask", "worldcover", "hansen_treecover2000",
     "hansen_lossyear", "hansen_gain", "slope_deg", "protected_areas",
 )
-NODATA_LAYERS = ("worldcover", "hansen_treecover2000", "slope_deg", "protected_areas")
+NODATA_LAYERS = (
+    "worldcover", "hansen_treecover2000", "hansen_lossyear", "hansen_gain",
+    "slope_deg", "protected_areas",
+)
 
 
 class QAError(RuntimeError):
