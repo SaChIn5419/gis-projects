@@ -346,6 +346,7 @@ tests/test_ingest.py         # synthetic raw -> aligned -> QA integration test
 docs/assumptions.md          # verified clauses + canonical code table
 docs/methodology.md          # step-by-step method
 docs/limitations.md          # what cannot be claimed
+docs/data_sources.md         # expected raw files and download notes
 docs/PROJECTSTATE.md         # state / hashes / next action
 ```
 
@@ -578,7 +579,7 @@ and fills values with 0. Then:
 
 ```python
 nodata = zeros(...)
-for key in NODATA_LAYERS:      # worldcover, treecover, slope, protected
+for key in NODATA_LAYERS:      # worldcover, treecover, loss, gain, slope, protected
     nodata |= masks[key]
 layers["nodata"] = nodata & in_district
 ```
@@ -876,8 +877,8 @@ been visually checked.
 - **Scoring/sensitivity/validation/maps:** not written yet.
 - **Hansen bias:** `canopy_now` collapses any loss to zero; needs a sensitivity band or
   a post-loss canopy product.
-- **Git:** the folder is still not a git repository. Before handoff, initialize git and
-  ignore the multi-GB raw/processed rasters.
+- **Git:** initialized and committed. Large raw/processed rasters are ignored; the
+  commit history is a safer handoff point than a bare folder.
 
 ## 10.13 The mental model to keep
 

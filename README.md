@@ -77,5 +77,8 @@ synthetic rasters to prove the grid, resampling, QA and waterfall contracts.
 - Verra VM0047 v1.1 PDF: `verra-verify/vm0047_v11.pdf`
   SHA256 `2fdccb9764a0b06283e974142d0ff250910f81686dc53bcc197f6cf90d53de3d`
 - IBCRI / Swiftgreen project pages are used only as reference scales, never as data.
-- `docs/assumptions.md` — verified clauses and limitations.
+- `docs/assumptions.md` — verified clauses and the canonical reason-code table.
+- `docs/methodology.md` — step-by-step method.
+- `docs/limitations.md` — what cannot be claimed.
+- `docs/data_sources.md` — expected raw files and download notes.
 - `learning.md` — full walkthrough of the method and code.

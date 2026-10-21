@@ -7,7 +7,7 @@ every session: DONE → IN PROGRESS → NEXT.
 
 Config-driven GIS screening of candidate degraded land (public data only) for an
 IBCRI/Swiftgreen-style agroforestry project under VM0047 ARR v1.1. The screening core
-and QA gate are implemented; the real Jhabua stack is waiting on five raw sources.
+and QA gate are implemented; the real Jhabua stack is waiting on six raw sources.
 
 ## 2. Phase status
 
@@ -47,7 +47,8 @@ and QA gate are implemented; the real Jhabua stack is waiting on five raw source
 
 - Missing raw layers: WorldCover 2021, Hansen treecover2000/lossyear/gain, DEM 30 m,
   WDPA India. `src/ingest.py` stops and lists them; no partial stack is written.
-- No git repository yet. Archive copies of the old scaffold are in `archived/v1_scaffold/`.
+- Git is initialized; the implementation is committed. Large raw/processed rasters are
+  ignored by `.gitignore`. Archive copies of the old scaffold are in `archived/v1_scaffold/`.
 
 ## 6. Verification
 
@@ -57,7 +58,7 @@ and QA gate are implemented; the real Jhabua stack is waiting on five raw source
 
 ## 7. Next action
 
-Place the five raw sources in `data/raw/`, then run:
+Place the six required raw sources in `data/raw/`, then run:
 
 ```bash
 python src/ingest.py config/jhabua.yaml
