@@ -1,0 +1,70 @@
+# Jhabua agroforestry screening - configuration
+# Every decision below is tunable in one place. Do not hard-code threshold numbers in src/.
+
+project:
+  name: jhabua_agroforestry_screening
+  district: Jhabua
+  state: mp
+  working_crs: EPSG:32643        # UTM zone 43N; Jhabua lies at 74.0-75.0E
+  boundary: data/raw/boundary.geojson   # full India ADM2; Jhabua = shapeID IND-ADM2-2_0_0-B256
+  source_year: 2024              # Sentinel-2 composite year (dry + monsoon)
+
+eligibility:
+  mode: census                   # "census" | "area"  (VM0047 approach selection)
+  # Census (4.3): planting units defined (GPS/marker); density <= 50/ha; activity
+  # occurs in an area with pre-existing woody biomass < 10%, OR in continuous-cropped
+  # / settlements / other lands (4.3(8)(a)-(b)).
+  # Area (4.4.1): non-forest -> forest change, or existing forest not managed for wood
+  # products in the last 10 years (1.1 intro). Density > 50/ha forces the area route
+  # (4.4.1(3)).
+  woody_biomass_cutoff_pct: 10   # pre-existing woody biomass cover threshold (4.3(8)(a))
+  non_forest_years: 10           # DEPRECATED - v1.0 language; retained only for audit
+
+landcover:
+  candidate_classes:
+    - shrubland
+    - grassland
+    - bare_sparse_vegetation
+  exclude_classes:
+    - tree_cover
+    - built_up
+    - water
+    - wetlands
+  cropland_code: 6               # cropland = its own reason code + sensitivity test
+  worldcover_version: 200
+
+exclusions:
+  hansen_tree_cover_threshold: 30
+  slope_degrees_max: 20
+  road_buffer_m: 1000
+  water_buffer_m: 500
+  min_patch_ha: 1
+
+suitability:
+  weights:
+    ndvi: 0.30
+    slope: 0.25
+    water_dist: 0.25
+    road_dist: 0.20
+  classes:
+    - low
+    - medium
+    - high
+  stability:
+    scenarios: 300
+    resampling_m: 30
+    weight_distribution: dirichlet
+
+validation:
+  sample_points: 120
+  classes:
+    - eligible
+    - cropland
+    - forest_loss_recent
+    - other
+  report: outputs/qaqc/accuracy.md
+
+outputs:
+  maps_dir: outputs/maps
+  shapefile_dir: outputs/processed
+  qaqc_report: outputs/qaqc/qaqc_report.md

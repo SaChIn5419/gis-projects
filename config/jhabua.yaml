@@ -1,0 +1,120 @@
+# config/jhabua.yaml
+# Every assumption lives here, not in code. Items marked VERIFY must be checked
+# against the source document before you rely on them.
+# Pre-feasibility screening only: no credits are projected.
+
+project:
+  name: jhabua_agroforestry_screening
+  district: Jhabua
+  state: Madhya Pradesh
+  start_year: 2026            # hypothetical project start; drives all look-back windows
+  eligibility_mode: census    # census only; area mode is explicitly disabled (see screening.py)
+  boundary: data/raw/boundary.geojson
+  boundary_feature: Jhabua     # match against shapeName in the geoBoundaries ADM2 file
+  source_year: 2024            # Sentinel-2 composite year
+  notes: >
+    The 2026 start year is hypothetical. Hansen through 2024 is the latest
+    disturbance evidence in this repository, so 2025-2026 removals are invisible.
+    That gap is reported as a limitation, not hidden.
+
+methodology:
+  standard: "Verra VCS VM0047 (ARR)"
+  version: "1.1"
+  effective_date: "2025-05-14"
+  source_pdf: verra-verify/vm0047_v11.pdf
+  source_pdf_sha256: 2fdccb9764a0b06283e974142d0ff250910f81686dc53bcc197f6cf90d53de3d
+  note: >
+    Clause text was checked against the PDF above. The census screen uses the
+    <10% pre-existing woody-biomass test in §4.3(8)(a) and §6.2(1). The 10-year
+    removal rule in §4.4.2(1) is a census-based exclusion, not a "non-forest for
+    10 years" eligibility test.
+
+grid:
+  crs: "EPSG:32643"           # UTM 43N; Jhabua spans ~74.0-75.0 E
+  # Effective resolution is 30 m because Hansen and the DEM are native 30 m.
+  # Do not disaggregate those to 10 m. Aggregate WorldCover (10 m) and Sentinel-2
+  # indices DOWN to 30 m in ingest (majority class or mean index).
+  resolution_m: 30
+
+paths:
+  raw_dir: data/raw
+  aligned_dir: data/processed/aligned   # every layer must already share one grid
+  output_dir: outputs
+  layers:                                 # filenames written by ingest.py
+    district_mask: district_mask.tif
+    worldcover: worldcover_2021.tif
+    hansen_treecover2000: hansen_treecover2000.tif
+    hansen_lossyear: hansen_lossyear.tif
+    hansen_gain: hansen_gain.tif
+    slope_deg: slope_deg.tif
+    protected_areas: protected_areas.tif
+    ndvi_dry: ndvi_dry.tif               # optional scoring layer
+    ndvi_monsoon: ndvi_monsoon.tif       # optional scoring layer
+    bsi_dry: bsi_dry.tif                 # optional scoring layer
+    bsi_monsoon: bsi_monsoon.tif         # optional scoring layer
+  sources:                                # raw files; missing files stop ingest loudly
+    boundary: data/raw/boundary.geojson
+    worldcover: data/raw/worldcover_2021.tif
+    hansen_treecover2000: data/raw/hansen_treecover2000.tif
+    hansen_lossyear: data/raw/hansen_lossyear.tif
+    hansen_gain: data/raw/hansen_gain.tif
+    dem: data/raw/dem_30m.tif
+    protected_areas: data/raw/wdpa.geojson
+    s2_dry: data/raw/s2_dry_2024.tif
+    s2_monsoon: data/raw/s2_monsoon_2024.tif
+
+screening:
+  # STAGE A - methodology + data validity. Each code needs a clause you have
+  # verified in the PDF (see clause_refs). Order only changes attribution in
+  # the waterfall, never the methodology-eligible area.
+  stage_a_order: [NODATA, WOODY_COVER, RECENT_WOODY_REMOVAL]   # NODATA must stay first
+
+  # STAGE B - project design screens. These are NOT methodology rules (feasibility,
+  # safeguards, transaction cost). Reported separately from stage A on purpose.
+  stage_b_order: [BUILTUP_WATER_WETLAND, CROPLAND, PROTECTED, STEEP_SLOPE]
+
+  # SMALL_PATCH always runs last, on what is still eligible.
+
+  clause_refs:
+    NODATA: "Data validity, not a methodology clause"
+    WOODY_COVER: "VM0047 v1.1 §4.3(8)(a) and §6.2(1): pre-existing woody biomass cover <10%"
+    RECENT_WOODY_REMOVAL: "VM0047 v1.1 §4.4.2(1): woody biomass serving a similar purpose removed within the last 10 years (census-based exclusion)"
+
+  woody:
+    threshold_pct: 10               # §4.3(8)(a) wording
+    source: either                  # worldcover | hansen | either (either = conservative)
+    worldcover_classes: [10, 95]    # tree cover, mangroves
+    treat_hansen_gain_as_woody: true
+    shrubland: flag                 # flag | exclude (exclude = WorldCover class 20 counts as woody)
+    shrubland_worldcover_class: 20
+    # LIMITATION: canopy cover is a proxy for woody biomass, not the same thing.
+    # Shrubs and thickets (Prosopis, Acacia, Lantana) can exceed 10% woody
+    # biomass without registering as tree canopy. Direction of bias with
+    # shrubland: flag = may OVERSTATE eligible area. Run both in sensitivity.
+
+  recent_removal_years: 10          # §4.4.2(1), census-based exclusion only
+  hansen_last_loss_year: 2024       # validated in check_layers()
+  flag_loss_window_years: [10, 20]  # loss this long ago = data-confidence flag, not a rule
+
+  design_screens:
+    builtup_water_wetland_classes: [50, 80, 90]
+    cropland_worldcover_class: 40
+    # Under census mode cropland may be methodology-eligible; §4.3(8)(b) and
+    # §6.2(2) put continuous cropping inside the census route. Excluding it is a
+    # design choice, so it lives here. Methodology-eligible area is always
+    # reported WITH cropland in; the candidate area follows this setting.
+    exclude_cropland:
+      census: false
+      area: true
+    max_slope_deg: 20               # judgement call; sensitivity range 15-20
+    min_patch_ha: 1.0
+    patch_connectivity: 8           # 4 or 8
+
+qa:
+  # Computed from the Jhabua feature in EPSG:32643 (geoBoundaries ADM2).
+  # Log the gap vs Census 3,460 km2 / GIM 3,600 / Wikipedia 3,782 in the report.
+  reference_area_km2: 3433.78
+  area_tolerance_pct: 1.0
+  max_nodata_share_inside_district: 0.02   # 2% of district pixels may be missing per required layer
+  expected_worldcover_classes: [10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100]
+  s2_index_bounds: [-1.0, 1.0]

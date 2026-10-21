@@ -1,0 +1,147 @@
+{
+  "project": "jhabua_agroforestry_screening",
+  "working_crs": "EPSG:32643",
+  "district": {
+    "name": "Jhabua",
+    "state": "mp",
+    "area_ha": 3600.0,
+    "bounds_note": "21.9-23.2N, 74.0-75.0E"
+  },
+  "layers": [
+    {
+      "id": "boundary",
+      "source": "geoBoundaries 2.0.1 (India ADM2), geoBoundaries-2_0_1-IND-ADM2.geojson (641 units; Jhabua = IND-ADM2-2_0_0-B256)",
+      "path": "data/raw/boundary.geojson",
+      "type": "vector",
+      "crs": "EPSG:32643",
+      "sha256": "4fd352176b425954d6188d4c1a590dee70b226171608032e31d5879d849da8e5",
+      "status": "processed",
+      "note": "Jhabua feature extracted by ingest (shapeID IND-ADM2-2_0_0-B256)",
+      "output_path": "data/processed/boundary.geojson",
+      "output_sha256": "a504ea0048fdeb600eb443dfb19aa3bdc2ac4068fe64381cc6616b6ac22659bd",
+      "feature_count": 7
+    },
+    {
+      "id": "worldcover",
+      "source": "ESA WorldCover v200 (10 m, India tile)",
+      "path": "data/raw/worldcover_2020_10m.tif",
+      "type": "raster",
+      "crs": "EPSG:32643",
+      "resolution_m": 10,
+      "no_data_value": 0,
+      "sha256": "PENDING",
+      "status": "planned",
+      "candidate_classes": [
+        60,
+        70,
+        90
+      ],
+      "exclude_classes": [
+        40,
+        50,
+        80,
+        90,
+        100
+      ]
+    },
+    {
+      "id": "hansen_treecover2000",
+      "source": "Hansen GFC (2000 tree cover extent, 30 m)",
+      "path": "data/raw/hansen_treecover2000.tif",
+      "type": "raster",
+      "crs": "EPSG:32643",
+      "resolution_m": 30,
+      "no_data_value": 0,
+      "sha256": "PENDING",
+      "status": "planned",
+      "note": "pre-existing woody biomass proxy (<10% = eligible per VM0047 4.3(8)(a))"
+    },
+    {
+      "id": "hansen_loss2000_2024",
+      "source": "Hansen GFC (tree-cover loss, 2000-2024)",
+      "path": "data/raw/hansen_loss_2000_2024.tif",
+      "type": "raster",
+      "crs": "EPSG:32643",
+      "resolution_m": 30,
+      "no_data_value": 0,
+      "sha256": "PENDING",
+      "status": "planned",
+      "note": "recent-loss flag (data-confidence, not a rule)"
+    },
+    {
+      "id": "dem",
+      "source": "Copernicus DEM 30 m (or SRTM)",
+      "path": "data/raw/dem_30m.tif",
+      "type": "raster",
+      "crs": "EPSG:32643",
+      "resolution_m": 30,
+      "no_data_value": -32768,
+      "sha256": "PENDING",
+      "status": "planned",
+      "note": "slope from DEM (degrees)"
+    },
+    {
+      "id": "osm_roads",
+      "source": "OpenStreetMap (roads)",
+      "path": "data/raw/osm_roads.geojson",
+      "type": "vector",
+      "crs": "EPSG:32643",
+      "sha256": "PENDING",
+      "status": "planned",
+      "note": "access / road distance score"
+    },
+    {
+      "id": "osm_water",
+      "source": "OpenStreetMap (water bodies)",
+      "path": "data/raw/osm_water.geojson",
+      "type": "vector",
+      "crs": "EPSG:32643",
+      "sha256": "PENDING",
+      "status": "planned",
+      "note": "water proximity for access/water score"
+    },
+    {
+      "id": "wdpa",
+      "source": "WDPA (Protected Planet, India)",
+      "path": "data/raw/wdpa.geojson",
+      "type": "vector",
+      "crs": "EPSG:32643",
+      "sha256": "PENDING",
+      "status": "planned",
+      "note": "protected areas, IUCN II-IV preferred for no-go"
+    },
+    {
+      "id": "sentinel2_dry",
+      "source": "Google Earth Engine (Sentinel-2, dry season)",
+      "path": "data/raw/s2_dry_2024.tif",
+      "type": "raster",
+      "crs": "EPSG:32643",
+      "resolution_m": 9.58640280017044,
+      "no_data_value": 0,
+      "sha256": "e40040b746bdac3a1a241892bebb942a36236b3b3e551bb0e2b29db66021dc35",
+      "status": "processed",
+      "note": "cloud-masked median composite, dry season",
+      "output_path": "data/processed/s2_dry_2024.tif",
+      "output_sha256": "689950c94b2ec99b12ebe3db26fca82fdabb3879dbe7a0ae53a13dc5ac2a2242",
+      "nodata_ratio": 0.5864,
+      "area_ha": 343378.04
+    },
+    {
+      "id": "sentinel2_monsoon",
+      "source": "Google Earth Engine (Sentinel-2, monsoon season)",
+      "path": "data/raw/s2_monsoon_2024.tif",
+      "type": "raster",
+      "crs": "EPSG:4326",
+      "resolution_m": 10,
+      "no_data_value": 0,
+      "sha256": "8735395ef1c8901e1a013563d6853e4b31d6ed5be68dc658ce812ef50f95663e",
+      "status": "downloaded",
+      "note": "cloud-masked median composite, monsoon season; NDVI + bare-soil index"
+    }
+  ],
+  "ingest": {
+    "out_dir": "data/processed",
+    "zone": 43,
+    "tolerance_pct": 1.0
+  }
+}

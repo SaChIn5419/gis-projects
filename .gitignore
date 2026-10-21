@@ -1,0 +1,26 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Large data (keep provenance in data/manifest.json; do not commit rasters)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/boundary_jhabua.geojson
+
+# Generated outputs
+outputs/*/*.tif
+outputs/*/*.csv
+outputs/*/*.json
+outputs/qaqc/qaqc_report.md
+
+# Incoming/zips/staging
+files.zip
+files/
+incoming_files_20261021/
+
+# OS/editor
+.DS_Store
+*.aux.xml
