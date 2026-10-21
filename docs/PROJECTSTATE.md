@@ -17,7 +17,7 @@ and QA gate are implemented; the real Jhabua stack is waiting on six raw sources
 | W2 Screening | ingest contract, 30 m aligned stack, reason codes, waterfall | **CODE DONE / DATA PENDING** |
 | W3 Scoring | weighted overlay, Dirichlet sensitivity, stability map | not started |
 | W4 Validation + maps | stratified sample, accuracy + CI, zonal stats, maps | not started |
-| W5 Docs | README, methodology/limitations, learning walkthrough | IN PROGRESS |
+| W5 Docs | README, methodology/limitations, learning walkthrough | **DONE** |
 
 ## 3. Key decisions (why)
 
