@@ -843,6 +843,13 @@ These are worth reading because they are typical raster/Python failure modes.
    refused to pass because the aligned layers do not exist.
    Lesson: a check that cannot fail is decoration; make it read the artifact.
 
+9. **QA warnings were being marked as passes.**
+   `_warn()` returned `passed=True`, so the report counted zero warnings and printed
+   “PASS” for things like “no screening output yet”. A warning is not a failure, but
+   it is not a pass either. It is now `passed=False` with `kind="warning"`.
+   Lesson: a three-state result (pass / warn / fail) needs three states in the data,
+   not a boolean with a comment.
+
 ## 10.11 How to read a result without fooling yourself
 
 When the real stack exists:

@@ -241,7 +241,9 @@ def rasterize_protected(cfg: dict, grid: dict, district: np.ndarray) -> np.ndarr
     path = Path(cfg["paths"]["sources"]["protected_areas"])
     gdf = gpd.read_file(path)
     if len(gdf) == 0:
-        return np.zeros((grid["height"], grid["width"]), dtype="uint8")
+        out = np.zeros((grid["height"], grid["width"]), dtype="uint8")
+        out[district == 0] = 255
+        return out
     gdf = gdf.to_crs(grid["crs"])
     geom = _to_union(gdf.geometry)
     protected = rasterize(
@@ -252,7 +254,7 @@ def rasterize_protected(cfg: dict, grid: dict, district: np.ndarray) -> np.ndarr
         dtype="uint8",
         all_touched=True,
     )
-    protected[district == 0] = 0
+    protected[district == 0] = 255
     return protected
 
 

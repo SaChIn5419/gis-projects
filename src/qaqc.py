@@ -105,7 +105,7 @@ def _fail(check: str, msg: str, detail="", kind="critical") -> GateResult:
 
 
 def _warn(check: str, msg: str, detail="") -> GateResult:
-    return GateResult(check, "warning", True, msg, detail)
+    return GateResult(check, "warning", False, msg, detail)
 
 
 def check_grid(cfg: dict, base: Path, facts: dict) -> list:
