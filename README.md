@@ -155,4 +155,10 @@ Read `docs/limitations.md` before quoting a hectare figure.
 - `docs/limitations.md` — what cannot be claimed.
 - `docs/data_sources.md` — actual sources, URLs, and download notes.
 - `docs/case_study.md` — portfolio write-up and CV bullets.
+- **`REPORT.pdf`** — a compiled 11-page analysis report with all figures embedded
+  (source: `REPORT.md`); sections: study area & data, method, results, five analysis
+  deep-dives (incl. first-fails-wins attribution math, fracture analysis, flag
+  composition), QA, limitations, reproduction steps and references.
+- `REPORT.md` — the same analysis report in Markdown, with embedded images from
+  `outputs/maps/` and `outputs/report_figures/`.
 - `learning.md` — full walkthrough of the method and code.
