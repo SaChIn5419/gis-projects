@@ -10,17 +10,22 @@
   },
   "grid": {
     "crs": "EPSG:32643",
-    "resolution_m": 30,
-    "status": "aligned stack not built"
+    "resolution_m": 30.0,
+    "width_px": 2933,
+    "height_px": 3130,
+    "aligned_at_utc": "2026-10-21",
+    "status": "aligned stack built"
   },
   "sources": [
     {
       "id": "boundary",
       "path": "data/raw/boundary.geojson",
       "type": "vector",
-      "source": "geoBoundaries 2.0.1 India ADM2 (641 features)",
+      "source": "geoBoundaries 2.0.1 India ADM2",
       "sha256": "4fd352176b425954d6188d4c1a590dee70b226171608032e31d5879d849da8e5",
-      "status": "present"
+      "status": "present",
+      "feature_count": 641,
+      "note": "641 ADM2 features; Jhabua selected by shapeName."
     },
     {
       "id": "boundary_jhabua",
@@ -31,55 +36,144 @@
       "crs": "EPSG:32643",
       "feature_count": 1,
       "area_km2": 3433.775360601751,
-      "status": "present"
+      "status": "present",
+      "note": "Includes the small detached district component at the southwest; both parts are in the mask."
     },
     {
       "id": "worldcover",
       "path": "data/raw/worldcover_2021.tif",
       "type": "raster",
       "source": "ESA WorldCover 2021 v200 (10 m)",
-      "status": "missing",
-      "needed_for": "land-cover screens and woody proxy"
+      "status": "present",
+      "needed_for": "land-cover screens and woody proxy",
+      "version": "v200 / 2021",
+      "source_url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/",
+      "tiles": [
+        "N21E072",
+        "N21E075"
+      ],
+      "native_resolution_m": 10,
+      "clip_bounds_epsg4326": [
+        74.14,
+        22.37,
+        75.03,
+        23.25
+      ],
+      "sha256": "d9ed2788a3733950dcb4107190c4dc89bfc841963b439a9b3eaa8927190a4a7b",
+      "bytes": 7790244,
+      "acquired_utc": "2026-10-21",
+      "note": "Two public tiles mosaicked and clipped to the Jhabua envelope. Classes present in the district: 10,20,30,40,50,60,80."
     },
     {
       "id": "hansen_treecover2000",
       "path": "data/raw/hansen_treecover2000.tif",
       "type": "raster",
-      "source": "Hansen GFC treecover2000 (30 m)",
-      "status": "missing",
-      "needed_for": "pre-existing woody biomass proxy"
+      "source": "Hansen Global Forest Change 2024 v1.12, treecover2000 (30 m)",
+      "status": "present",
+      "needed_for": "pre-existing woody biomass proxy",
+      "version": "GFC-2024 v1.12",
+      "tile": "30N_070E",
+      "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/",
+      "native_resolution_m": 30,
+      "clip_bounds_epsg4326": [
+        74.14,
+        22.37,
+        75.03,
+        23.25
+      ],
+      "sha256": "77815fb66749c25c10a0318f000700f130346dcc3890058c2ba4c69cc0b4d7d6",
+      "bytes": 213657,
+      "acquired_utc": "2026-10-21",
+      "note": "Only 2,441 aligned 30 m pixels inside Jhabua have >=10% tree cover; this is a sparse-canopy district."
     },
     {
       "id": "hansen_lossyear",
       "path": "data/raw/hansen_lossyear.tif",
       "type": "raster",
-      "source": "Hansen GFC lossyear (30 m)",
-      "status": "missing",
-      "needed_for": "§4.4.2(1) recent-removal exclusion and data-confidence flag"
+      "source": "Hansen Global Forest Change 2024 v1.12, lossyear (30 m)",
+      "status": "present",
+      "needed_for": "\u00a74.4.2(1) recent-removal exclusion and data-confidence flag",
+      "version": "GFC-2024 v1.12",
+      "tile": "30N_070E",
+      "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/",
+      "native_resolution_m": 30,
+      "clip_bounds_epsg4326": [
+        74.14,
+        22.37,
+        75.03,
+        23.25
+      ],
+      "sha256": "adcb661099a4dfd6fbcbc5d372fed570c9649a90f3fc15b2a010e8b29b958cf4",
+      "bytes": 86041,
+      "acquired_utc": "2026-10-21",
+      "note": "Only 12 aligned 30 m pixels inside Jhabua have nonzero loss; max loss year is 2010. Recent-removal exclusion is therefore zero in this run."
     },
     {
       "id": "hansen_gain",
       "path": "data/raw/hansen_gain.tif",
       "type": "raster",
-      "source": "Hansen GFC gain 2000-2012 (30 m)",
-      "status": "missing",
-      "needed_for": "woody regrowth proxy"
+      "source": "Hansen Global Forest Change 2024 v1.12, gain (30 m)",
+      "status": "present",
+      "needed_for": "woody regrowth proxy",
+      "version": "GFC-2024 v1.12",
+      "tile": "30N_070E",
+      "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/",
+      "native_resolution_m": 30,
+      "clip_bounds_epsg4326": [
+        74.14,
+        22.37,
+        75.03,
+        23.25
+      ],
+      "sha256": "f6132d5785531399836395eeb611fa11fd463f249251a53ff2511b8317a7b4b6",
+      "bytes": 85079,
+      "acquired_utc": "2026-10-21",
+      "note": "No gain pixels survive to the 30 m district screen in this run."
     },
     {
       "id": "dem",
       "path": "data/raw/dem_30m.tif",
       "type": "raster",
-      "source": "Copernicus DEM or SRTM (30 m)",
-      "status": "missing",
-      "needed_for": "Horn slope"
+      "source": "Copernicus DEM GLO-30 (30 m)",
+      "status": "present",
+      "needed_for": "Horn slope",
+      "version": "GLO-30 COG 2023 release",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "tiles": [
+        "N22E074",
+        "N22E075",
+        "N23E074",
+        "N23E075"
+      ],
+      "native_resolution_m": 30,
+      "clip_bounds_epsg4326": [
+        74.14,
+        22.37,
+        75.03,
+        23.25
+      ],
+      "sha256": "50babbff0ecf9136cf398553032575aae7dfadf9438395632f0dceded0e813a2",
+      "bytes": 40620308,
+      "acquired_utc": "2026-10-21",
+      "note": "Four 1-degree COGs mosaicked and clipped. Ingest computes Horn slope on the 30 m UTM grid."
     },
     {
       "id": "protected_areas",
       "path": "data/raw/wdpa.geojson",
       "type": "vector",
-      "source": "WDPA India",
-      "status": "missing",
-      "needed_for": "protected-area design screen"
+      "source": "WDPA / Protected Planet, October 2026 public India release",
+      "status": "present",
+      "needed_for": "protected-area design screen",
+      "version": "WDPA_WDOECM_Oct2026_Public_IND",
+      "source_url": "https://d1gam3xoknrgr2.cloudfront.net/current/WDPA_WDOECM_Oct2026_Public_IND.zip",
+      "source_archive": "WDPA_WDOECM_Oct2026_Public_IND.zip",
+      "source_archive_sha256": "2d5ea2f72cd35c46f9699c433414f7a52d9bfc2478bddba48faf864c503711d7",
+      "feature_count_bbox": 1376,
+      "feature_count_intersecting_district": 188,
+      "sha256": "7a1da2e39f13ad21fd965474fba22ab01cd5e630fde21abfa6b3200658b75805",
+      "bytes": 3906520,
+      "acquired_utc": "2026-10-21",
+      "note": "Polygons only, clipped to the Jhabua envelope. Includes Reserve Forest and Protected Forest designations, not only IUCN I-IV. All polygons are treated as a conservative protected-area screen. Raw WDPA data are not redistributed; keep this layer non-commercial and cite UNEP-WCMC/IUCN."
     },
     {
       "id": "s2_dry",
@@ -90,7 +184,8 @@
       "resolution_m": 9.8,
       "bands": 8,
       "sha256": "e40040b746bdac3a1a241892bebb942a36236b3b3e551bb0e2b29db66021dc35",
-      "status": "present"
+      "status": "present",
+      "note": "8 bands, EPSG:4326, ~10 m; used for map backgrounds and optional scoring only."
     },
     {
       "id": "s2_monsoon",
@@ -101,12 +196,41 @@
       "resolution_m": 9.8,
       "bands": 8,
       "sha256": "8735395ef1c8901e1a013563d6853e4b31d6ed5be68dc658ce812ef50f95663e",
-      "status": "present"
+      "status": "present",
+      "note": "8 bands, EPSG:4326, ~10 m; optional scoring only."
     }
   ],
   "aligned_layers": {
     "path": "data/processed/aligned",
-    "status": "not built",
-    "manifest": "data/processed/aligned/manifest.json"
+    "status": "built",
+    "manifest": "data/processed/aligned/manifest.json",
+    "layer_count": 11,
+    "grid": {
+      "crs": "EPSG:32643",
+      "resolution_m": 30.0,
+      "width_px": 2933,
+      "height_px": 3130,
+      "aligned_at_utc": "2026-10-21",
+      "status": "aligned stack built"
+    }
+  },
+  "latest_run": {
+    "output_dir": "outputs/jhabua_agroforestry_screening",
+    "mode": "census",
+    "start_year": 2026,
+    "district_ha": 343380.6,
+    "methodology_eligible_ha": 324093.96,
+    "candidate_ha": 251292.78,
+    "candidate_flagged_ha": 197590.41,
+    "waterfall": "outputs/jhabua_agroforestry_screening/waterfall.csv",
+    "summary": "outputs/jhabua_agroforestry_screening/run_summary.json",
+    "qaqc_report": "outputs/qaqc/qaqc_report.md",
+    "maps": [
+      "outputs/maps/01_study_area.png",
+      "outputs/maps/02_reason_codes.png",
+      "outputs/maps/03_waterfall.png",
+      "outputs/maps/04_candidate_closeup.png"
+    ],
+    "note": "Independent pre-feasibility screen; not an Equilibrium Earth project and not a carbon-credit forecast."
   }
 }

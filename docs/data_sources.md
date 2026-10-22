@@ -1,55 +1,62 @@
-# Data sources and expected filenames
+# Data sources — real Jhabua stack
 
-`src/ingest.py` reads the paths in `config/jhabua.yaml → paths.sources`. The filenames
-below are the contract. You can download tiles covering the Jhabua envelope
-(approximately 74.1–75.1°E, 22.3–23.3°N) and let ingest clip/reproject them; you do not
-need to pre-clip.
+`src/ingest.py` reads the paths in `config/jhabua.yaml → paths.sources`. The local
+raw files in `data/raw/` are the actual working copies. They are clipped/mosaicked
+to the Jhabua envelope (74.14–75.03°E, 22.37–23.25°N) and are git-ignored.
 
-## Required for the screening stack
+The canonical provenance record, including SHA256 hashes and acquisition dates, is
+`data/manifest.json`.
 
-| Config key | Expected file | Source | Native resolution | Notes |
+## Required sources actually used on 21 Oct 2026
+
+| Layer | Local file | Public source | Version / tile | Native resolution |
 |---|---|---|---|---|
-| `worldcover` | `data/raw/worldcover_2021.tif` | ESA WorldCover 2021 v200 | 10 m | mosaic the tiles covering the district; class codes 10–100 |
-| `hansen_treecover2000` | `data/raw/hansen_treecover2000.tif` | Hansen Global Forest Change | 30 m | percent tree cover in 2000, 0–100 |
-| `hansen_lossyear` | `data/raw/hansen_lossyear.tif` | Hansen GFC | 30 m | 0 = no loss; 1..N = year 2000+N |
-| `hansen_gain` | `data/raw/hansen_gain.tif` | Hansen GFC | 30 m | 0/1; only 2000–2012 |
-| `dem` | `data/raw/dem_30m.tif` | Copernicus GLO-30 or SRTM | 30 m | ingest computes Horn slope |
-| `protected_areas` | `data/raw/wdpa.geojson` | WDPA / Protected Planet (India) | vector | any polygon = protected; classify IUCN categories in the limitations |
+| WorldCover | `data/raw/worldcover_2021.tif` | ESA WorldCover 2021 v200 | `N21E072`, `N21E075` | 10 m |
+| Hansen treecover | `data/raw/hansen_treecover2000.tif` | Hansen GFC 2024 v1.12 | `30N_070E` | 30 m |
+| Hansen loss | `data/raw/hansen_lossyear.tif` | Hansen GFC 2024 v1.12 | `30N_070E` | 30 m |
+| Hansen gain | `data/raw/hansen_gain.tif` | Hansen GFC 2024 v1.12 | `30N_070E` | 30 m |
+| DEM | `data/raw/dem_30m.tif` | Copernicus DEM GLO-30 | `N22E074`, `N22E075`, `N23E074`, `N23E075` | 30 m |
+| Protected areas | `data/raw/wdpa.geojson` | WDPA / Protected Planet | `WDPA_WDOECM_Oct2026_Public_IND` | vector |
+| Boundary | `data/raw/boundary.geojson` | geoBoundaries 2.0.1 India ADM2 | Jhabua feature | vector |
+| Sentinel-2 dry | `data/raw/s2_dry_2024.tif` | GEE Sentinel-2 dry-season median | 2024 | ~10 m |
+| Sentinel-2 monsoon | `data/raw/s2_monsoon_2024.tif` | GEE Sentinel-2 monsoon median | 2024 | ~10 m |
 
-## Boundary
+## How the local working layers were built
 
-`data/raw/boundary.geojson` is the geoBoundaries ADM2 file (641 features). Ingest
-selects `shapeName == "Jhabua"`. If you replace it with a Jhabua-only file, keep a
-`shapeName` column containing `Jhabua`, or update `project.boundary_feature`.
+- WorldCover: two public tiles were mosacked and clipped to the Jhabua envelope.
+- Hansen: the correct `30N_070E` tile was clipped; values were preserved.
+- DEM: four Copernicus GLO-30 COGs were mosacked and clipped.
+- WDPA: India polygons only, clipped to the Jhabua envelope. Raw WDPA data are not
+  redistributed in the repository.
+- Boundary: geoBoundaries ADM2 file with the Jhabua feature selected by
+  `project.boundary_feature`.
+- Sentinel-2 composites were not re-downloaded; the existing 2024 8-band files are
+  used for map backgrounds and optional scoring indices.
 
-## Optional scoring layers
+## Notes on the actual tiles
 
-| Config key | Expected file | Source |
-|---|---|---|
-| `s2_dry` | `data/raw/s2_dry_2024.tif` | GEE dry-season composite (already present) |
-| `s2_monsoon` | `data/raw/s2_monsoon_2024.tif` | GEE monsoon composite (already present) |
+- The first Hansen tile was accidentally `20N_070E`, which covers 20°N down to
+  10°N. Jhabua is 22.4–23.2°N, so it was replaced with `30N_070E`.
+- WorldCover classes present in Jhabua: **10, 20, 30, 40, 50, 60, 80**. Class 95
+  (mangroves) is in the config but absent in the district.
+- WDPA contains **Reserve Forest** and **Protected Forest** designations, not only
+  IUCN I–IV. All polygons are treated as a conservative protected-area screen.
 
-Bands 7 and 8 are assumed to be NDVI and BSI, as in `scripts/s2_composites.py`.
+## Why ingest stops on a missing source
 
-## After download
+`src/ingest.py` refuses to build a partial stack. If a path in
+`config/jhabua.yaml → paths.sources` is missing, the run stops and lists the missing
+files. It does not zero-fill. This is deliberate; a silent zero-filled raster can
+make a screen look clean while actually being empty.
 
-1. Record the SHA256 of every raw file in `data/manifest.json` (or let ingest write the
-   aligned manifest; both are useful).
-2. Run:
-   ```bash
-   python src/ingest.py config/jhabua.yaml
-   python src/qaqc.py --check config/jhabua.yaml
-   ```
-3. If ingest stops, read the missing-path list. Do not create zero-filled substitutes.
+## Post-download workflow
 
-## What ingest will do
+```bash
+python src/ingest.py config/jhabua.yaml
+python src/qaqc.py --check config/jhabua.yaml
+python src/screening.py config/jhabua.yaml
+python scripts/make_maps.py config/jhabua.yaml
+```
 
-- reproject to EPSG:32643;
-- snap to a 30 m grid;
-- aggregate WorldCover with majority;
-- preserve Hansen values with nearest;
-- resample DEM bilinearly and compute Horn slope;
-- rasterise WDPA with `all_touched=True`;
-- write the seven aligned layers plus `data/processed/aligned/manifest.json`.
-
-The real screen will not run until all six required sources exist. That is deliberate.
+Before any downstream use, verify the QA report and inspect
+`outputs/jhabua_agroforestry_screening/reason_codes.tif` against the imagery.

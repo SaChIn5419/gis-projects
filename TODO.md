@@ -14,28 +14,36 @@
 - [x] Rewrite `src/qaqc.py` to measure actual rasters, not a manifest.
 - [x] Add synthetic ingest + QA + CLI tests (17 pass).
 - [x] Set `qa.reference_area_km2 = 3433.78` from the EPSG:32643 boundary.
-
-## P0 — real data
-- [ ] Put WorldCover 2021, Hansen treecover/loss/gain, DEM and WDPA in `data/raw/`.
-- [ ] Run `python src/ingest.py config/jhabua.yaml` and inspect the aligned manifest.
-- [ ] Run `python src/qaqc.py --check config/jhabua.yaml`.
-- [ ] Run `python src/screening.py config/jhabua.yaml`.
-- [ ] Visually check the reason-code raster in QGIS against the imagery.
+- [x] Download the six real sources and clip/mosaic them into `data/raw/`.
+- [x] Fix the Hansen tile (`30N_070E`, not `20N_070E`) before ingest.
+- [x] Run the real ingest: 11 aligned layers, 2933 x 3130 grid at 30 m.
+- [x] Run the QA gate: 19 checks, 0 blocking, 1 warning (only "no screening output yet"
+      at the time of the gate; the screen now exists).
+- [x] Run the real screen: 343,380.6 ha district → 324,094.0 ha methodology-eligible →
+      251,292.8 ha candidate.
+- [x] Record source hashes, URLs and acquisition dates in `data/manifest.json`.
+- [x] Generate four portfolio maps from the actual rasters.
+- [x] Document the WDPA decision: all polygons, including Reserve/Protected Forest.
 
 ## P1 — screening follow-up
 - [ ] Run sensitivity variants: `threshold_pct` 10/15/20; `shrubland` flag/exclude;
       `source` worldcover/hansen/either; `min_patch_ha` 0.5/1/2.
 - [ ] Replace the binary Hansen-loss proxy with a post-loss canopy product or document
       the bias with a sensitivity band.
+- [ ] Add a WDPA sensitivity variant using only IUCN I–IV vs all designations.
 - [ ] Add the 2025–2026 Hansen gap to the limitations section.
-- [ ] Decide whether WDPA should include all IUCN categories or only I–IV.
+- [ ] Decide whether the candidate should exclude cropland as a design scenario
+      (methodology-eligible area must still be reported with cropland in).
 
 ## P2 — scoring, validation, maps
 - [ ] Weighted suitability (NDVI / slope / water / road).
 - [ ] ~300 Dirichlet scenarios + stability map.
 - [ ] Stratified validation including excluded pixels.
-- [ ] Maps: study area, exclusions, suitability, top villages.
+- [ ] Village-level summaries and a top-candidate shortlist for fieldwork.
+- [ ] Optional QGIS project (`.qgz`) with the reason raster, boundary and basemap.
 
-## P3 — docs
-- [ ] `docs/methodology.md`, `docs/limitations.md`.
-- [ ] Final QA report and README screenshot.
+## P3 — portfolio packaging
+- [x] `docs/case_study.md` with results, figures, limitations and CV bullets.
+- [ ] Final proofread of maps and case study.
+- [ ] Choose public vs private repository; default is private/portfolio use.
+- [ ] Commit code, docs and selected outputs; keep raw data ignored.

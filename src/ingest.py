@@ -156,6 +156,7 @@ def reproject_band(
     resampling,
     dtype: str,
     dst_nodata,
+    src_nodata="auto",
 ) -> np.ndarray:
     """Reproject one band onto the common grid, preserving a nodata value."""
     import rasterio
@@ -166,13 +167,14 @@ def reproject_band(
             raise IngestError(f"source has no CRS: {src_path}")
         if band < 1 or band > src.count:
             raise IngestError(f"{src_path} has {src.count} bands; requested band {band}")
+        src_nd = src.nodata if src_nodata == "auto" else src_nodata
         dest = np.full((grid["height"], grid["width"]), dst_nodata, dtype=dtype)
         reproject(
             source=rasterio.band(src, band),
             destination=dest,
             src_transform=src.transform,
             src_crs=src.crs,
-            src_nodata=src.nodata,
+            src_nodata=src_nd,
             dst_transform=grid["transform"],
             dst_crs=grid["crs"],
             dst_nodata=dst_nodata,
@@ -278,12 +280,17 @@ def write_raster(path: Path, arr: np.ndarray, grid: dict, dtype: str, nodata, de
         "blockysize": 256,
     }
     with rasterio.open(path, "w", **profile) as dst:
-        dst.write(arr.astype(dtype), 1)
+        data = np.asarray(arr)
+        if np.issubdtype(data.dtype, np.floating):
+            # GeoTIFFs with NaN pixels are hard to mask consistently; write
+            # them as the declared nodata value instead.
+            data = np.where(np.isfinite(data), data, nodata)
+        dst.write(data.astype(dtype), 1)
         dst.set_band_description(1, description)
 
 
 def _layer_stats(arr: np.ndarray, district: np.ndarray, nodata) -> dict:
-    valid = district.astype(bool) & (arr != nodata)
+    valid = district.astype(bool) & (arr != nodata) & np.isfinite(arr)
     vals = arr[valid]
     return {
         "valid_pixels_inside_district": int(valid.sum()),
@@ -447,7 +454,7 @@ def main(argv=None) -> int:
         ):
             arr = reproject_band(
                 root / sources[key], grid, band=band, resampling=Resampling.average,
-                dtype="float32", dst_nodata=-9999.0,
+                dtype="float32", dst_nodata=-9999.0, src_nodata=np.nan,
             )
             arr = mask_outside_district(arr, district, -9999.0)
             finish(idx_key, arr, "float32", -9999.0, desc, source_key=key)
