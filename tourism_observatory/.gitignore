@@ -1,0 +1,43 @@
+# Tourism Observatory — version-control rules
+#
+# Convention (README + data/manifest.json): data payloads are git-ignored and
+# their provenance lives in data/manifest.json (SHA-256 at recording time).
+
+# --- payloads -------------------------------------------------------------
+data/raw/*
+data/processed/*
+
+# WDPA is NOT redistributable (license) — hard deny ahead of any allowlist.
+data/raw/WDPA_*
+data/processed/wdpa_*
+data/processed/*wdpa*
+
+# Allowlist: small provenance / registry artifacts worth diffing.
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/processed/wayanad_boundary_32643.geojson
+!data/processed/registry_homestays_wayanad_*.csv
+!data/processed/registry_geocoded_*.csv
+!data/processed/registry_geocoded_*.geojson
+
+# Partial downloads
+*.part
+
+# --- generated QA artifacts (reproducible from data + scripts) ------------
+outputs/qaqc/*
+!outputs/qaqc/.gitkeep
+# Exception: decision evidence that is NOT fully reproducible or that C2 must
+# inspect without re-running — geocode logs hit external services (responses
+# vary), the gate report/ingest facts are the record of the runs that passed.
+!outputs/qaqc/geocode_log*.json
+!outputs/qaqc/ingest_facts.json
+!outputs/qaqc/baseline_qaqc_report.md
+
+# --- OS / python ------------------------------------------------------------
+__pycache__/
+*.pyc
+*.aux.xml
+.DS_Store
+
+# Playwright MCP session artifacts (browser traces/console dumps — never commit)
+.playwright-mcp/

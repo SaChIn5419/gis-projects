@@ -1,0 +1,84 @@
+# Wayanad investigation — P1 config (BASELINE-ONLY scope)
+# Authorizes nothing beyond preregistration §5 boundary: this config is intentionally
+# limited to layers that may be opened before C1 final sign-off. Outcome layers
+# (change rasters, NDVI deltas, HEC surfaces, exposure registers) are ABSENT BY DESIGN;
+# adding them is a deviation-log event, not a config edit.
+
+program: tourism_observatory
+audit_status: CONDITIONAL_GO   # deviation D-6; PASS only after P1 completeness report
+
+region:
+  name: Wayanad
+  state: Kerala
+  boundary_source: geoBoundaries ADM2          # same convention as Jhabua run
+  boundary_feature: Wayanad
+  # Pinned ingest 2026-10-22 (oi-1 closed):
+  snapshot_id: IND-ADM2-76128533
+  snapshot_commit: 9469f09
+  snapshot_file: data/raw/geoBoundaries-IND-ADM2_simplified.geojson
+  snapshot_sha256: d68db39cd3e2d0892af268e2b0454166368ce3b5b8a78fcda63069ec92a641db
+  processed_boundary: data/processed/wayanad_boundary_32643.geojson
+  area_km2_observed: 2026.393          # ≈4.9% below official ~2,131 (simplified boundary; recorded)
+  # CRS resolved from the district extent at ingest (oi-3 closed): lon 75.77–76.44 E
+  crs: EPSG:32643
+
+grid:
+  # Matched-unit geometry follows prereg dev-D-4: 1 km parcels on the AOI-snapped
+  # city-block grid; analysis CRS EPSG:32643 (zone 43 confirmed from lon extent
+  # 75.77–76.44 E at ingest 2026-10-22 — not assumed).
+  effective_resolution_m: 30
+  snap_rule: envelope_anchor          # Jhabua convention
+  notes: nothing disaggregated upward; 30 m effective resolution
+
+# ---------- BASELINE (permitted pre-freeze) ----------
+baseline:
+  period_label: 2000-2005_covariates
+  layers:
+    - name: dem_copernicus_30m
+      use: elevation, slope (Horn), HAND proxies
+    - name: chi_cci_lulc_2005           # placeholder id; exact 2005 CCI vintage fixed at ingest
+      use: baseline LULC composition (matching covariate, class-harmonization table required)
+    - name: hansen_treecover2000
+      use: baseline tree cover (matching covariate)
+    - name: osm_roads_current
+      use: road-access tercile — labeled CURRENT-NETWORK PROXY, NOT baseline observation (prereg D-4)
+    - name: wdpa_all_touched
+      use: exclusion (both arms), all_touched=True, conservative (Jhabua precedent)
+      license_note: WDPA — free w/ registration; NOT redistributable; attribution recorded
+    - name: worldcover_2021_water
+      use: water masking for eligibility domain (prereg D-2)
+
+# ---------- TREATMENT REGISTRY (existence only pre-freeze) ----------
+tourism_registry:
+  approved_homestays:
+    source: keralatourism.org approved list   # name, address, order no., date
+    use: geocode -> facility points; visual existence verification permitted
+    construction_dating: FORBIDDEN pre-freeze  # outcome work, post-freeze sensitivity step
+    # Pinned ingest 2026-10-22 (§2 audit-D-1):
+    snapshot: data/raw/keralatourism_approved_homestays_2026-10-22.html
+    snapshot_sha256: 1c7d664c6bb5a115f29526368baa51c643f064ee98c3090b14481711e42f98f6
+    parsed_wayanad: data/processed/registry_homestays_wayanad_2026-10-22.csv  # 51 facilities
+    coverage_note: live currently-valid snapshot; order date = latest renewal, not construction (audit §11)
+  classified_hotels:
+    source: Kerala Tourism service-provider portal
+  cohort_survey:
+    source: ecostat.kerala.gov.in hotel survey  # year-of-starting cohorts; V1 target
+
+# ---------- VERIFICATION-FORBIDDEN (intentionally not configured) ----------
+forbidden_until_c1_final:
+  - change rasters / LULC transition matrices (H1 outcome)
+  - NDVI / vegetation-delta surfaces (H1 outcome)
+  - treatment vs control comparison outputs (H1)
+  - HEC incident surfaces / KDE comparisons (H3)
+  - landslide-exposure registers built from those outcomes (H2b schedule is post-freeze)
+  - facility construction dating from imagery (prereg §5)
+
+qa:
+  gate: open actual GeoTIFFs; verify CRS/extent/measured resolution/nodata/area-sum
+  scope_pre_c1: baseline layers ONLY
+  expected_fail_fast: manifest trust banned (Jhabua rule — qa opens files, not metadata)
+
+manifest:
+  rule: >-
+    every downloaded file gets SHA-256 in data/manifest.json on arrival;
+    source status flips to "verified" ONLY at that moment (prereg D-6)

@@ -1,0 +1,21 @@
+{
+ "total": 51,
+ "geocoded_any": 51,
+ "inside_district": 50,
+ "by_precision": {
+  "P4_town_city": 8,
+  "P5_district_or_coarser": 43
+ },
+ "by_query": {
+  "locality_tail": 32,
+  "district_only": 19
+ },
+ "failures": [],
+ "shared_coordinate_groups": 8,
+ "shared_coordinate_facilities": 43,
+ "geocode_rate_pct": 100.0,
+ "inside_rate_pct": 98.0,
+ "date": "2026-10-23",
+ "source_registry": "registry_homestays_wayanad_2026-10-22.csv",
+ "note": "Precision classes cap the claim: P3/P5 are locality-level placements, NOT facility-exact coordinates. No point is jittered to look exact. Construction dating forbidden (prereg \u00a75)."
+}

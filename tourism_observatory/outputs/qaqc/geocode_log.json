@@ -1,0 +1,33 @@
+{
+ "total": 51,
+ "round": 2,
+ "geocoded_any": 51,
+ "inside_district": 51,
+ "by_precision": {
+  "P4_town_city": 23,
+  "P5_district_or_coarser": 14,
+  "P3_village": 12,
+  "P2_street": 2
+ },
+ "by_engine": {
+  "nominatim": 44,
+  "photon": 7
+ },
+ "by_query": {
+  "nominatim_locality": 30,
+  "nominatim_district": 3,
+  "nominatim_pin_text": 11,
+  "photon_pin": 5,
+  "photon_locality": 2
+ },
+ "failures": [],
+ "shared_coordinate_groups": 11,
+ "shared_coordinate_facilities": 44,
+ "geocode_rate_pct": 100.0,
+ "inside_rate_pct": 100.0,
+ "fine_pct": 27.5,
+ "date": "2026-10-23",
+ "source_registry": "registry_homestays_wayanad_2026-10-22.csv",
+ "round1_archive": "outputs/qaqc/geocode_log_r1.json",
+ "note": "Precision classes cap the claim: P3/P5 are locality-level placements, NOT facility-exact coordinates. Facility-exact placement is the separate imagery existence-verification step. No point is jittered. Construction dating forbidden (prereg \u00a75)."
+}

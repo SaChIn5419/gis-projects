@@ -100,3 +100,120 @@ None for the core screen. Optional, non-blocking follow-ups:
 
 If continuing: pick one optional follow-up from §7 and give it a config + docs entry.
 Each is ≤1 day. Otherwise the project is complete as a portfolio artifact.
+
+---
+
+## 9. NEW PROGRAM (2026-10-22): Tourism, Ecological Risk and Community Exposure Observatory
+
+User decision: personal research program, **exactly two sites** — **Wayanad (Kerala) →
+Mussoorie (Uttarakhand)**. No foreign benchmark, no third case. Each site is a full
+investigation counted as Decision artifact. Plan: `/home/sachindb/.opencode/plan/tourism-ecological-risk-research-plan.md`.
+
+### Phase P0 — delivered (2026-10-22): pre-analysis freeze
+
+Three frozen artifacts, committed **before any outcome map is viewed**, now relocated (D-1)
+into the dedicated program folder as the user requested:
+
+- `tourism_observatory/docs/preregistration_wayanad.md` — hypotheses H1–H4 with falsification conditions,
+  frozen control-selection rules (baseline-only covariates, calipers, seed 20261022,
+  balance SMD < 0.10), information-boundary table (what may/may not be opened pre-freeze),
+  validation plan V1–V3, append-only deviation log (D-0 freeze, D-1 relocation).
+- `tourism_observatory/docs/literature_matrix.md` — ~25 entries in 4 groups (A: tourism→LUCC benchmarks;
+  B: hill-station hazards + institutional; C: HWC spatial evidence; D: methods/risk),
+  each with indicators + limitations + explicit verification flags; known gaps stated
+  (hill-station resort-footprint literature thin = the study's own target gap).
+- `tourism_observatory/docs/data_audit_wayanad.md` — source-by-source audit (21 sources), §6 checklist
+  **PASS 6/6**, tracked risks R1 (HEC points, H), R2 (community-event compilation bias, M),
+  R3 (imagery dating, L→M), with fallback chains.
+- `tourism_observatory/README.md` — program structure, phase status, non-negotiable rules.
+- Scope decision recorded (user, 2026-10-22): **exactly two sites — Wayanad → Mussoorie.**
+  No foreign benchmark, no third case. Validation relies on Wayanad's published studies.
+
+**Freeze hashes (SHA-256), re-recorded after D-1 relocation to `tourism_observatory/docs/`:**
+- `tourism_observatory/docs/preregistration_wayanad.md` → `aa2ce6b89d2a71aaf331e15f84f783c86a1779abd2d38c224490cc1df622ac3d`
+- `tourism_observatory/docs/literature_matrix.md` → `91e452b0bc02d35d08d8e577927dfabc8bf2668586c89ca3266edd6b5cafe784`
+- `tourism_observatory/docs/data_audit_wayanad.md` → `5aa3efcdb523bd202b8fd1c0d49ff277d582e0ed8a68e6846f7bd310935d2eae`
+- plan (external, reference only) → `fc14c24d8e4a4bc7abc63ce1767e23582d76da8a18ef5dd2da735cd8a462c5ec`
+
+### C1 review outcome (2026-10-22): REVISE → revisions delivered via deviation entries D-2…D-8
+
+External C1 design review of all three artifacts returned: principles/boundary **PASS**;
+H1 REVISE · H2 BLOCK · H3 REVISE (hard data gate) · H4 REVISE (observational process) ·
+audit verdict too strong · literature verification pending. All items were resolved
+**append-only** in the preregistration deviation log (no frozen hypothesis text edited):
+D-2 (H2a/H2b split, hazard-blind eligibility domain, scar populations separated) ·
+D-3 (HEC gate + pre-2011 covariate window, leakage removed) · D-4 (H1 association
+estimand, exact parcel grid, cluster rule, transition matrix) · D-5 (dispute unit, dedup,
+precision classes, reportable-area null, EXPLORATORY flag) · D-6 (audit verdict →
+CONDITIONAL GO, verification = file on disk + manifest hash) · D-7 (V1/V2/V3 criteria
+tightened; alignment/comparability preconditions) · D-8 (source-type ledger +
+verification queue, queued as P1 documentation).
+
+**Authorization state (per reviewer): C1 sign-off remains PENDING**; **P1 baseline-only
+work is authorized** with the information boundary unchanged: downloads + provenance
+reports, baseline terrain/access covariates, facility-existence verification,
+geocoding/alignment tests — **no H1–H4 outcome maps, no treatment-vs-control tests.**
+
+**Freeze hashes R2 (post-D-1 relocation + D-2…D-8 revisions; supersedes hash table above for audit purposes — original R1 hashes retained for history):**
+- `tourism_observatory/docs/preregistration_wayanad.md` → `d3e4cde2b87d7ce8a87aaa73337540f03f5ef5b2bd5232fd610fdb917b862ac2`
+- `tourism_observatory/docs/literature_matrix.md` → `697dc1f593786432b996151846a80e0d22d9d9f66f3c2a7999c2b766a71e7110`
+- `tourism_observatory/docs/data_audit_wayanad.md` → `327263b42f7225ce599a76625ae1b28a31186462a8dde9a4f4a5816af923a8bb`
+
+**Freeze hashes R3 (post dev-D-9 administrative consistency pass; supersedes R2 for
+verification — R2 values retained above for history):**
+- `tourism_observatory/docs/preregistration_wayanad.md` → `2985fb4edba36a7b29853d05e065392dfe5d65755426baffbab89dd297dc195c`
+- `tourism_observatory/docs/literature_matrix.md` → `578a995ad0e7334f03dd19f7898112d85bfc74c83872beab870d44fb7f20065b`
+- `tourism_observatory/docs/data_audit_wayanad.md` → `aab7ef4df2947ba104c35e9bd32cca063257e5c9a79204d3bf95451644d89b2e`
+
+**Freeze hashes R4 (post P1 acquisition-log append to the audit, §11; supersedes R3 for
+verification — R2/R3 retained above for history; prereg and matrix unchanged since R3):**
+- `tourism_observatory/docs/data_audit_wayanad.md` → `b27f58360f551979fcc7fa31ed584df4a4b3ef823983a638159cbcd7872ee56c`
+- `tourism_observatory/docs/preregistration_wayanad.md` → `2985fb4edba36a7b29853d05e065392dfe5d65755426baffbab89dd297dc195c` (unchanged from R3)
+- `tourism_observatory/docs/literature_matrix.md` → `578a995ad0e7334f03dd19f7898112d85bfc74c83872beab870d44fb7f20065b` (unchanged from R3)
+
+**P1 first acquisitions (2026-10-22, hashes in `tourism_observatory/data/manifest.json`):**
+geoBoundaries IND ADM2 pinned snapshot (`d68db39c…`) + Wayanad boundary @EPSG:32643
+(`1d4f92cd…`); Kerala approved-homestay registry snapshot 2026-10-22 (`1c7d664c…`) with
+51 Wayanad facilities parsed (`fda3aefd…`). OI-1/OI-3 closed; OI-4 partially closed
+(currently-valid snapshot semantics confirmed — order date = latest renewal).
+
+Consistency audit of record: `tourism_observatory/docs/c1_consistency_audit.md`
+(findings, superseded-text trail, open items, remaining blockers).
+
+Next action: user's final C1 sign-off on the revised artifacts; then P1 baseline-only
+acquisition (`config/wayanad.yaml`, registry downloads with manifest hashes, baseline
+composites, QA gate on baseline layers only, data-completeness + provenance report
+→ feeds C2 go/no-go).
+
+### C1 final sign-off (2026-10-23): SIGNED — recorded at prereg dev-D-10
+
+Reviewer completed the final cross-check and granted final sign-off ("c1 sign off
+yes"). Both §6 conditions of the consistency audit are met and logged: reviewer
+cross-check performed; P1 empirical verifications logged — 17 sources with SHA-256 in
+`tourism_observatory/data/manifest.json`, baseline QA gate **PASS (0 critical, 0
+warnings, 62 checks, files opened directly)**, audit-D-10 R1 gate executed (aggregate
+READY via open Figshare dataset; points do not exist at source — registered H3
+fallback stands; the row's "*Frontiers* / 2011–2023" description corrected append-only
+to *GECCO* 62:e03742 / events 2011–2014), audit-D-1 coverage start year verified
+(2024-01-27; OI-4 closed: scheme GO 299/06 = 2006, GO 324/15 = 2015). Sign-off does
+not change any §3/§4/§5 element; it releases the C1 condition and lets **C2** decide on
+P1 data-completeness.
+
+**P1 delivered (2026-10-23):** baseline stack on the frozen grid (DEM+slope, WorldCover,
+Hansen 2000 tree cover, CCI-LC 2005 @300 m, WDPA union 855.8 km², OSM roads + distance,
+AOI mask) — QA PASS; geocoding round 2 (51/51 in-district, P2–P5 precision classes,
+round 1 archived); registry sources D-2/D-3/D-4 + OI-4 order acquired and hashed;
+`tourism_observatory/docs/p1_provenance_report.md` is the C2 input
+(`8a3140cf4fc68c19…`). Consistency audit addendum §8 records the sign-off conditions.
+
+**Freeze hashes R5 (post dev-D-10 sign-off entry + §11 research/registry log + matrix
+verification results; supersedes R4 for verification — R2/R3/R4 retained above):**
+- `tourism_observatory/docs/preregistration_wayanad.md` → `420d252cc979ca91048a3007acea890d1c7396603c64d1a452a6d8b33645fe1a`
+- `tourism_observatory/docs/literature_matrix.md` → `7a7933666f2a4b3503afa89cdb4726e77ab77c425d6333602bf67b9ce1ba8aa1`
+- `tourism_observatory/docs/data_audit_wayanad.md` → `7e4e9da2ebfb602711fbdbe5a9e52047c901462e441bec2be155ff4e3b7ad2ed`
+- (audit-of-record, not part of the freeze trio but tracked here: `c1_consistency_audit.md` → `710739bf413f62808b21d5dd6c18564264696d6e4591e29712e34f4ade7b15d6`)
+
+Next action: **C2 — P1 data-completeness go/no-go** on
+`tourism_observatory/docs/p1_provenance_report.md` (QA PASS + 17-source manifest +
+registry/D-10 verifications; residual non-blocking items listed in report §7–§8). On
+C2 go → P2 (control matching) under the unchanged prereg §4/§5 boundary.

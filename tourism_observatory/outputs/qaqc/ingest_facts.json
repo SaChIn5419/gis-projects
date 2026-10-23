@@ -1,0 +1,154 @@
+{
+ "grid": {
+  "origin_xy": [
+   584100.0,
+   1324500.0
+  ],
+  "res_m": 30.0,
+  "snap_m": 300.0,
+  "shape30": [
+   1950,
+   2450
+  ],
+  "shape300": [
+   195,
+   245
+  ],
+  "crs": "EPSG:32643",
+  "snap_rule": "envelope_anchor (outward to 300 m multiples)"
+ },
+ "dem": {
+  "dem": {
+   "path": "dem_copernicus30m_32643.tif",
+   "min": 2.81,
+   "max": 2232.46,
+   "mean": 742.56
+  },
+  "slope": {
+   "path": "slope_deg_32643.tif",
+   "max": 73.1
+  }
+ },
+ "worldcover_2021": {
+  "path": "worldcover_2021_32643.tif",
+  "classes_present": [
+   10,
+   20,
+   30,
+   40,
+   50,
+   60,
+   80,
+   90
+  ],
+  "counts": {
+   "10": 4217210,
+   "20": 2247,
+   "30": 252897,
+   "40": 216235,
+   "50": 25106,
+   "60": 596,
+   "80": 63114,
+   "90": 95
+  }
+ },
+ "hansen_treecover2000": {
+  "path": "hansen_treecover2000_32643.tif",
+  "min": 0,
+  "max": 100,
+  "share_ge10pct": 0.8308,
+  "note": "0 = no tree cover (valid); 255 = outside read window"
+ },
+ "cci_lulc_2005": {
+  "path": "cci_lulc_2005_32643.tif",
+  "product": "ESA CCI-LC L4 LCCS 300m annual 2005, v2.0.7cds",
+  "classes_present": [
+   10,
+   11,
+   12,
+   20,
+   30,
+   40,
+   50,
+   60,
+   61,
+   70,
+   100,
+   110,
+   120,
+   121,
+   130,
+   170,
+   180,
+   190,
+   210
+  ],
+  "counts_on_300m_grid": {
+   "10": 1602,
+   "11": 95,
+   "12": 2062,
+   "20": 117,
+   "30": 1399,
+   "40": 1901,
+   "50": 13082,
+   "60": 6091,
+   "61": 904,
+   "70": 595,
+   "100": 17611,
+   "110": 29,
+   "120": 105,
+   "121": 1428,
+   "130": 103,
+   "170": 4,
+   "180": 5,
+   "190": 4,
+   "210": 638
+  },
+  "pixel_area_km2": 0.09
+ },
+ "wdpa": {
+  "path": "wdpa_all_touched_32643.tif",
+  "vector_path": "wdpa_wayanad_32643.gpkg",
+  "polygons": 12,
+  "vector_area_km2": 855.782,
+  "vector_area_sum_km2": 1164.121,
+  "raster_area_km2": 863.923,
+  "redistributable": false,
+  "note": "WDPA not redistributable; all_touched=True rasterisation (conservative); vector_area_km2 = union (designations overlap, sum = vector_area_sum_km2 double-counts intersections)"
+ },
+ "roads": {
+  "path": "roads_wayanad_32643.gpkg",
+  "distance_raster": "road_dist_m_32643.tif",
+  "features": 13205,
+  "highway_types": {
+   "residential": 5814,
+   "unclassified": 3207,
+   "track": 966,
+   "service": 876,
+   "secondary": 554,
+   "path": 517,
+   "tertiary": 427,
+   "living_street": 384,
+   "footway": 149,
+   "primary": 128,
+   "trunk": 77,
+   "steps": 50,
+   "road": 32,
+   "pedestrian": 12,
+   "cycleway": 4,
+   "construction": 3,
+   "trunk_link": 2,
+   "primary_link": 2,
+   "corridor": 1
+  },
+  "max_distance_m": 29221.5,
+  "label": "CURRENT-NETWORK PROXY (not baseline-period observation)",
+  "license": "ODbL \u2014 \u00a9 OpenStreetMap contributors"
+ },
+ "aoi_mask": {
+  "path": "aoi_mask_32643.tif",
+  "vector_area_km2": 2026.393,
+  "raster_area_km2": 2026.412,
+  "diff_pct": 0.001
+ }
+}
