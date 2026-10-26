@@ -260,6 +260,36 @@
    "status": "verified",
    "version": "snapshot 2026-10-23",
    "note": "Classified subset only — not all operating resorts (audit row caveat). The URL serves an auto-submitting form, not the list: snapshot assembled 2026-10-23 via GET /where-to-stay/all/wayanad -> POST /where-to-stay (district=14) -> infinite-scroll POSTs /where-to-stay/scrollajax (nvalue 30/60/90) until totalrows=111; assembled document carries all 111 cards (verified: 111 'sp-card' markers). Portal filter landing: /hotels/; applicant login: /service-provider-classification."
+  },
+  {
+   "id": "d6_scar_paper_path",
+   "audit_ref": "audit §3 D-6 (2024 Chooralmala–Mundakkai scar)",
+   "path": "tourism_observatory/data/raw/staging_d5d6/PMC12290006_Fig1_location_runout_map.jpg",
+   "type": "figure-digitized-raster",
+   "source": "Peer-reviewed debris-flow path — PMC12290006 Fig. 1 (location/runout map: source Chooralmala 842 m → Mundakkai 955 m → deposit 1,558 m, with lat/lon graticule)",
+   "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12290006/",
+   "license": "open access (PMC)",
+   "sha256": "64336faee2a44d118cabdd9a6b779035529cffda9e8f2ee07eca4ad15793835a",
+   "bytes": 456496,
+   "acquired_utc": "2026-10-23",
+   "status": "verified",
+   "version": "PMC12290006",
+   "note": "D-6 v1 source (SUPERSEDED by D-12): centerline digitized by eye from this figure's graticule and compiled by scripts/p2_compile_scar_d6.py. QA against the NRSC VAP3 impact map showed v1 sat ~2 km north of the published crown with 0.000 km² overlap with the published debris-flow extent; it was discarded before any matching ran on it. The §4.4 scar exclusion in use is the VAP3-derived v2 (scripts/p2_digitize_vap3_scar.py); this file is retained as provenance for the v1 attempt."
+  },
+  {
+   "id": "d6_scar_nrsc_impact_map",
+   "audit_ref": "audit §3 D-6 (2024 Chooralmala–Mundakkai scar)",
+   "path": "tourism_observatory/data/raw/staging_d5d6/NRSC_Landslide_Impact_Map_Chooralmala_VAP8_6Aug2024.pdf",
+   "type": "figure-digitized-raster",
+   "source": "NRSC/ISRO Landslide Impact Map, Chooralmala (Charter Call 1029, AOI 01, observed 06/07/2024, published 06-08-2024); UTM Zone 43N / WGS84, scale 1:5,000",
+   "source_url": "https://bhuvan-app1.nrsc.gov.in/disaster/disaster.php",
+   "license": "NRSC/ISRO (Charter rapid-map product)",
+   "sha256": "cc82d297523c91fbb5d2c8d59b4d60c10cae7f51a9c351c483f41811c682a867",
+   "bytes": 17110572,
+   "acquired_utc": "2026-10-23",
+   "status": "verified",
+   "version": "VAP8 06-08-2024",
+   "note": "D-6 confirmation + D-12 v2 source: NRSC/ISRO impact map carrying the published Debris Flow outline and the exact crown coordinate in its legend (76°8′10.58″E, 11°28′0.347″N). Byte-identical copy also staged as NRSC_Landslide_Impact_Map_Chooralmala_VAP3_31july2024.pdf (same SHA-256). The §4.4 scar exclusion in use (v2, D-12) was georeferenced from this map's in-map graticule and extracted by scripts/p2_digitize_vap3_scar.py (centerline 7,221 m, corridor 1.781 km², 150 m buffer)."
   }
  ],
  "pending_wayanad_sources": [

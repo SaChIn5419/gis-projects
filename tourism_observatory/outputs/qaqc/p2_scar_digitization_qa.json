@@ -1,0 +1,44 @@
+{
+ "source_pdf": "data/raw/staging_d5d6/NRSC_Landslide_Impact_Map_Chooralmala_VAP3_31july2024.pdf",
+ "panel_px": [
+  2782,
+  4678
+ ],
+ "frame_px": [
+  93,
+  116,
+  2290,
+  4522
+ ],
+ "lat_ticks_px": [
+  275.0,
+  1438.0,
+  2600.0,
+  3762.0
+ ],
+ "lat_top_tick_arcmin": 31,
+ "green_dot_px": [
+  276.1,
+  3745.9
+ ],
+ "green_dot_lat_pred_vs_legend_deg": [
+  11.4669,
+  11.466763
+ ],
+ "green_dot_lat_err_m": 15.2,
+ "px_per_arcsec": [
+  -19.3717,
+  -18.985
+ ],
+ "m_per_px": -1.594,
+ "flow_outline_px": 80930,
+ "axis_run_px_removed": 23189,
+ "skeleton_px": 6109,
+ "centerline_px": 4083,
+ "centerline_len_m": 7220.5,
+ "corridor_area_km2": 1.781,
+ "buffer_half_m": 150.0,
+ "crown_inside_corridor": true,
+ "date": "2026-10-26",
+ "note": "D-12 correction of v1 (PMC Fig.1 centerline), which sat ~2 km N of the published crown and overlapped this extent by 0.000 km\u00b2."
+}

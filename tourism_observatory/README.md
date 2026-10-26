@@ -28,7 +28,9 @@ tourism_observatory/
 | P0 | Literature matrix + preregistered hypotheses + source-by-source data audit | **FROZEN + C1-revised (deviation entries D-2…D-10; hashes R5 in `../docs/PROJECTSTATE.md` §9)** |
 | C1 | User cross-check of prereg/matrix/audit | **SIGNED 2026-10-23 — final sign-off recorded at prereg dev-D-10 (review returned REVISE first; all action-register items resolved via deviation log)** |
 | P1 | Wayanad **baseline-only** acquisition (registry downloads with manifest hashes, baseline covariates, QA on baseline only, provenance report) | **COMPLETE — 17 sources hashed, QA gate PASS (0 critical/0 warnings/62 checks), `docs/p1_provenance_report.md` filed; feeds C2 go/no-go** — no outcome maps |
-| P2–P5 | Wayanad analysis → risk register → evidence brief | after **C2 go** (C1 signed; C2 decides P1 data-completeness) |
+| C2 | P1 data-completeness go/no-go on the provenance report | **GO 2026-10-23 (user decision on `docs/p1_provenance_report.md` §7–§8; residuals logged as non-blocking)** |
+| P2 | Wayanad **control matching** (facility universe + existence verification, 2024 scar exclusion re-digitized from NRSC VAP3, 1 km parcel grid, baseline covariates, deterministic 1:1 match + balance gate) | **MATCHING COMPLETE 2026-10-26** (123 facilities / 107 verified; scar v2 D-12; 1,163 usable parcels; arms 54/886; **50/54 matched, max\|SMD\|=0.0667 < 0.10 → PASS**) — awaiting §8 checklist → freeze (R6); no outcome rasters read |
+| P3–P5 | Wayanad analysis → risk register → evidence brief | **blocked on freeze (R6)** — outcome work only post-freeze |
 | P6–P9 | Mussoorie (pipeline revalidation) | after Wayanad review (C4) |
 
 ## Non-negotiable working rules (carried from preregistration §5)

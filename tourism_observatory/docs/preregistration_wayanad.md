@@ -291,6 +291,60 @@ number D-0 records this freeze itself.
   CCI legend sub-codes; WDPA geodatabase format + overlapping-designation union rule;
   Hansen north-edge tile naming; boundary-fringe DEM diagnosis; geocoding rounds 1→2) are
   logged in data-audit §11 — none alters a registered design element.
+- **D-11 (2026-10-23, P2 pre-outcome implementation spec — administrative only).**
+  Operationalizes frozen §2/§4 into executable code **before any outcome is viewed**;
+  changes no hypothesis, covariate list, exclusion, caliper, seed, or the §5 boundary.
+  (a) **Facility universe = both §2 lists.** The treatment source is the union of the
+  M5 approved-homestay list (51) and the D-2 classified portal (97 unique properties
+  after de-duplicating the portal's internal repeats; 5 excluded as non-accommodation
+  Tour-Operator/Restaurant/Ayurveda), with 20 cross-list name matches → **123 facilities**,
+  all in-district. Coordinate preference (highest available): portal JSON-LD GeoCoordinates
+  pin (81) → M5 round-2 geocode (31) → fresh PIN-first ladder (11); **no jitter applied**.
+  (b) **Existence verification (§2).** "Verified" = a visible built structure within
+  **100 m** of the mapped point on a Sentinel-2 10 m quicklook; 107/123 verified
+  (66 at-point ≤50 m, 41 within 100 m). Precision classes cap claims and are retained
+  per facility (P1…P5); P5 points that resolve to a settlement within 100 m stay verified
+  but flagged coarse, and imagery construction-dating remains a post-freeze step (§5).
+  (c) **Arms (§4.2).** Treatment = parcel containing ≥1 verified facility on an eligible
+  parcel (54 parcels). Control = eligible parcel >750 m from **any** candidate facility
+  point (886 parcels), the conservative literal reading of §4.2. (d) **Eligibility (§4.4).**
+  A parcel joins both arms only if ≥50 % of its pixels are eligible (AOI∖water∖WDPA∖scar);
+  covariates computed on eligible pixels. (e) **Matching (§4.5).** Greedy 1:1, no
+  replacement, standardized Euclidean distance, fixed seed 20261022, exact road-tercile
+  match + §4.3 calipers; **SMD < 0.10** gate. The matcher **refuses to run** until the
+  2024 scar layer exists and covariates are rebuilt with `scar_excluded=true`. No outcome
+  raster was read to produce any of the above (§5); a smoke test with a scratch scar was
+  run-and-deleted (not an analysis). If the SMD gate fails on the real build, the
+  re-specification is logged here **before** any outcome is viewed (§4.5).
+
+- **D-12 (2026-10-26, pre-outcome implementation correction — administrative only):**
+  **Scar geometry v1 superseded by v2.** v1 (centerline digitized by eye from
+  PMC12290006 Fig. 1, compiled by `p2_compile_scar_d6.py`) was QA-checked against the
+  NRSC/ISRO **VAP3** landslide impact map (Charter Call 1029, AOI 01, observed
+  31/07/2024; UTM 43N, 1:12,500) and found displaced: v1 sat ~2 km NORTH of the
+  published crown and its overlap with the published debris-flow extent was
+  **0.000 km²**. v1 was discarded **before any matching was run on it** (the §4.4
+  matcher gate had barred the real run; the smoke test used a scratch scar, not v1).
+  v2 source and method: the VAP3 legend gives the crown exactly —
+  **76°8′10.58″E, 11°28′0.347″N** — and `scripts/p2_digitize_vap3_scar.py`
+  (i) renders the sheet at 200 dpi, (ii) georeferences the main panel from the
+  in-map graticule (1′ latitude ticks + green-dot longitude anchor; fit residual
+  <1 px, green-dot latitude error **15.2 m** vs the legend), (iii) extracts the
+  published yellow Debris Flow outline by RGB threshold, (iv) removes inset-box
+  borders (deletion of long axis-aligned runs; flow rails are diagonal), (v) bridges
+  gaps, skeletonizes, and takes the **crown→NE-tip** path (a graph-diameter path was
+  tried and rejected: it terminated on inset-box border spurs and missed the crown),
+  (vi) buffers the centerline by **150 m** (unchanged §4.4 half-width). Result:
+  centerline **7,221 m** (NRSC publishes "approximately 8 km"), corridor
+  **1.781 km²**, crown inside the corridor. A minor overshoot NE of Chooralmala is
+  in the conservative direction for an exclusion (over-excludes, never leaves scar
+  pixels inside a parcel). QA: `outputs/qaqc/p2_scar_digitization_qa.json` +
+  `p2_scar_digitization_overlay.png`. Downstream re-run under the same frozen rules:
+  covariates rebuilt (`scar_excluded=true`, 1,163 usable parcels — unchanged), arm
+  counts unchanged (54 treatment / 886 control: the corridor runs through
+  uninhabited terrain), and the **real** match executed → 50/54 pairs,
+  max|SMD| = 0.067 → §4.5 gate PASS. Changes no hypothesis, covariate, exclusion
+  rule, caliper, or seed; no outcome was viewed (§5).
 
 ## 8. Pre-analysis inspection checklist (gate before P2)
 

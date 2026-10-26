@@ -217,3 +217,46 @@ Next action: **C2 — P1 data-completeness go/no-go** on
 `tourism_observatory/docs/p1_provenance_report.md` (QA PASS + 17-source manifest +
 registry/D-10 verifications; residual non-blocking items listed in report §7–§8). On
 C2 go → P2 (control matching) under the unchanged prereg §4/§5 boundary.
+
+### C2 decision (2026-10-23): GO
+
+User decision on `tourism_observatory/docs/p1_provenance_report.md` §7–§8: **GO** —
+P1 data-completeness accepted; residuals (A4-numbers/B4-primary verify flags,
+fresh-vs-renewal inference, hazard downloads D-5…D-8, facility-exact existence
+verification) explicitly accepted as non-blocking and carried into P2. **P2 is open:**
+matching/covariate/verification work proceeds under frozen prereg §2/§4/§5 (treatment
+verification, parcel grid, baseline covariate tables, exclusions, 1:1 match + balance
+table); no H1–H4 outcome computation before the freeze gate. Next concrete P2 steps:
+(a) treatment-arm existence verification at ~10 m (Sentinel-2, as preregistered);
+(b) D-5…D-8 hazard acquisitions (Atlas, 2024 scar extent, terrain/rainfall) — required
+for §4.4 exclusions and H2; (c) 1 km parcel grid + baseline covariate tables; (d)
+deterministic 1:1 matching (seed 20261022) with SMD balance gate < 0.10.
+
+### P2 milestone (2026-10-26): matching complete, balance gate PASS
+
+Executed under frozen prereg §4/§5, no outcome rasters read (§5 boundary intact).
+
+- **Facility universe (D-11a/b):** M5 homestays + D-2 portal → **123 facilities**
+  (81 portal JSON-LD pin > 31 M5 geocode > 11 fresh PIN ladder; no jitter).
+  Existence check on Sentinel-2 10 m quicklooks → **107/123 verified** (structure
+  within 100 m). Evidence: `outputs/qaqc/p2_existence_universe/` + facility CSVs.
+- **Scar (D-6 → D-12 correction):** v1 (PMC Fig.1 centerline) was QA-found ~2 km
+  north of the published crown (0.000 km² overlap) and discarded **before any
+  matching ran on it**. v2 re-digitized from the NRSC VAP3 impact map
+  (`scripts/p2_digitize_vap3_scar.py`, in-map georeferencing, green-dot latitude
+  error 15.2 m): centerline **7,221 m** (≈8 km published), corridor **1.781 km²**,
+  crown inside. QA: `outputs/qaqc/p2_scar_digitization_qa.json` + `_overlay.png`.
+- **Parcels + covariates (§4.1/§4.3):** 1 km grid, `scar_excluded=true` build →
+  2,020 parcels, 857 excluded (<50 % eligible), **1,163 usable**; road terciles
+  388/387/388. Facts: `outputs/qaqc/p2_parcel_facts.json`.
+- **Arms + match (§4.2/§4.5):** **54 treatment / 886 control**; greedy 1:1 no
+  replacement, seed 20261022, exact road-tercile + calipers. **50/54 matched**,
+  max|SMD| = **0.0667 < 0.10 → PASS**. 4 unmatched on calipers.
+- **Outputs:** `matched_pairs_2026-10-26.csv`,
+  `outputs/qaqc/p2_match_balance_2026-10-26.json`, `p2_match_facts_2026-10-26.json`.
+
+Deviation log through **D-12** (`docs/preregistration_wayanad.md` §7) — all
+pre-outcome implementation details, none changes a hypothesis, covariate, exclusion
+rule, caliper, or seed. Next action: **§8 pre-analysis checklist → freeze (R6) → P3
+(outcome work) under the frozen design.** Residual non-matching item carried: D-5
+ISRO Landslide Atlas 2023 (needed for H2, not for matching).

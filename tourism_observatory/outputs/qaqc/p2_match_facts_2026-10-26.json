@@ -1,0 +1,27 @@
+{
+ "date": "2026-10-26",
+ "scar_override": false,
+ "scar_layer": "/home/sachindb/Documents/qgisproject_job/tourism_observatory/data/processed/scar_chooralmala_mundakkai_2024_32643.gpkg",
+ "treatment_parcels": 54,
+ "control_pool": 886,
+ "pairs": 50,
+ "unmatched_treated": 4,
+ "unmatched_detail": [
+  [
+   "p039_047",
+   "no_control_passed_calipers"
+  ],
+  [
+   "p012_020",
+   "no_control_passed_calipers"
+  ],
+  [
+   "p050_045",
+   "no_control_passed_calipers"
+  ],
+  [
+   "p050_043",
+   "no_control_passed_calipers"
+  ]
+ ]
+}

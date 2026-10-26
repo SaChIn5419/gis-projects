@@ -1,0 +1,43 @@
+{
+ "cell_m": 1000.0,
+ "origin": [
+  584100.0,
+  1324500.0
+ ],
+ "crs": "EPSG:32643",
+ "seed": 20261022,
+ "parcels_total": 2020,
+ "parcels_excluded_both_arms": 857,
+ "parcels_usable": 1163,
+ "min_eligible_share_rule": 0.5,
+ "scar_excluded": true,
+ "coverage": {
+  "parcels_with_elev": 1270,
+  "parcels_with_slope": 1270,
+  "parcels_with_road_tercile": 1163,
+  "parcels_with_cci_dominant": 2020,
+  "usable_mean_slope_deg": 9.58,
+  "usable_mean_elev_m": 800.7,
+  "usable_mean_hansen2000_pct": 52.96,
+  "usable_dominant_cci_classes": [
+   10,
+   12,
+   30,
+   40,
+   50,
+   60,
+   61,
+   70,
+   100,
+   120,
+   121
+  ],
+  "usable_road_tercile_counts": {
+   "1": 388,
+   "2": 387,
+   "3": 388
+  }
+ },
+ "note": "Baseline covariates only (\u00a74.3, 2000\u20132005): CCI-LC 2005 + Hansen 2000 + Copernicus terrain; road distance = CURRENT OSM network proxy (dev-D-4 label). The <50% eligible-share arm exclusion is an implementation spec detail logged here; no outcome data was viewed or exists at this stage.",
+ "date": "2026-10-26"
+}

@@ -1,0 +1,27 @@
+{
+ "date": "2026-10-23",
+ "d2_cards": 111,
+ "d2_unique_properties": 97,
+ "d2_accommodation": 92,
+ "d2_excluded_non_accommodation": 5,
+ "cross_list_matches": 20,
+ "m5_total": 51,
+ "m5_unmatched": 31,
+ "facility_universe": 123,
+ "coord_sources": {
+  "d2_pin": 81,
+  "m5_geocode": 31,
+  "d2_ladder": 11
+ },
+ "precision_classes": {
+  "P1_facility_point": 82,
+  "P4_town_city": 16,
+  "P5_district_or_coarser": 12,
+  "P3_village": 10,
+  "P2_street": 3
+ },
+ "inside_district": 123,
+ "unresolved": 0,
+ "shared_coord_groups": 10,
+ "note": "Coordinate preference: portal pin (official property geo) > P1 r2 M5 geocode > fresh PIN-first ladder; no jitter. Non-accommodation service providers excluded (\u00a72 facility = tourism accommodation). Existence verification at the FINAL coordinate follows (separate step)."
+}

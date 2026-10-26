@@ -19,6 +19,16 @@ data/processed/*wdpa*
 !data/processed/registry_homestays_wayanad_*.csv
 !data/processed/registry_geocoded_*.csv
 !data/processed/registry_geocoded_*.geojson
+# P2 treatment-source records (small CSVs worth diffing; bulky GeoPackages stay ignored)
+# NOTE: registry_classified_wayanad_*.csv is deliberately NOT allowlisted — it is a
+# D-2 parsing intermediate whose only added field over the manifest source is a bulk
+# scrape of ~111 `telephone` numbers from the tourism portal. Provenance for D-2 lives
+# in data/manifest.json (source_url + snapshot note); the de-duplicated facility table
+# (facility_universe / facility_existence_universe) carries facility_id ↔ source
+# linkage without the contact-data payload.
+!data/processed/facility_universe_*.csv
+!data/processed/facility_existence_universe_*.csv
+!data/processed/facility_existence_verdicts_*.csv
 
 # Partial downloads
 *.part
@@ -32,6 +42,25 @@ outputs/qaqc/*
 !outputs/qaqc/geocode_log*.json
 !outputs/qaqc/ingest_facts.json
 !outputs/qaqc/baseline_qaqc_report.md
+# P2: decision-facts that are NOT reproducible without re-running the ladder
+# geocoder or re-inspecting imagery by eye. The un-ignore of the dir lifts the
+# parent outputs/qaqc/* rule; the re-deny below keeps regenerable QA (rasters,
+# quicklook PNGs, index CSVs) out of the repo; then the specific facts are
+# re-allowed. Nested verdicts/ dir stays fully ignored (its content is bulky
+# and the CSV verdict tables are tracked under data/processed/ instead).
+!outputs/qaqc/
+outputs/qaqc/*
+!outputs/qaqc/p2_parcel_facts.json
+!outputs/qaqc/p2_facility_universe_facts.json
+!outputs/qaqc/p2_arm_labels_facts.json
+!outputs/qaqc/p2_match_facts*.json
+!outputs/qaqc/p2_match_balance*.json
+# D-12 scar v2 digitization: calibration record (georeferencing anchors, fit
+# residual, green-dot error) + the crown-corridor overlay used for visual QA.
+# Kept because it is the evidence that the §4.4 scar sits at the published crown.
+!outputs/qaqc/p2_scar_digitization_qa.json
+!outputs/qaqc/p2_scar_digitization_overlay.png
+!outputs/qaqc/.gitkeep
 
 # --- OS / python ------------------------------------------------------------
 __pycache__/

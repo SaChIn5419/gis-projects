@@ -1,0 +1,124 @@
+facility_id,sources,d2_pid,m5_sl,name,d2_category,coord_source,precision_class,matched_via,lat,lon,inside_district
+F001,d2+m5,375.0,649.0,Namaha Homestay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.526376,76.170115,True
+F002,d2,391.0,,Olives Homestay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.612,76.073,True
+F003,d2,615.0,,Tower Hill,Serviced Villa,d2_ladder,P3_village,nominatim_token,11.7118416,76.0382866,True
+F004,d2,650.0,,Lake Rose Wayanad Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.617963,76.164716,True
+F005,d2+m5,1397.0,236.0,Kudajadri Drizzle,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.694501,76.092486,True
+F006,d2,3276.0,,Hotel Pepper Grove (KTDC),Hotel,d2_pin,P1_facility_point,portal_geojson_pin,11.650882,76.24978,True
+F007,d2,3288.0,,Tamarind KTDC Easy Hotel,Hotel,d2_pin,P1_facility_point,portal_geojson_pin,11.906637,75.999237,True
+F008,d2,3314.0,,After The Rains,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.521987,76.188713,True
+F009,d2,3440.0,,AP Residency,Hotel,d2_pin,P1_facility_point,portal_geojson_pin,11.668192,76.27049,True
+F010,d2,3446.0,,Sahyadri Homestay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.684156,76.132104,True
+F011,d2,3460.0,,Wayanad Cybele Hill Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.630993,76.125979,True
+F012,d2,3463.0,,Karapuzha Village Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.610763,76.161345,True
+F013,d2,3466.0,,Petals Resorts,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.637578,75.982861,True
+F014,d2,3469.0,,Fort Hill Wildlife Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.668012,76.260018,True
+F015,d2,3470.0,,Rippon Mount Resorts Pvt. Ltd.,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.524225,76.1685589,True
+F016,d2,3471.0,,Le Villagio Holiday Apartments,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.658614,76.236734,True
+F017,d2,3497.0,,Vythiri Greens Holiday Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.52690026553165,76.0261,True
+F018,d2,3498.0,,Green Gates Hotel,Hotel,d2_pin,P1_facility_point,portal_geojson_pin,11.629388,76.087328,True
+F019,d2,3499.0,,Wayanad Coffee Trail Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.633376,76.121359,True
+F020,d2,3501.0,,Upavan Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.52556,76.022731,True
+F021,d2,3513.0,,Greens Residency,Hotel,d2_pin,P1_facility_point,portal_geojson_pin,11.809096,76.004578,True
+F022,d2,3515.0,,Agraharam Resorts,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.906756,75.999458,True
+F023,d2,3520.0,,Marmalade Springs Retreat,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.632315,76.10341,True
+F024,d2,3533.0,,Vistara Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.611192,76.180278,True
+F025,d2,3542.0,,Sterling Wayanad,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.7067682,76.301539,True
+F026,d2,3571.0,,Pepper Trail,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.605936,76.262883,True
+F027,d2,3607.0,,Mazus Inn,Hotel,d2_pin,P1_facility_point,portal_geojson_pin,11.550992,76.038331,True
+F028,d2,3637.0,,Vythiri Village Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.5588,76.042276,True
+F029,d2,3767.0,,Wayanad Ranches Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.523942,76.171731,True
+F030,d2,3768.0,,Wayanad Wild,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.514476,76.039312,True
+F031,d2,3770.0,,Orchid Trails Resorts,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.605193,76.344778,True
+F032,d2,3771.0,,Planet Green Plantation Resort,Resort,d2_ladder,P2_street,photon_token,11.6237217,76.088253,True
+F033,d2,3776.0,,Rain Country Resorts,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.510837,76.03752,True
+F034,d2,3795.0,,Century Grand Hotel,Hotel,d2_pin,P1_facility_point,portal_geojson_pin,11.8011,76.0037,True
+F035,d2,3797.0,,The Wayand Gate,Hotel,d2_pin,P1_facility_point,portal_geojson_pin,11.518512,76.021641,True
+F036,d2,3887.0,,"Emarald Wild West, Wayanad",Hotel,d2_pin,P1_facility_point,portal_geojson_pin,11.665614,76.262666,True
+F037,d2,3888.0,,"Chembra Peak Resort, Wayanad",Hotel,d2_ladder,P3_village,nominatim_locality,11.5529455,76.1320079,True
+F038,d2,4132.0,,Syam Farms Villa,Serviced Villa,d2_ladder,P4_town_city,nominatim_locality,11.610278,76.08281,True
+F039,d2,4136.0,,Raindrops Resorts Wayanad,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.64037,76.302452,True
+F040,d2+m5,4313.0,730.0,Adams Mount Plantation Homestay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.734048,75.827629,True
+F041,d2,4340.0,,Towerhill Wayanad,Resort,d2_ladder,P3_village,nominatim_token,11.7118416,76.0382866,True
+F042,d2,4418.0,,Green Ample Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.5880972,76.2230796,True
+F043,d2,4504.0,,Morickap Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.622891,76.031396,True
+F044,d2,4539.0,,Centre Home Serviced Villa,Serviced Villa,d2_ladder,P3_village,nominatim_token,11.7139581,76.102155,True
+F045,d2,4546.0,,Ammu's Homestay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.737329,76.047538,True
+F046,d2,4645.0,,Changathi resorts and tree houses,Resort,d2_ladder,P5_district_or_coarser,nominatim_token,11.6079535,76.3700688,True
+F047,d2,4693.0,,VYTHIRI HOLIDAY RESORTS,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.535984,76.044832,True
+F048,d2,4736.0,,LAKESHORE RESORT WAYANAD,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.5863103,76.1781218,True
+F049,d2,4992.0,,WILDNEST RESORT,Serviced Villa,d2_ladder,P3_village,nominatim_token,11.5389643,76.1682956,True
+F050,d2+m5,5013.0,293.0,Villa Tesori,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.512231,76.153572,True
+F051,d2,5090.0,,CRESCENT FAMILY RESORT,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.6517,76.2249,True
+F052,d2,5091.0,,Mount Xanadu Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.62122,76.20238,True
+F053,d2,5106.0,,Indeevara Retreat,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.55761,76.02696,True
+F054,d2,5107.0,,The serenity Resort,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.67392,75.94638,True
+F055,d2,5108.0,,Kuruva Island Resort & Spa,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.830113790667335,76.08696612528243,True
+F056,d2,5160.0,,Saptha Resort & Spa,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.6778,76.2731,True
+F057,d2,5305.0,,Dakshin Ghats,Hotel,d2_pin,P1_facility_point,portal_geojson_pin,11.737086256256887,75.95609007325665,True
+F058,d2+m5,5526.0,749.0,Green Valley Holiday Home,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.560078548668503,76.11370541073187,True
+F059,d2,5557.0,,Heartland Mist,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.540186111111,76.044036111111,True
+F060,d2+m5,5570.0,953.0,Divine View,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.611,76.049897,True
+F061,d2,5711.0,,Torch Ginger,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.666679,76.265499,True
+F062,d2,6016.0,,The Blue Door Villa,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.870138,75.958109,True
+F063,d2,6025.0,,Wayanad Homestay Happy,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.6295556,76.01725,True
+F064,d2,6108.0,,BlackHole Farmstays,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.829382,75.875559,True
+F065,d2,6109.0,,Wonder Hill Wayanad,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.800813,75.862369,True
+F066,d2,6114.0,,Thennal Jungle Camp PVT LTD,Resort,d2_pin,P1_facility_point,portal_geojson_pin,11.84095,76.08472,True
+F067,d2,6333.0,,Hipnoetic Enterprises (P) Ltd,Serviced Villa,d2_ladder,P1_facility_point,nominatim_token,11.7949714,76.0038159,True
+F068,d2,6479.0,,Vishnu Nivas Repouso,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.623991,76.067072,True
+F069,d2+m5,6500.0,168.0,The Beetle Hums,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.52655,76.19028,True
+F070,d2,6505.0,,kaffee valley homestay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.70217,76.0299,True
+F071,d2+m5,6508.0,164.0,Ananda Homestay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.5952849,76.1847973,True
+F072,d2+m5,6693.0,324.0,ALTERNEST HOMESTAY,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.6187279,76.2076913,True
+F073,d2+m5,6725.0,347.0,Mango Showers,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.61223,76.0616,True
+F074,d2,6818.0,,WestMount,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.58131,76.10758,True
+F075,d2,6862.0,,PARTHO HOME STAY,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.6989961,75.9619269,True
+F076,d2+m5,7111.0,439.0,Centre Home Homestay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.62265,76.06878,True
+F077,d2,7120.0,,Vythiri Spring Valley Restaurant,Homestay,d2_ladder,P3_village,nominatim_locality,11.5560885,76.038922,True
+F078,d2+m5,7178.0,340.0,Silvertrails,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.59248,76.069565,True
+F079,d2+m5,7185.0,526.0,Roneys Villa Homestay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.64387,76.16304,True
+F080,d2+m5,7332.0,807.0,HOWLING WOLF,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.82932,75.96798,True
+F081,d2,7411.0,,Georjoys Hotels and Resorts,Hotel,d2_pin,P1_facility_point,portal_geojson_pin,11.61101492906252,76.08222048008581,True
+F082,d2,7440.0,,Coffe View Holiday Homes,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.91198882731353,76.03740412830565,True
+F083,d2+m5,7893.0,809.0,HOMELY HOMESTAY,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.593508,76.081257,True
+F084,d2+m5,7904.0,751.0,Re Leaf Hom Treat Homestay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.593312,76.077812,True
+F085,d2+m5,8059.0,800.0,Midnight Oasis Homestay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.671363,76.21786,True
+F086,d2,8575.0,,Aham Home Stay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.785304,75.956495,True
+F087,d2,8587.0,,Idam Mountain Stay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.59152,76.09724,True
+F088,d2+m5,8598.0,901.0,lilhome,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.61728,76.19606,True
+F089,d2,8725.0,,Wanderloft,Homestay,d2_ladder,P5_district_or_coarser,nominatim_district,11.7151291,76.1271185,True
+F090,d2+m5,8770.0,1158.0,GREEN GARDEN,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.606352,76.131644,True
+F091,d2,8808.0,,FERNGLADE HOMESTAY,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.8679543,75.9559352,True
+F092,d2+m5,9096.0,1112.0,Hira Homestay,Homestay,d2_pin,P1_facility_point,portal_geojson_pin,11.618234,76.031152,True
+F093,m5,,53.0,"ADITI HOMESTAY PUTHOORVAYAL, KALPETTA",homestay_approved,m5_geocode,P4_town_city,nominatim_locality,11.610278,76.08281,True
+F094,m5,,100.0,Pink n Blue Homestay Parambil house Thazhamunda P. O.,homestay_approved,m5_geocode,P5_district_or_coarser,nominatim_district,11.7151291,76.1271185,True
+F095,m5,,163.0,"Vishnu Nivas Homestay Chandragiri Nagar, Munderi, Kalpetta",homestay_approved,m5_geocode,P4_town_city,nominatim_locality,11.610278,76.08281,True
+F096,m5,,223.0,"PARTHO HOMESTAY KURUVANPURATH HOUSE, VELLAMUNDA POST, VARAMBETTA, WAYA",homestay_approved,m5_geocode,P5_district_or_coarser,nominatim_district,11.7151291,76.1271185,True
+F097,m5,,256.0,"West Mount Nest Homestay Sree Kottayil Bagavathi Temple Road, Meppadi ",homestay_approved,m5_geocode,P3_village,nominatim_locality,11.5529455,76.1320079,True
+F098,m5,,301.0,"GAABRI HOMESTAY KM-V/72, VAZHAKKAL HOUSE, KALPETTA NORTH POST , EMILY ",homestay_approved,m5_geocode,P4_town_city,nominatim_locality,11.610278,76.08281,True
+F099,m5,,337.0,"CELESTIAL HOMESTAY KAVUMANNAM P O, KINAR, KALPETTA, WAYANAD",homestay_approved,m5_geocode,P4_town_city,nominatim_locality,11.610278,76.08281,True
+F100,m5,,360.0,"CASA WAYN HOMESTAY CASA WAYN HOMESTAY, POOMALA POST, CHETTIMOOLA, SULT",homestay_approved,m5_geocode,P5_district_or_coarser,nominatim_pin_text,11.663176,76.2632368,True
+F101,m5,,362.0,MARIYA HOMESTAY PUTHANPURAKKAL HOUSE THARIODE POST KAVUMANNAM WYANAD D,homestay_approved,m5_geocode,P4_town_city,photon_pin,11.612186510344827,75.99802254482758,True
+F102,m5,,365.0,"Havens Nature Homestay Narikkundu P.O., Ambalavayal, Wayanad - 673593",homestay_approved,m5_geocode,P3_village,nominatim_locality,11.6192026,76.2120176,True
+F103,m5,,387.0,"Bougainvilleawayanad Homestay Vellithode, Thrikkaipatta PO, Mundupara ",homestay_approved,m5_geocode,P4_town_city,photon_pin,11.554649244642857,76.14035423035715,True
+F104,m5,,507.0,"EL ROI HOMESTAY PUNNATHANIYIL HOUSE, BYPASS ROAD, GUDALAI, KALPETTA",homestay_approved,m5_geocode,P4_town_city,nominatim_locality,11.610278,76.08281,True
+F105,m5,,538.0,Coffee View Holiday Homes HOMESTAY Kunnath house Thirunelly P O Manant,homestay_approved,m5_geocode,P4_town_city,nominatim_locality,11.8298756,75.9418934,True
+F106,m5,,560.0,"La Naturo Homestay La-Naturo 7/10, Thottammariyil (H), Pathirippalam -",homestay_approved,m5_geocode,P5_district_or_coarser,nominatim_pin_text,11.6689623,76.161084,True
+F107,m5,,732.0,"Rose Villas Homestay Kavungal house. Kolagappara P.O, 673591 Wayanad",homestay_approved,m5_geocode,P5_district_or_coarser,nominatim_pin_text,11.6689623,76.161084,True
+F108,m5,,804.0,HARSHAM HOMESTAY Kottavayal Puthoorvayal Po 673577,homestay_approved,m5_geocode,P4_town_city,photon_pin,11.554649244642857,76.14035423035715,True
+F109,m5,,814.0,"AHAM HOMESTAY WARD No.1/485, Ellumannam P O , Mananthavady Taluk, Waya",homestay_approved,m5_geocode,P4_town_city,nominatim_locality,11.8298756,75.9418934,True
+F110,m5,,887.0,CHILLS HOMESTAY RATTAKKOLLY KALPETTA,homestay_approved,m5_geocode,P4_town_city,nominatim_locality,11.610278,76.08281,True
+F111,m5,,902.0,"Muneeswarmudi Homestay 196/C , Magadha, Muneeswaran Temple Road, Chera",homestay_approved,m5_geocode,P5_district_or_coarser,nominatim_pin_text,11.8231332,75.9277809,True
+F112,m5,,1010.0,"WILLOW THE VILLAS HOMESTAY MAHATMA NAGAR, KANNUR ROAD, B- STREET, MANA",homestay_approved,m5_geocode,P2_street,photon_locality,11.8337857,75.9702212,True
+F113,m5,,1014.0,"Idam homestay Behind Piobhavan church, Meppadi road, Puthoorvayal P O,",homestay_approved,m5_geocode,P4_town_city,nominatim_locality,11.610278,76.08281,True
+F114,m5,,1021.0,"Ammus homestay 20/204 A and B, Kannotty House, Anjukunnu Post, Wayanad",homestay_approved,m5_geocode,P5_district_or_coarser,nominatim_pin_text,11.7713671,75.9935398,True
+F115,m5,,1024.0,"ANNAS HOMESTAY NEDUMPURATH HOUSE, MAKKIYAD, THONDERNAD POST, KANJIRANG",homestay_approved,m5_geocode,P2_street,photon_locality,11.8337857,75.9702212,True
+F116,m5,,1061.0,"VILLAGIO HOMESTAY UTHA HOUSE, KODENCHERIKUNNU, VENGAPALLY, PINANGODE, ",homestay_approved,m5_geocode,P4_town_city,photon_pin,11.64311581147541,76.07433017540984,True
+F117,m5,,1107.0,"SAI HOLIDAY HOMESTAY 85/A , AYSHA PLANTATIONS ROAD, THALIMALA , VYTHIR",homestay_approved,m5_geocode,P3_village,nominatim_locality,11.5560885,76.038922,True
+F118,m5,,1117.0,"RIVERBANK GARDENS Homestay RIVERBANK GARDENS, No: 32/118/1, PRATHEEKSH",homestay_approved,m5_geocode,P4_town_city,nominatim_locality,11.8298756,75.9418934,True
+F119,m5,,1180.0,"Quiet Canopy Homestay Kottarakunnu Post, Mothakkara, Vellamunda, Wayan",homestay_approved,m5_geocode,P5_district_or_coarser,nominatim_pin_text,11.740516,75.9073902,True
+F120,m5,,1202.0,"LURTH MATHA HOMESTAY KGP-XVII/327-B1, NEDUMPURATH, KANIYAMBETTA P O, P",homestay_approved,m5_geocode,P3_village,nominatim_locality,11.6953621,76.0807517,True
+F121,m5,,1224.0,"GEO GREENS HOMESTAY MGP 3/425B, PUTHAYATH HOUSE, MYLAMBADI P O, WAYANA",homestay_approved,m5_geocode,P5_district_or_coarser,nominatim_pin_text,11.6689623,76.161084,True
+F122,m5,,1269.0,"Fern glade Homestay Muneeshwaran Kunnu, Chirakara Post, Tavinjal, Mana",homestay_approved,m5_geocode,P5_district_or_coarser,nominatim_pin_text,11.8231332,75.9277809,True
+F123,m5,,1311.0,"Sundara Mahal Homestay Sundara Mahal, NH 766, Near Lions Club Hall, Ka",homestay_approved,m5_geocode,P4_town_city,nominatim_locality,11.610278,76.08281,True

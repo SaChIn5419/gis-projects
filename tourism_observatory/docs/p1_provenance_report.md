@@ -180,3 +180,6 @@ verification (precision-capped geocoding logged instead); audit-D-5…D-8 hazard
   flags, fresh-vs-renewal inference, hazard downloads D-5…D-8, facility-exact existence
   verification. **No baseline-completeness blocker is outstanding — C2 can decide on
   this report.**
+
+**Decision:** **C2 = GO (2026-10-23, user)** — residuals above accepted as non-blocking
+and carried into P2; recorded in `docs/PROJECTSTATE.md` §9 and README phase table.

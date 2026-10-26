@@ -1,0 +1,27 @@
+{
+ "date": "2026-10-26",
+ "seed": 20261022,
+ "calipers": {
+  "slope_mean_deg": 3.0,
+  "elev_mean_m": 100.0,
+  "cci_dom_share": 0.1,
+  "hansen2000_mean_pct": 10.0
+ },
+ "road_exact_match": true,
+ "smd_gate": 0.1,
+ "smd": {
+  "slope_mean_deg": 0.0376,
+  "elev_mean_m": 0.0667,
+  "cci_dom_share": 0.0,
+  "hansen2000_mean_pct": 0.0364,
+  "road_tercile_1": 0.0,
+  "road_tercile_2": 0.0
+ },
+ "max_abs_smd": 0.0667,
+ "gate_pass": true,
+ "n_pairs": 50,
+ "n_treated": 54,
+ "n_control_pool": 886,
+ "scar_override": false,
+ "note": "Pre-outcome matching output (\u00a75 allows matching scripts + covariate tables). If gate_pass is false: re-specify BEFORE viewing any outcome and log in prereg \u00a77 (\u00a74.5)."
+}
