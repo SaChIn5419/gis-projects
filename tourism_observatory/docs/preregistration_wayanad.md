@@ -351,3 +351,32 @@ number D-0 records this freeze itself.
 Before outcome work starts, confirm: ☐ hypotheses §3 unchanged ☐ controls §4 unchanged ☐
 match executed, balance table reported ☐ deviation log empty or justified ☐ scope items
 resolved (2 sites only) ☐ commit hash recorded in PROJECTSTATE.
+
+### §8 verification (2026-10-26) — completed; freeze R6 recorded
+
+- ☑ **Hypotheses §3 unchanged.** Verified mechanically: the prereg diff from the R5
+  state (commit `893ad83`) to the verification commit contains **55 added lines, 0
+  deletions**, all inside §7 (entries D-11, D-12). §3 is therefore byte-identical
+  to its R5-frozen text.
+- ☑ **Controls §4 unchanged.** Same mechanical verification (0 deletions repo-wide on
+  this file; §4 untouched since R5). Covariate list, calipers, exclusion rule, 750 m
+  control buffer, seed 20261022, and the SMD < 0.10 gate are as frozen.
+- ☑ **Match executed, balance table reported.** Real scar-excluded build (no
+  override): 54 treatment / 886 control, **50/54 pairs**, max|SMD| = **0.0667** →
+  gate **PASS**; 4 treated unmatched on calipers. Balance table:
+  `outputs/qaqc/p2_match_balance_2026-10-26.json`; pairs:
+  `data/processed/matched_pairs_2026-10-26.csv`; narrative: `docs/p2_matching_log.md`.
+- ☑ **Deviation log justified.** §7 carries D-1…D-12; the P2 entries (D-11
+  implementation spec, D-12 scar v1→v2 correction) are pre-outcome implementation
+  details — none changes a hypothesis, covariate, exclusion, caliper, or seed, and
+  no outcome raster was read to produce any P2 output (§5 boundary held; the D-12
+  correction was made and validated against a *source map*, not an outcome layer).
+- ☑ **Scope items resolved (2 sites only).** Program scope remains exactly Wayanad
+  then Mussoorie (§1, resolved 2026-10-22). All P2 artifacts are Wayanad-only;
+  no third site was introduced.
+- ☑ **Commit hash recorded in PROJECTSTATE.** Verification commit + R6 freeze hashes
+  recorded in `docs/PROJECTSTATE.md` §9.
+
+Consequence: the design is frozen at **R6**. P3 outcome work (H1–H4 computation)
+may begin under §5 rules; any post-R6 change to the frozen trio requires a new §7
+entry and an R7 re-hash before outcomes are examined under the changed rule.

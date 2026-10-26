@@ -260,3 +260,23 @@ pre-outcome implementation details, none changes a hypothesis, covariate, exclus
 rule, caliper, or seed. Next action: **§8 pre-analysis checklist → freeze (R6) → P3
 (outcome work) under the frozen design.** Residual non-matching item carried: D-5
 ISRO Landslide Atlas 2023 (needed for H2, not for matching).
+
+### Freeze R6 (2026-10-26) — §8 checklist signed, design frozen for outcome work
+
+§8 pre-analysis checklist completed and signed (dated verification block in
+`preregistration_wayanad.md` §8). Mechanical confirmations: hypotheses §3 and
+controls §4 byte-identical to the R5-frozen text (prereg diff `893ad83`→verification
+commit is 55 additions / **0 deletions**, all inside §7); match executed with balance
+table reported (max|SMD| 0.0667 → PASS); deviation log justified (D-1…D-12, all
+pre-outcome); scope resolved to exactly two sites (Wayanad, Mussoorie). **P3 outcome
+work (H1–H4) is now authorized under §5.**
+
+**Freeze hashes R6 (supersede R5 for verification; R2–R5 retained above):**
+- `tourism_observatory/docs/preregistration_wayanad.md` → `d51857fc86c445edeb53a608a523643e14654a76197dd94c32b8910be3f7af7d`
+- `tourism_observatory/docs/literature_matrix.md` → `7a7933666f2a4b3503afa89cdb4726e77ab77c425d6333602bf67b9ce1ba8aa1`
+- `tourism_observatory/docs/data_audit_wayanad.md` → `7e4e9da2ebfb602711fbdbe5a9e52047c901462e441bec2be155ff4e3b7ad2ed`
+
+Analysis input of record at R6: scar v2 (`data/processed/scar_chooralmala_mundakkai_2024_32643.gpkg`,
+D-12), covariates `parcel_covariates_2026-10-26.csv`, pairs `matched_pairs_2026-10-26.csv`
+(50 pairs, seed 20261022). Any post-R6 change to the frozen trio requires a §7 entry
++ R7 re-hash before outcomes are examined under the changed rule.
