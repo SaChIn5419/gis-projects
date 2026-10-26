@@ -272,6 +272,8 @@ pre-outcome); scope resolved to exactly two sites (Wayanad, Mussoorie). **P3 out
 work (H1–H4) is now authorized under §5.**
 
 **Freeze hashes R6 (supersede R5 for verification; R2–R5 retained above):**
+- Verification commit: **`74f42f76d6386fa20550d3c096e3ab194665a04a`** (this freeze
+  entry; the match build itself is commit `c41edca`).
 - `tourism_observatory/docs/preregistration_wayanad.md` → `d51857fc86c445edeb53a608a523643e14654a76197dd94c32b8910be3f7af7d`
 - `tourism_observatory/docs/literature_matrix.md` → `7a7933666f2a4b3503afa89cdb4726e77ab77c425d6333602bf67b9ce1ba8aa1`
 - `tourism_observatory/docs/data_audit_wayanad.md` → `7e4e9da2ebfb602711fbdbe5a9e52047c901462e441bec2be155ff4e3b7ad2ed`
