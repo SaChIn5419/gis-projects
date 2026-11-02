@@ -480,6 +480,45 @@
    "status": "verified",
    "retrieved_at": "2026-11-02",
    "note": "H4 dispute anchors (Nominatim village points); 1 km locality precision footprints per D-19(e); sha finalized post-computation (file unchanged by the final run)."
+  },
+  {
+   "id": "chirps_v2_monthly_2011_2014_wayanad_bbox",
+   "audit_ref": "prereg §7 D-20(b) (freeze R8 da2baee8…); 48 source files window-read",
+   "path": "tourism_observatory/data/raw/chirps_v2_monthly_2011_2014_wayanad_bbox_4326.tif",
+   "type": "raster-subset",
+   "source": "CHIRPS v2.0 global monthly 0.05° precipitation (UCSB Climate Hazards Center; public domain — CC0-style waiver by Pete Peterson, per chc.ucsb.edu/data/chirps; attribution Funk et al. 2015, Scientific Data 2:150066). 48 monthly GeoTIFFs chirps-v2.0.{Y}.{M}.tif.gz window-read to bbox 75.70-76.50 E / 11.40-12.02 N by scripts/p3_fetch_chirps.py; gz downloads transient in /tmp/opencode (not kept).",
+   "source_url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/global_monthly/tifs/",
+   "license": "Public domain (CC0-style waiver), attribution requested: Funk et al. (2015)",
+   "sha256": "58fdd6a5425e1ddea461a9d7d39e4d886f6b0ccf16a1ff9f1c323c86f0e2537e",
+   "status": "verified",
+   "retrieved_at": "2026-11-02",
+   "note": "15x19 px native grid, 48 bands = 48 months 2011-01..2014-12; 48 nodata px (1 coverage-edge px identical across all months); QC: Jul-2014 mean 481 mm, realistic monsoon cycle."
+  },
+  {
+   "id": "chirps_rain_annual_2011_2014_32643",
+   "audit_ref": "prereg §7 D-20(b) (freeze R8 da2baee8…); derived chirps_v2_monthly_2011_2014_wayanad_bbox",
+   "path": "tourism_observatory/data/processed/chirps_rain_annual_2011_2014_32643.tif",
+   "type": "raster-derived",
+   "source": "Mean over the four years of annual sum of CHIRPS v2.0 0.05° monthly values (subset stack chirps_v2_monthly_2011_2014_wayanad_bbox), bilinear-resampled to the H3 500 m origin-aligned cell grid by scripts/p3_fetch_chirps.py. Record-window (contemporaneous) covariate per D-20(b) deviation note.",
+   "source_url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/global_monthly/tifs/",
+   "license": "Public domain (CC0-style waiver), attribution requested: Funk et al. (2015)",
+   "sha256": "5200897dcea5ee42332b5ca129c2bcda43fc22609458de82df54cc3d7dd5acdc",
+   "status": "verified",
+   "retrieved_at": "2026-11-02",
+   "note": "QC: valid px 17,199 (full bounding grid; only 8,112 centre-in-district cells aggregate), min 1,125.9 / max 3,609.0 / mean 2,396.3 mm."
+  },
+  {
+   "id": "chirps_rain_monsoon_2011_2014_32643",
+   "audit_ref": "prereg §7 D-20(b) (freeze R8 da2baee8…); derived chirps_v2_monthly_2011_2014_wayanad_bbox",
+   "path": "tourism_observatory/data/processed/chirps_rain_monsoon_2011_2014_32643.tif",
+   "type": "raster-derived",
+   "source": "Mean over the four years of the Jun-Sep share of annual total from CHIRPS v2.0 0.05° monthly values (subset stack chirps_v2_monthly_2011_2014_wayanad_bbox), bilinear-resampled to the H3 500 m origin-aligned cell grid by scripts/p3_fetch_chirps.py. Record-window (contemporaneous) covariate per D-20(b) deviation note.",
+   "source_url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/global_monthly/tifs/",
+   "license": "Public domain (CC0-style waiver), attribution requested: Funk et al. (2015)",
+   "sha256": "TBD",
+   "status": "verified",
+   "retrieved_at": "2026-11-02",
+   "note": "QC: valid px 17,199, native-grid range 0.499-0.645; warped min 0.50 / max 0.60 / mean 0.60."
   }
  ],
  "pending_wayanad_sources": [

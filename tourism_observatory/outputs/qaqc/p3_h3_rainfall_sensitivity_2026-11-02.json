@@ -1,0 +1,138 @@
+{
+ "date": "2026-11-02",
+ "pin": "prereg SS7 D-20 (freeze R8) - pinned BEFORE any rainfall statistic was computed",
+ "deviation_status": "POST-HOC SENSITIVITY - H-3 outcomes were already computed and seen (2026-11-02) under D-18; this appendix read cannot change the registered H-3 conclusion (D-20e binding precommitment)",
+ "reproduction_checks": {
+  "kept_rows": 2704,
+  "elephant_rows": 2018,
+  "placed_records": 2704,
+  "tier_counts": {
+   "place": 1089,
+   "range": 1043,
+   "section": 572
+  },
+  "grid_cells": 8112,
+  "outside_wdpa_cells": 4423,
+  "records_in_surface_all": 2704,
+  "records_in_surface_elephant": 2018
+ },
+ "read1_seasonality": {
+  "label": "POST-HOC SENSITIVITY (D-20a; non-inferential)",
+  "month_histogram_all": {
+   "1": 154,
+   "2": 165,
+   "3": 156,
+   "4": 158,
+   "5": 218,
+   "6": 285,
+   "7": 363,
+   "8": 299,
+   "9": 184,
+   "10": 240,
+   "11": 295,
+   "12": 187
+  },
+  "month_histogram_elephant": {
+   "1": 104,
+   "2": 110,
+   "3": 115,
+   "4": 129,
+   "5": 180,
+   "6": 246,
+   "7": 296,
+   "8": 214,
+   "9": 122,
+   "10": 169,
+   "11": 200,
+   "12": 133
+  },
+  "sw_monsoon_jun_sep_share_all": 0.4183,
+  "ne_monsoon_oct_dec_share_all": 0.267,
+  "sw_monsoon_jun_sep_share_elephant": 0.4351,
+  "ne_monsoon_oct_dec_share_elephant": 0.2488,
+  "reading": "descriptive only, no test; carries the V2 seasonality check D-18 recorded as unavailable"
+ },
+ "read2_spatial_rainfall": {
+  "label": "POST-HOC SENSITIVITY (D-20b; record-window covariates; non-inferential; cannot alter the H-3 verdict)",
+  "covariate_files": [
+   "chirps_rain_annual_2011_2014_32643.tif",
+   "chirps_rain_monsoon_share_2011_2014_32643.tif"
+  ],
+  "covariate_note": "CHIRPS v2.0 0.05deg monthly 2011-2014, bbox subset, bilinear to the origin-aligned 500 m grid (scripts/p3_fetch_chirps.py); labels are record-window (contemporaneous), NOT pre-2011 per D-20(b) deviation note",
+  "district_native_px_ranges": {
+   "rain_annual_total_mm_2011_2014": {
+    "min": 1125.853271484375,
+    "max": 3608.9560546875,
+    "mean": 2396.3,
+    "n_valid_px": 17199
+   },
+   "rain_monsoon_jun_sep_share": {
+    "min": 0.5371,
+    "max": 0.6445,
+    "mean": 0.585,
+    "n_valid_px": 17199
+   }
+  },
+  "overlap_all_cells_primary": {
+   "rain_annual_total_mm_2011_2014": {
+    "mean_pct_at_top_decile": 0.1334,
+    "median_pct_at_top_decile": 0.1036,
+    "share_above_district_median": 0.0099,
+    "spearman_rho_vs_incident_kde": -0.5715,
+    "n_cells_finite": 8112
+   },
+   "rain_monsoon_jun_sep_share": {
+    "mean_pct_at_top_decile": 0.3302,
+    "median_pct_at_top_decile": 0.2541,
+    "share_above_district_median": 0.2106,
+    "spearman_rho_vs_incident_kde": -0.1513,
+    "n_cells_finite": 8112
+   }
+  },
+  "overlap_outside_wdpa_sensitivity": {
+   "rain_annual_total_mm_2011_2014": {
+    "mean_pct_at_top_decile": 0.2086,
+    "median_pct_at_top_decile": 0.1377,
+    "share_above_district_median": 0.0542,
+    "spearman_rho_vs_incident_kde": -0.2336,
+    "n_cells_finite": 4423
+   },
+   "rain_monsoon_jun_sep_share": {
+    "mean_pct_at_top_decile": 0.4478,
+    "median_pct_at_top_decile": 0.3342,
+    "share_above_district_median": 0.3702,
+    "spearman_rho_vs_incident_kde": 0.078,
+    "n_cells_finite": 4423
+   }
+  },
+  "overlap_elephant_subset_sensitivity": {
+   "rain_annual_total_mm_2011_2014": {
+    "mean_pct_at_top_decile": 0.1289,
+    "median_pct_at_top_decile": 0.1031,
+    "share_above_district_median": 0.0,
+    "spearman_rho_vs_incident_kde": -0.5831,
+    "n_cells_finite": 8112
+   },
+   "rain_monsoon_jun_sep_share": {
+    "mean_pct_at_top_decile": 0.3298,
+    "median_pct_at_top_decile": 0.2559,
+    "share_above_district_median": 0.2069,
+    "spearman_rho_vs_incident_kde": -0.1438,
+    "n_cells_finite": 8112
+   }
+  },
+  "reading": "same reader as the run of record; joined as appendix rows ONLY"
+ },
+ "fallback_unused": "IMD 0.25deg rejected as spatial covariate per D-20(c); CHIRPS usable -> fallback not triggered",
+ "governance": {
+  "h3_verdict_standing": "unchanged: descriptive direction-check, no falsification verdict (D-3/D-18)",
+  "significance_language": "none; no p-values or CIs computed",
+  "quotable_in_p4_p5_as": "post-hoc sensitivity, non-inferential"
+ },
+ "caveats": [
+  "Record-window (2011-2014) covariates are contemporaneous, not pre-2011 (documented D-20(b) deviation; construct = the incident window's own seasonality).",
+  "CHIRPS native approx 5.5 km -> bilinear-smoothed at 500 m; within-cell variance is interpolated, not observed.",
+  "Incident surface remains village-massed (place-name hotspot surface; audit-D-10).",
+  "Rain-gauge under-representation in the Western Ghats is a known CHIRPS caveat (published literature)."
+ ]
+}

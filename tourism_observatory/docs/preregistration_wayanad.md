@@ -652,6 +652,58 @@ number D-0 records this freeze itself.
   reporting likelihood rises with media attention and salience, e.g. near
   the 2024 landslide scene, not uniformly with exposure).
 
+- **D-20 (2026-11-02, post-hoc rainfall sensitivity pinned before ANY
+  rainfall statistic is computed):** H3's outcomes were computed and seen
+  on 2026-11-02 under D-18 with "rainfall unavailable" documented in that
+  pin. This entry - an explicit user decision - adds a rainfall
+  sensitivity read. Because the H3 overlap table already exists and was
+  examined, **every rainfall output below is labelled POST-HOC SENSITIVITY
+  and is an appendix read, not part of the registered H3 family or test
+  family**. §3/§4 byte-unchanged; D-18's recipe and all its printed
+  results are untouched.
+  (a) **Read 1 - seasonality (no new data):** month-of-incident histogram
+  of the 2,704 kept 2011-2014 records (exact `screen()` code path of
+  record, deterministic), reporting the Jun-Sep (SW monsoon) and Oct-Dec
+  (NE monsoon) shares, all-records and elephant-subset; descriptive only,
+  no tests. This read carries the seasonality check of V2 (paper:
+  "season-dependent") that D-18 recorded as unavailable.
+  (b) **Read 2 - spatial rainfall covariate:** CHIRPS v2.0 0.05-degree
+  monthly precipitation (UCSB Climate Hazards Center,
+  https://data.chc.ucsb.edu/products/CHIRPS-2.0/, Funk et al. 2015
+  attribution; open data with attribution), record window 2011-2014, bbox
+  75.70-76.50 E / 11.40-12.02 N. Derived layers: (i)
+  `rain_annual_total_mm_2011_2014` = mean over the four years of the
+  annual sum of monthly values; (ii) `rain_monsoon_jun_sep_share` = mean
+  over the four years of the Jun-Sep share of annual total. Bilinear
+  resample onto the H3 500 m cell grid (origin-aligned; CHIRPS native
+  approx. 5.5 km -> real within-district structure). Joined with the
+  **same D-18 overlap reader** (record-weighted incident-KDE percentile
+  at covariate top-decile cells + Spearman rho), on the same three arms
+  as the run of record (all cells / outside-WDPA / elephant subset).
+  Covariate labels are deliberately **record-window (2011-2014),
+  contemporaneous, not pre-2011** - a documented deviation from D-18's
+  pre-2011 primary rule, justified because the construct here is the
+  seasonality of the incident window itself, not pre-treatment land
+  condition.
+  (c) **Fallback ordering:** IMD 0.25-degree gridded daily rainfall
+  (Pai et al. 2014, MAUSAM 65:1-18, imdpune.gov.in, research
+  registration) only if CHIRPS is unusable. IMD is recorded here as
+  **REJECTED as a spatial covariate** (0.25 deg approx. 27 km -> ~2-4
+  cells over the ~60x46 km district: a near-constant field would make the
+  overlap read vacuous) and acceptable only as a district-mean time
+  series, which Read 1 already covers without new data.
+  (d) **Script of record:** `scripts/p3_h3_rainfall_sensitivity.py`
+  (imports the H3 module of record for screen/geocode/assign/CellIndex/
+  aggregate; replicates the D-18 reader formulas verbatim); facts ->
+  `outputs/qaqc/p3_h3_rainfall_sensitivity_{date}.json`; CHIRPS artifacts
+  -> `data/raw/` + `data/processed/` with manifest entries (source,
+  licence, sha256) before interpretation.
+  (e) **Precommitment (binding):** regardless of outcome, H3's registered
+  conclusion stands **unchanged (descriptive direction-check, no
+  falsification verdict, D-3/D-18)**; no p-values, CIs or significance
+  language anywhere; results may be quoted in P4-P5 only as "post-hoc
+  sensitivity, non-inferential" annotations - never as H3 confirmation.
+
 ## 8. Pre-analysis inspection checklist (gate before P2)
 
 Before outcome work starts, confirm: ☐ hypotheses §3 unchanged ☐ controls §4 unchanged ☐

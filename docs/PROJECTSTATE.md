@@ -723,3 +723,77 @@ check under D-18 (no verdict by recipe), H4 NOT falsified (EXPLORATORY).
 Next: **git commit all accumulated P3 work** (scripts, manifest 33, prereg
 D-19/R7e, PROJECTSTATE entries, H1–H4 logs, README) → then P4–P5 (risk
 register → evidence brief) → Mussoorie preplan.
+
+### D-20 pre-computation pin: post-hoc rainfall sensitivity logged + Freeze R8 (2026-11-02) — BEFORE any rainfall statistic
+
+**User decision (approved):** add the post-hoc rainfall sensitivity read to
+H3 ("Option B" from the caveat review) plus fold rainfall into the
+Mussoorie preplan pre-freeze. **D-20 written to prereg §7 (append-only,
+§3/§4 untouched), full-file re-hash recorded BEFORE computing:**
+
+**R8 = `da2baee87b9dad57cd1c9d0077242e0cbbf36233d98d842e90d291beba9d98e8`**
+(history: R7 `541bd46e` → R7a `5637e6ac` → R7b `d4e258cd` → R7c `176da474` →
+R7d `943e9f9c…` → R7e `c4ac9606…` → R8 `da2baee8…`).
+
+**D-20 pins:** (a) **Read 1 — seasonality**, no new data: month-of-incident
+histogram of the 2,704 kept records via the exact `screen()` code path of
+record; Jun–Sep (SW monsoon) + Oct–Dec (NE monsoon) shares; all-records +
+elephant subset; descriptive only. (b) **Read 2 — CHIRPS v2.0 0.05° monthly
+2011–2014** (UCSB CHC, Funk et al. 2015 attribution, open-with-attribution),
+bbox 75.70–76.50 E / 11.40–12.02 N; derived `rain_annual_total_mm_2011_2014`
++ `rain_monsoon_jun_sep_share`, bilinear to the H3 500 m origin-aligned
+grid, joined via the **same D-18 overlap reader** on the same three arms;
+covariate labels deliberately **record-window (2011–2014), contemporaneous,
+NOT pre-2011** — deviation from D-18's pre-2011 primary rule documented with
+reason (construct = seasonality of the incident window). (c) **Fallback:**
+IMD 0.25° daily (Pai et al. 2014, imdpune.gov.in, registration) only if
+CHIRPS unusable; **REJECTED as a spatial covariate** (≈27 km ⇒ ~2–4 cells,
+near-flat field) — usable only as a district-mean series, which Read 1
+covers without new data. (d) Script of record:
+`scripts/p3_h3_rainfall_sensitivity.py` (imports the H3 module of record;
+replicates the D-18 reader verbatim); facts
+`outputs/qaqc/p3_h3_rainfall_sensitivity_{date}.json`. (e) **Binding
+precommitment:** H3's registered conclusion (no falsification verdict,
+D-3/D-18) stands unchanged regardless of outcome; no p-values/CIs/
+significance language; P4–P5 may quote results only as "post-hoc
+sensitivity, non-inferential" — never as H3 confirmation.
+
+Next: fetch CHIRPS (vsicurl windowed read; fallback ordering per pin) →
+manifest entries → `p3_h3_rainfall_sensitivity.py` → facts + log →
+PROJECTSTATE → commit → **P4 risk register** → **P5 evidence brief**.
+
+### D-20 COMPLETE (2026-11-02): post-hoc rainfall sensitivity executed under R8; precommitment honored; P4–P5 synthesis opened
+
+**Execution order verified:** D-20 appended → R8 hashed → R8 recorded here
+BEFORE any download/statistic → CHIRPS fetched → manifest entries (36
+total) → sensitivity run → prereg re-verified byte-stable at R8 after the
+run. Manifest now **36 entries** (+3 CHIRPS artifacts, sha-filled).
+
+**Artifacts (sha256):** `data/raw/chirps_v2_monthly_2011_2014_wayanad_bbox_4326.tif`
+`58fdd6a5…` (15×19 px native grid, 48 bands, 48 nodata edge-px = one
+coverage-edge pixel identical across months);
+`data/processed/chirps_rain_annual_2011_2014_32643.tif` `5200897d…`
+(valid px range 1,126–3,609 mm, mean 2,396 on the 500 m bounding grid,
+17,199 px; only 8,112 centre-in-district cells aggregate);
+`data/processed/chirps_rain_monsoon_share_2011_2014_32643.tif`
+`5bfacd9f…` (0.54–0.64). IMD fallback NOT triggered.
+
+**Exact reproduction asserted:** screen 2,704 kept / 2,018 elephant;
+geocode cache 425 (no network); tiers 1,089/1,043/572, 0 unplaced; grid
+8,112 cells / 4,423 outside WDPA — all matching
+`p3_h3_facts_2026-11-02.json`.
+
+**Results (facts `p3_h3_rainfall_sensitivity_2026-11-02.json`, sha
+`e1ab4cbe…`):** Read 1 — SW-monsoon (Jun–Sep) share **0.4183** all /
+**0.4351** elephant; NE (Oct–Dec) **0.2670**/0.2488; peaks Jul **363**,
+Nov **295**; no monsoon lock-in (dry quarter ≈ 0.234). Read 2 —
+`rain_annual_total_mm_2011_2014` ρ = **−0.572** primary / **−0.234**
+outside-WDPA / **−0.583** elephant; wettest-decile cells sit at the
+**13th** incident percentile (mean pct 0.133);
+`rain_monsoon_jun_sep_share` near-null/sign-fragile (−0.151 primary,
++0.078 outside-WDPA). **Reading:** incident hotspots lie in the
+lower-rainfall human-modified farming belt — direction-consistent with
+H3's stable negative forest-cover feature; NOT quotable as H3
+confirmation (D-20(e) precommitment honored; no p-values computed).
+
+**Log of record:** `tourism_observatory/docs/p3_d20_rainfall_sensitivity_log.md`.

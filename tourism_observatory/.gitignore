@@ -74,6 +74,7 @@ outputs/qaqc/*
 !outputs/qaqc/p3_h3_facts_2026-11-02.json
 !outputs/qaqc/p4_h4_facts_2026-11-02.json
 !outputs/qaqc/p4_h4_dispute_table_2026-11-02.csv
+!outputs/qaqc/p3_h3_rainfall_sensitivity_2026-11-02.json
 !outputs/qaqc/.gitkeep
 
 # --- OS / python ------------------------------------------------------------
