@@ -1,0 +1,7 @@
+dispute_id,dispute_label,records_in,precision_class,radius_m,anchor_lat,anchor_lon,geocode_names,overlaps_hotspot,p_expectation_per_dispute
+D-001,Muthanga AGMS Adivasi land-rights agitation,D-001-R2;D-001-R3;D-001-R4,locality,1000.0,11.671455,76.361914,Muthanga,False,0.0762
+D-002,Wayanad Wildlife Sanctuary relocation dispute (Kattunaikar/Mullu Kurumba),D-002-R1,locality,1000.0,11.708378,76.187766,Valavayal,False,0.0762
+D-003,Chooralmala-Mundakkai rehabilitation-delay protests,D-003-R1,locality,1000.0,11.499232,76.159871,Chooralmala,False,0.0762
+D-004,Valathoor quarry protest,D-004-R1,locality,1000.0,11.517442,76.187365,Valathoor,True,0.0762
+D-005,Vengappally quarry-encroachment grievance,D-005-R1,locality,1000.0,11.610766,76.04583,Vengappally,False,0.0762
+D-008,Kanjirathinal family land-recovery struggle,D-008-R1,locality,1000.0,11.610278,76.08281,Kalpetta,False,0.0762

@@ -1,0 +1,116 @@
+{
+ "date": "2026-11-02",
+ "freeze": "R7e",
+ "pin": "prereg §7 D-19 (recipe + event table pinned before computation)",
+ "hypothesis": "H4 — documented grievance/protest event locations overlap tourism-hazard exposure hotspots more than expected by area proportion (§3 wording); reported as the spatial distribution of documented records only (D-5)",
+ "exploratory": true,
+ "exploratory_reason": "cell-eligible disputes n = 6 < 15 (D-5)",
+ "event_table": {
+  "path": "data/processed/h4_event_table_2026-11-02.csv",
+  "sha256": "c452c653b2077a52610e822ea67c7445da6b75c98940ed2ce259b03229aa608a",
+  "all_disputes": 8,
+  "all_records": 12,
+  "cell_eligible_disputes": 6,
+  "cell_eligible_records": 8
+ },
+ "geocoding": {
+  "cache": "h4_event_geocodes_2026-11-02.csv",
+  "details": [
+   {
+    "query": "Chooralmala",
+    "matched": 1,
+    "display_name": "Chooralmala, Vythiri, Wayanad, Kerala, 673567, India"
+   },
+   {
+    "query": "Kalpetta",
+    "matched": 1,
+    "display_name": "Kalpetta, Vythiri, Wayanad, Kerala, 673121, India"
+   },
+   {
+    "query": "Muthanga",
+    "matched": 1,
+    "display_name": "Muthanga, Sulthanbathery, Wayanad, Kerala, India"
+   },
+   {
+    "query": "Valathoor",
+    "matched": 1,
+    "display_name": "Valathoor, Rippon 52, Vythiri, Wayanad, Kerala, India"
+   },
+   {
+    "query": "Valavayal",
+    "matched": 1,
+    "display_name": "Valavayal, Irulam - Moonanakuzhi road, Paplassery, Sulthanbathery, Wayanad, Kerala, 673596, India"
+   },
+   {
+    "query": "Vengappally",
+    "matched": 1,
+    "display_name": "Vengappally, Vythiri, Wayanad, Kerala, 673121, India"
+   }
+  ]
+ },
+ "hotspot": {
+  "facilities_used": 107,
+  "facility_buffer_m": 500.0,
+  "facility_buffer_area_km2": 63.245,
+  "hazard_union_km2": 993.205,
+  "inventory_buffers_km2": 992.9,
+  "scar_km2": 1.781,
+  "hotspot_km2": 15.0578,
+  "hotspot_share_of_district": 0.007431,
+  "definition": "union(verified-facility 500 m buffers) INTERSECT (union(inventory 1 km buffers) UNION scar), clipped to district"
+ },
+ "reportable": {
+  "rule": "500 m cells containing >= 1 OSM building footprint (69,126-footprint 2026-10 extract; the OSM layer named in D-5)",
+  "grid_sizes": {
+   "cell_m": 500.0,
+   "nx": 147,
+   "ny": 117
+  },
+  "cells": 3761,
+  "area_km2": 940.25,
+  "area_within_district_km2": 668.49,
+  "share_of_district": 0.3299
+ },
+ "test": {
+  "n_cell_eligible": 6,
+  "T_obs": 1,
+  "E_expected": 0.4572,
+  "sign": "(dispute overlaps iff anchor point in dilate(hotspot, radius); mathematically identical to the D-19 footprint-intersection definition)",
+  "falsified_iff_T_obs_le_E": false,
+  "verdict_point_estimate": "not falsified (T_obs > area-proportion expectation)",
+  "permutation": {
+   "B": 10000,
+   "seed": 20261102,
+   "rule": "p = (1 + #{T_j >= T_obs}) / (B+1)",
+   "count_T_j_ge_T_obs": 3684,
+   "p": 0.36846315368463156,
+   "note": "permuted locations are uniform over the reportable-area union (full equal-area reportable cells, uniform within cell), as pinned in D-19(f); the p value is reported as a pinned read-out — D-5's no-significance-language rule still governs all interpretation because n < 15 (EXPLORATORY)"
+  }
+ },
+ "dispute_table_out": "outputs/qaqc/p4_h4_dispute_table_2026-11-02.csv",
+ "exclusions": [
+  {
+   "id": "D-001-R1",
+   "reason": "out of AOI (Thiruvananthapuram march record inside D-001; dispute eligible via Muthanga records)"
+  },
+  {
+   "id": "D-006 (dispute)",
+   "reason": "out of AOI — Nagarahole, Kodagu district, Karnataka; tabled because prereg §4 named the Jenu Kuruba 2025 event"
+  },
+  {
+   "id": "D-007 (dispute)",
+   "reason": "district precision (district-wide KSHRC directive) — excluded per D-5"
+  },
+  {
+   "id": "D-008-R2 (record)",
+   "reason": "district precision; the dispute stays cell-eligible via D-008-R1"
+  }
+ ],
+ "caveats": [
+  "Documentation/effort bias: the dispute register comes from press and Land Conflict Watch — reporting likelihood rises with media attention and with salience (e.g. near the 2024 landslide scene), not uniformly with exposure.",
+  "< 15 cell-eligible disputes → EXPLORATORY per D-5; no significance language is drawn from the permutation read-out.",
+  "Anchors are locality-class village geocodes (Nominatim); a 1 km precision radius is an interpretation of village-scale uncertainty, as pinned in D-19(e).",
+  "Reportable area uses the current OSM building snapshot (2026-10-28 69,126 footprints, vintage-caveated) as the baseline settlement layer named in D-5.",
+  "The exposure hotspot definition is as pinned (verified-facility 500 m buffers intersecting mapped-hazard footprints); it is a register-time construct, not per-event-era exposure."
+ ]
+}

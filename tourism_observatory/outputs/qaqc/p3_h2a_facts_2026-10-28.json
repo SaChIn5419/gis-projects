@@ -1,0 +1,94 @@
+{
+ "date": "2026-10-28",
+ "hypothesis": "H2a \u2014 facility siting preference vs susceptibility (prereg s3 D-2)",
+ "deviations": "s7 D-15 (inventory input substitution + pinned clarifications); s7 D-16 (sign-test defect -> corrected Monte Carlo exceedance tests)",
+ "seed": 20261022,
+ "n_null_per_facility": 1000,
+ "facilities_verified_inside": 107,
+ "facilities_evaluable": 107,
+ "elev_band_p5_p95_m": [
+  736.3,
+  917.0
+ ],
+ "domain_attrition": {
+  "grid_points_total": 2020,
+  "c0_in_aoi": 2020,
+  "c1_outside_wdpa": 1170,
+  "c2_not_water": 1159,
+  "c3_non_built_2005": 1159,
+  "c4_near_tertiary": 1105,
+  "c5_elev_band": 876,
+  "c6_valid_dem_slope_road": 876
+ },
+ "eligible_domain_points": 876,
+ "caliper_pool_size_min_median": [
+  15,
+  71
+ ],
+ "qa_ranges": {
+  "slope_deg_minmax": [
+   0.0,
+   73.1014175415039
+  ],
+  "dem_m_minmax": [
+   2.8115055561065674,
+   2232.45556640625
+  ],
+  "aoi_cells": 2251569,
+  "tertiary_road_features": 1190,
+  "tertiary_road_cells": 60967,
+  "kde_nonzero_cells": 1555265,
+  "kde_max": 0.4924699366092682
+ },
+ "metric_i_slope_ge25_share": {
+  "observed": 0.0093,
+  "null_expected": 0.0033
+ },
+ "tests": {
+  "i": {
+   "mean_percentile": 0.503,
+   "sign_pos": 1,
+   "sign_neg": 35,
+   "ties_excluded": 71,
+   "n_effective": 36,
+   "p_sign_raw": 1.07684e-09,
+   "p_holm": 2.15368e-09
+  },
+  "ii": {
+   "mean_percentile": 0.5786,
+   "sign_pos": 44,
+   "sign_neg": 63,
+   "ties_excluded": 0,
+   "n_effective": 107,
+   "p_sign_raw": 0.081353,
+   "p_holm": 0.081353
+  }
+ },
+ "corrected_tests_D16": {
+  "registration": "prereg s7 D-16 (registered before this computation)",
+  "test_form": "Monte Carlo observed-vs-null exceedance (s3 H2 frozen form): p=(1+#{T_j>=T_obs})/1001, Holm across {i,ii}",
+  "i": {
+   "statistic": "count of facilities with slope >= 25 deg",
+   "T_obs": 1,
+   "T_j_mean": 0.355,
+   "T_j_max": 3,
+   "p_raw": 0.292707,
+   "p_holm": 0.292707
+  },
+  "ii": {
+   "statistic": "mean observed KDE inventory density across facilities",
+   "T_obs": 0.002920622387013724,
+   "T_j_mean": 0.00114536,
+   "T_j_p95": 0.00216351,
+   "p_raw": 0.00699301,
+   "p_holm": 0.013986
+  },
+  "registered_sign_tests_status": "non-interpretable for point-massed metrics (defect proof in prereg s7 D-16); retained verbatim in 'tests' for the record"
+ },
+ "kde_surface_gtiff": "tourism_observatory/outputs/qaqc/p3_h2a_kde_inventory_500m_32643.tif",
+ "inputs": {
+  "inventory_gpkg": "data/processed/inventory_wms_kl_landslides_new_32643.gpkg",
+  "roads": "data/processed/roads_wayanad_32643.gpkg (>=tertiary classes)",
+  "facilities": "data/processed/facility_existence_universe_2026-10-23.csv"
+ }
+}

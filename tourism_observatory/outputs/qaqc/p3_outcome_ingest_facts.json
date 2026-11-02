@@ -1,0 +1,53 @@
+{
+ "date": "2026-10-26",
+ "freeze": "R6",
+ "information_boundary": "outcome-era rasters read for the first time; no treatment/control comparison computed in this script (\u00a75).",
+ "grid": {
+  "crs": "EPSG:32643",
+  "res_m": 30.0,
+  "origin": [
+   584340.0,
+   1324380.0
+  ],
+  "shape": [
+   1942,
+   2438
+  ]
+ },
+ "endpoints": {
+  "primary": {
+   "product": "GLAD GLCLUC2020 Built-up change",
+   "epoch": "2000-2020",
+   "res_m": 30,
+   "built_px_2020": 371756,
+   "expansion_px_2000_2020": 156678,
+   "sha256": {
+    "20N_070E": "6377e9336367cc3c04e106490837dfb6de8463faadee582ea8975d34ccfed2a8",
+    "10N_070E": "7cee911970148f316ba70e6c7480cd0db8490d681aae7ffceb21a3c913ec2b22"
+   }
+  },
+  "robustness_hansen": {
+   "product": "Hansen GFC-2024 v1.12 lossyear",
+   "epoch": "2000-2024",
+   "loss_px": 92089,
+   "loss_tile_present": true
+  },
+  "sensitivity_worldcover": {
+   "product": "ESA WorldCover 2021 v200 built (50)",
+   "epoch": "2021",
+   "built_px": 25017
+  }
+ },
+ "consistency_checks": {
+  "expansion_subset_of_built": "0 violations (expansion \u2286 2020 built extent)",
+  "worldcover_subset_of_glad": "97.8% of WC2021 built px fall inside GLAD built mask",
+  "definitional_caveat": "GLAD built-up (12.2% of district) >> WorldCover 2021 built (0.8%). This is a definitional gap, not an error: GLAD's CNN class marks ANY Landsat pixel containing a man-made surface (roads, scattered houses) \u2014 Kerala's dispersed settlement inflates it \u2014 while WorldCover class 50 is strict built-up surfaces. GLAD's own validation reports area above urban statistics for this reason. H1 primary uses GLAD (consistent Landsat epochs 2000/2020); the strict-built sensitivity uses WorldCover 2021. Direction of the treatment/control contrast must be checked to agree across both (prereg \u00a73 H1 robustness clause)."
+ },
+ "dev": "D-13: H1 frozen window '2005-2025' operationalised to the latest available free Landsat built-up epochs (2000-2020 primary, 2021 sensitivity); actual period reported on every output. No hypothesis, covariate, caliper, or seed changed; logged before any treatment/control comparison.",
+ "outputs": [
+  "builtup_change_2000_2020_32643.tif",
+  "builtup_expansion_2000_2020_32643.tif",
+  "treecover_loss_2000_2020_32643.tif",
+  "builtup_worldcover2021_32643.tif"
+ ]
+}

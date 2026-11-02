@@ -346,6 +346,312 @@ number D-0 records this freeze itself.
   max|SMD| = 0.067 → §4.5 gate PASS. Changes no hypothesis, covariate, exclusion
   rule, caliper, or seed; no outcome was viewed (§5).
 
+- **D-13 (2026-10-26, P3 pre-comparison implementation spec — administrative only):**
+  **H1 endpoint vintage fixed to the latest available free built-up epochs.** The
+  frozen H1 window reads "2005→2025"; no free global Landsat-derived built-up product
+  extends to 2025 (ESA WorldCover's final release is 2021; the GLAD GLCLUC2020 series
+  ends 2020; GHSL's JRC server was unreachable from this host at acquisition time).
+  Operationalisation, decided **before any treatment/control outcome comparison was
+  computed** (this entry is logged first; the ingest script only counts AOI-wide
+  pixels): **primary = GLAD GLCLUC2020 Built-up change 2000→2020** (Potapov et al.
+  2022, *Frontiers in Remote Sensing*; 30 m Landsat ARD; CC-BY; built class = any
+  Landsat pixel containing a man-made surface), **sensitivity = ESA WorldCover 2021
+  strict built-up (class 50, 10 m)**, **robustness = Hansen GFC-2024 v1.12 loss-year
+  2000→2024** (tree-cover loss as a clearing proxy, as §3 H1 requires a Hansen-built
+  run). Every output reports the actual period (2000→2020 primary) rather than the
+  nominal 2005→2025. Recorded definitional caveat (consistent with the metric text
+  "ESA CCI + Landsat-derived built-up mask"): GLAD's built class covers **12.2%** of
+  the district vs **0.8%** for WorldCover strict-built — a definitional gap, not an
+  error (GLAD counts roads and scattered houses; Kerala's dispersed settlement
+  inflates it; 97.8% of WorldCover built pixels fall inside the GLAD mask;
+  expansion ⊆ 2020 built extent, 0 violations). Per §3 H1 the **direction of the
+  treatment/control contrast must agree across both** runs or H1 is falsified by its
+  stated failure condition. Epoch mismatch vs the 2005 baseline: the outcome window
+  starts at the baseline's Landsat epoch (2000) instead of the CCI 2005 class year;
+  the 2000→2005 lead is ≤5 yr and applies identically to treatment and control
+  buffers (matched pairs, same county), so it cannot favour one arm. Measurement
+  unit unchanged: facility-cluster union buffers at 500 m (sensitivities 250/1000 m),
+  full transition matrix by CCI 2005 source class, per D-4. Changes no hypothesis,
+  covariate, exclusion rule, caliper, or seed.
+
+- **D-14 (2026-10-26, P3 H1 measurement spec — administrative only, logged before
+  any treatment/control comparison):** D-4 froze the treatment-side geometry (500 m
+  buffer per facility point; centres within 250 m → one cluster with union buffer,
+  counted once) but left the **control-side buffer geometry, the metric denominators,
+  and the test battery** un-pinned. Fixed as follows, before any arm difference was
+  computed: **(i) Units.** Matching was parcel-level (50 pairs); H1 operates on
+  those pairs. Per pair, the treated parcel's facilities are grouped into clusters
+  by single-linkage on centre distance ≤ **250 m** (the frozen merge rule, read
+  literally as radius-independent); the treatment geometry is the **pixel union of
+  the per-radius buffers** (500 m primary; 250/1000 m sensitivities) around all
+  facility points in the parcel, so overlapping buffers are counted once. The
+  control geometry is a **buffer of the same radius around the centroid of the
+  matched control parcel** (the only symmetric fixed-size footprint available on
+  the control side — controls have no facility point by construction). **(ii)
+  Metric.** On the frozen 30 m grid, restricted to the same eligibility mask used
+  for matching (AOI ∩ ¬WorldCover-water ∩ ¬WDPA-all_touched ∩ ¬scar-v2), applied
+  identically inside every buffer: numerator = expansion pixels (GLAD class 1)
+  whose CCI-2005 class is vegetated/cropland (code families: cropland 10–12,
+  mosaic 20–30, shrubland 40–50, forest 60–75, grass/sparse 100–180 — i.e.
+  everything except urban 190 and water 210); denominator = buffer pixels that
+  were non-built at baseline (GLAD 2000: classes 0/1) with the same CCI class
+  restriction. Rate = numerator/denominator in %. The full transition matrix
+  (CCI-2005 family × built-status 2000/2020, pixel counts) is reported per arm
+  per D-4. **(iii) Tests.** Paired differences d_i = treatment − control rate,
+  n = 50 pairs; both a two-sided **paired t-test** and a **Wilcoxon signed-rank
+  test** are reported; Holm correction across the three radius tests within H1.
+  **(iv) Robustness (§3 direction-agreement clause).** Re-estimate at 500 m with
+  (a) WorldCover-2021 strict built (numerator: WC class-50 pixels that GLAD flags
+  as non-built at 2000; same denominator) and (b) Hansen loss-year 2001–2024 as a
+  clearing proxy (numerator: loss pixels; denominator: baseline pixels with Hansen
+  2000 tree cover > 0); H1 is falsified if the sign of the mean paired difference
+  disagrees with the primary run. **(v) Stratum.** D-4's "pre-existing development"
+  stratum: all 51 registry order dates are 2023–2026 → **zero facilities pre-date
+  the baseline by the registry-date proxy**; imagery-based construction dating (the
+  optional post-freeze sensitivity) was **not run** and the stratum is reported
+  empty, with this limitation labelled. Changes no hypothesis, covariate, exclusion
+  rule, caliper, or seed; the control-side geometry is a measurement-choice
+  (which pixels are counted), not a design change (which parcels are compared).
+- **D-15 (2026-10-28, H2 inventory input substitution — logged before any H2
+  statistic was computed):** H2a(ii) ("mean Atlas-inventory density in a 500 m
+  KDE surface") and H2b(b) ("1 km buffers of Atlas digitized landslide points")
+  require the ISRO Landslide Atlas **vector** inventory. It is not obtainable in
+  any public form. Evidence trail: (a) Atlas distributed as PDF only (data-audit
+  D-5, 2026-10-22); (b) Bhuvan WFS endpoint disabled (2026-10-23); (c)
+  GetFeatureInfo returns empty GML (0 features) at every probe on
+  `disaster:KERALA_MERGE_gcs`, *including* coordinates where GetMap visibly
+  renders polygons (2026-10-28) — attribute/date harvest is impossible;
+  (d) GetCapabilities carries empty `<Abstract/>` for all six candidate Kerala
+  layers. Renders had first appeared byte-identical across the six layer names;
+  that finding was **retracted** the same day — it was caused by using WMS 1.3.0
+  with `CRS=EPSG:4326` (lat,lon axis order) while sending a lon,lat BBOX, so the
+  server fell back to a default view. With the corrected protocol (WMS 1.1.1 +
+  `SRS=EPSG:4326`, lon,lat BBOX) the six layers do differ:
+  `disaster:kl_landslides_new` (style "Kerala Landslide") carries the most
+  Wayanad content (40,034 inventory px at 55 m, vs 23,545 / 18,115 / 105 / 0 /
+  0 / 0 for the others). **Substitution (user decision 2026-10-28, taken before
+  any H2 statistic):** both statistics use a polygonized render proxy — 81
+  overlapping 10 m GetMap tiles over 75.75–76.47 E / 11.20–11.82 N, brown-fill
+  mask unioned across 50 %-overlap tiles (this removes the per-tile "bhuvan"
+  watermark, which is fixed at tile centre and never brown), polygonized to
+  `data/processed/inventory_wms_kl_landslides_new_32643.gpkg` (1,151 polygons,
+  29.82 km²; fetch script `scripts/h2_fetch_wms_inventory.py`; QA facts
+  `outputs/qaqc/h2_wms_inventory_facts_2026-10-28.json`). **Registered test
+  family unchanged: H2a Holm within {i,ii}; H2b stays descriptive (a)+(b)** —
+  only the *input data* of (ii) and (b) is substituted, so the family is not
+  reduced and no outcome-dependent selection is possible. **Measurement recipe
+  pinned here, before computation:** H2a(ii) — rasterize the proxy polygons on
+  the frozen 30 m analysis grid (cell value = inventory area fraction), Gaussian
+  kernel σ = 500 m (16.667 cells) with 3σ truncation and mass normalisation,
+  sample the surface at each observed facility and each of its 1,000 matched
+  nulls; per-facility percentile against its own nulls; family summary = mean
+  percentile + exact two-sided binomial sign test (aggregation as frozen in
+  D-2). H2b(b) — buffers of **1 km around the proxy polygons** replacing
+  "Atlas digitized landslide points"; register facilities, buildings and roads
+  intersecting the union; every entry carries precision class
+  `WMS-render polygonized (10 m px, ±1 px boundary; no attributes/vintage)`.
+  **Validity caveats, carried forward:** (1) feature attributes and dates are
+  unretrievable — selection criteria and vintage of the layer are
+  undocumented; (2) the Jul-2024 Chooralmala–Mundakkai event is absent from
+  **all six** candidate layers (≤0.5 % of the digitized VAP8 scar covered) — the
+  proxy predates or excludes it; (3) georeferencing validated three ways:
+  BBOX honoured (disjoint renders yield disjoint content), all 1,151 polygons
+  fall inside the district boundary, 7 proxy polygons lie within 500 m of the
+  VAP8 scar (2 intersecting); (4) documentation bias presumed (mapped-landslide
+  density near roads/settlements), reported with H4-style caveats. Changes no
+  hypothesis, covariate, exclusion rule, caliper, or seed; §3 H2 text is
+  byte-unchanged — this entry records an input-data fact under the R6 rule.
+  **Pinned clarifications (appended 2026-10-28, still before any H2 statistic
+  was computed):** (a) *Road-distance* = Euclidean distance in metres to the
+  nearest OSM highway feature of class ≥ tertiary (motorway/trunk/primary/
+  secondary/tertiary and their `_link` variants), computed on the frozen 30 m
+  grid from `roads_wayanad_32643.gpkg`; it is used both for eligibility (ii)
+  (`≤ 2,000 m`) and the ±40 % caliper (`[0.6·d_fac, 1.4·d_fac]`) — the coherent
+  reading, since ≥tertiary is D-2's only road criterion. (b) *Observed-facility
+  population* = the 107 verified facility points inside the district (the same
+  set H1 used). (c) *Null-draw algorithm*: eligible domain = 1 km parcel-grid
+  cell centres passing (i)–(iv), evaluated on the frozen 30 m grid (AOI and
+  WDPA sampled at the cell centre; CCI-2005 ≠ 190; WorldCover ∉ {80, 90} and
+  CCI ≠ 210; elevation inside the [5th, 95th] percentile band of the 107
+  facility elevations); one `numpy.random.default_rng(20261022)` stream
+  consumed sequentially over facilities sorted by `facility_id`; candidates
+  drawn uniformly from the domain with replacement, accepted only when both
+  calipers pass, until 1,000 accepted per facility (literal rejection
+  sampling; draws are with replacement). (d) *Percentile/sign convention*:
+  `percentile_i = (#{null < obs_i} + 0.5·#{null = obs_i}) / 1000` (mid-rank,
+  so the binary slope metric stays coherent); `sign_i = +1` if
+  `percentile_i > 0.5`, `−1` if `< 0.5`, exact `0.5` = tie and excluded from
+  the two-sided exact binomial sign test; family summary = mean percentile +
+  sign test over non-tied signs; Holm adjusts the two sign-test p-values
+  across {i, ii}.
+- **D-16 (2026-10-28, defect found in the D-15(d) sign-test convention —
+  disclosed post-computation, correction registered before it is computed):**
+  The first H2a computation ran with the D-15(d) convention and produced
+  (i) signs +1/−35, p_holm = 2.15e-09 and (ii) signs +36/−71, p_holm = 9.2e-04.
+  Analysis of the convention's own null (an analytical derivation, valid in
+  either direction and independent of the observed results) shows **both
+  sign-test p-values are artifacts of point masses**, not evidence:
+  under exchangeability of the observed point with its null draws, a metric
+  with a point mass gives P(sign +) ≠ 0.5. For (i), metric binary with
+  per-facility null probability q: among non-ties P(+) = q ≈ 0.003 — the
+  observed +1 sign is exactly the null expectation (~0.35 expected), so the
+  35 negative signs are what H0 predicts, not evidence against it. For (ii),
+  metric zero-inflated with pool zero-fraction π₀: H0 gives
+  P(+) = 1−π₀ ≈ 0.34 and P(−) = π₀ ≈ 0.66 — the observed +36/−71 split
+  (0.34/0.66 of 107) is again precisely the null expectation. The midrank
+  *mean* percentile is unaffected (E = 0.5 under H0 by the same algebra), so
+  it stays reportable. **Timing disclosure:** this defect was discovered on
+  inspecting the first computation's output incoherence (mean 0.503 vs signs
+  −35/+1); the derivation shows it was baked into the convention regardless
+  of any outcome, and no result direction was used to choose the correction.
+  **Corrected family inference (registered here, before computation), which
+  is the test form already frozen in §3 H2 itself — "Monte Carlo, 1,000
+  placements, observed-vs-null exceedance p-value":** for each statistic,
+  T_obs = the statistic evaluated at the 107 observed facilities
+  (i: count of facilities on slope ≥ 25°; ii: mean of the 107 observed KDE
+  values); T_j = the same statistic evaluated at the j-th matched null draw
+  of every facility (j = 1…1,000, the same deterministic seeded draws
+  already generated); one-sided exceedance
+  p = (1 + #{T_j ≥ T_obs}) / 1001; Holm across {i, ii} as frozen. Both the
+  registered outputs (retained verbatim in `p3_h2a_facts_2026-10-28.json`)
+  and these corrected tests are reported side by side; the corrected p-values
+  carry the H2a verdict, with the registered sign tests explicitly labelled
+  non-interpretable in the analysis log. Changes no hypothesis, covariate,
+  exclusion rule, caliper, seed, or draw; only the aggregation test that the
+  point-mass defect invalidated.
+- **D-17 (2026-10-28, coverage-window error found by extent audit — logged
+  before the corrected inputs were fetched and before any H2b count):**
+  The district reference used throughout the project (geoBoundaries ADM2
+  Wayanad = AOI = `aoi_mask`/parcels/roads) spans **75.7742–76.4443 E /
+  11.4515–11.9781 N**. A systematic extent audit (dataset bounds vs district
+  bounds, run while preparing H2b) found two extraction windows truncated the
+  district against its north edge: **(a)** the D-15 inventory fetch window
+  `75.75–76.47 E / 11.20–11.82 N` omits lat 11.82–11.978 — the northern
+  district strip where **16 of the 107 verified facilities** lie; **(b)** the
+  P1-era OSM buildings window `75.73–76.40 E / 11.20–11.80 N` omits the same
+  north strip plus the east strip 76.40–76.444 E (76,206 buildings, manifest
+  entry). Roads, parcels, AOI rasters and all analysis grids were confirmed
+  district-complete; only these two windows were wrong (rough bbox estimates
+  instead of the district polygon). **Timing disclosure:** discovered after the
+  first H2a computation and before any H2b count, by an objective bounds
+  comparison — no outcome value entered the discovery, and no statistic was
+  inspected to choose the correction. **Correction:** (a) re-fetch the WMS
+  inventory over `75.75–76.47 E / 11.42–12.00 N` (district + ≥0.02° pad on
+  every side), same layer/protocol/10 m/50 %-overlap recipe otherwise, then
+  **recompute H2a under the corrected inventory** — the first H2a outputs are
+  superseded (retained verbatim in git/PROJECTSTATE history and the D-16
+  registration unchanged); (b) re-extract OSM buildings from the same source
+  PBF (`southern-zone-261020.osm.pbf`, unchanged hash) over
+  `75.73–76.47 E / 11.42–12.00 N`, clipped to the district window. Manifest
+  entries updated in place (same ids, new sha256 + note), D-15's pinned
+  window string superseded here. Test family, calipers, seed, KDE recipe and
+  D-16 corrected-test registration all unchanged; this is an input-coverage
+  fix, not a design change.
+- **D-18 (2026-10-28, H3 descriptive-fallback recipe pinned before
+  computation):** the R1 gate (audit-D-10, logged 2026-10-23, pre-freeze)
+  established that the Morrison et al. (2025, GECCO 62:e03742) HEC records
+  **never contained GPS coordinates** (village-name level; the paper
+  simulated points by conditional random sampling), so the D-3 downgrade to a
+  **descriptive hotspot-overlap analysis** is active (no Poisson/NB, no IRR
+  table, no residual Moran's I — nothing to fit residuals to). Measurement
+  recipe pinned here, before any H3 statistic: (1) records = Figshare
+  `Original_records…xlsx` (2011–2014 sheets; screen: parse dates, keep
+  2011–2014 window, normalize nature/species/range text, drop and count
+  unparseable/out-of-window rows, report species mix; elephant-involved
+  subset reported alongside the full set); (2) incident locations =
+  place-name geocoding (373 unique places; Nominatim restricted to the
+  district viewbox, 1 req/s, cached to `data/processed/
+  h3_place_geocodes_2026-10-28.csv` with per-name precision tier
+  place→section→range-centroid fallback; unmatched names excluded and
+  counted); (3) incident surface = Gaussian KDE over geocoded points,
+  weight = incident count, **σ = 1,000 m** (village-level positional
+  precision and the paper's 1 km predictor resolution), evaluated on the
+  H3 500 m grid inside the AOI (outside-WDPA sensitivity reported);
+  (4) covariate surfaces, all sampled per 500 m cell and rank-percentiled
+  within the district: forest-edge density and forest-cover share from
+  Hansen 2000 tree cover (≥30 %), cropland share and urban share from CCI
+  2005 ({10,11,12,20,30} and {190}), 2000–2010 Hansen loss share (pre-2011
+  disturbance), road density from OSM (2026 snapshot, vintage-caveated),
+  DEM elevation, facility count within 1 km (tourism, tested covariate);
+  GLAD 2000–2020 built-up gain reported **only as a labelled-leaky
+  secondary** (window ends 2020 < 2023 but is not pre-2011); seasonal
+  rainfall has no raster in the data audit → documented as unavailable;
+  (5) overlap statistic = mean/median covariate percentile at the incident
+  surface's top-decile cells + Spearman rank rho between the two percentile
+  surfaces (descriptive effect sizes, **no p-values, no CIs, no
+  coefficient claims**); (6) V2 direction check against the paper's stated
+  drivers (near-sanctuary/forest-edge concentration) reported as
+  agreement/disagreement, never as a re-test. No hypothesis, exclusion rule
+  or claim text changes; the family stays the D-3-registered descriptive
+  fallback.
+
+- **D-19 (2026-11-02, H4 measurement recipe + event table pinned before
+  computation):** H4 ("documented grievance/protest event locations overlap
+  tourism-hazard exposure hotspots more than expected by area proportion")
+  is computed under the D-5 event-observation process; this entry pins the
+  remaining operational choices **before any H4 statistic is computed**.
+  §3-H4 text byte-unchanged (falsification rule stays: *falsified iff
+  observed overlap ≤ area-proportion expectation*).
+  (a) **Event table:** 8 disputes / 12 records compiled from open web
+  sources, unit = dispute per D-5, written to
+  `data/processed/h4_event_table_2026-11-02.csv` (sha256 at pin time
+  `c452c653b2077a52610e822ea67c7445da6b75c98940ed2ce259b03229aa608a`;
+  manifest id `h4_event_table_2026-11-02`). Set: **D-001** Muthanga AGMS
+  land-rights agitation (Tvm march record tabled and excluded as out-of-AOI;
+  territorial anchor Muthanga, records 2001–2026); **D-002** Wayanad
+  Wildlife Sanctuary relocation dispute (Valavayal, ongoing since 2002;
+  LCW); **D-003** Chooralmala–Mundakkai rehabilitation-delay protests
+  (23 Feb 2025 onward); **D-004** Valathoor quarry protest (13 Sep 2024);
+  **D-005** Vengappally quarry-encroachment grievance (28 Aug 2025);
+  **D-006** Jenu Kuruba Nagarahole reoccupation (5 May 2025 — Kodagu
+  district, Karnataka, **out of AOI: tabled per prereg naming and excluded
+  from the cell-level test, reason logged**; no Wayanad-specific Jenu
+  Kuruba 2025 event exists); **D-007** KSHRC quarrying directive
+  (17 Jan 2025 — district precision, excluded per D-5); **D-008**
+  Kanjirathinal family land-recovery struggle (Kalpetta sit-in; the 2023
+  KSHRC directive record is district precision and excluded at record
+  level, dispute stays cell-eligible through its sit-in record).
+  **Cell-eligible disputes: 6 (< 15 ⇒ EXPLORATORY).**
+  (b) **Geocoding:** same Nominatim recipe as D-18 (viewbox
+  75.70,11.40,76.50,12.02, suffix ", Wayanad, Kerala, India", 1 req/s);
+  cache `data/processed/h4_event_geocodes_2026-11-02.csv` (path pinned
+  verbatim here; manifest entry at compute time).
+  (c) **Hotspot ("tourism-hazard exposure hotspots") definition:** union of
+  **500 m buffers around the 107 verified facilities** (H1 primary radius)
+  **intersect** (union of **1 km buffers** around the D-15 inventory-proxy
+  polygons **union** the H2b(a) 2024 scar footprint), clipped to the
+  district — area where verified tourism presence co-occurs with mapped
+  hazard footprints.
+  (d) **Reportable area (D-5 null):** 500 m cells containing ≥ 1 OSM
+  building footprint (the 2026-10-28 69,126-footprint extract); D-5's
+  "cells with baseline settlement footprint" operationalized with the OSM
+  layer named there.
+  (e) **Precision footprints** (D-5: precision classes propagate as
+  footprint buffers, never points): point → 100 m; **locality → 1,000 m**;
+  subdistrict → 5,000 m; district → excluded from the cell-level test. All
+  cell-eligible dispute anchors are class **locality**.
+  (f) **Cell-level test:** a dispute is cell-eligible iff it has > 0 in-AOI
+  records at ≥ locality precision; analysis location = centroid of those
+  records' footprints (single-record disputes = the geocoded point). A
+  dispute **overlaps iff its precision footprint intersects the hotspot
+  footprint**. Observed statistic **T_obs** = number of cell-eligible
+  disputes overlapping; **deterministic area-proportion expectation**
+  E = n × A(dilate(hotspot, r_precision) ∩ reportable)/A(reportable) per
+  dispute's own radius. **Permutation null:** B = **10,000**; anchored RNG
+  seed **20261102** (numpy default_rng, pinned at pin time); each draw
+  samples the dispute's location uniformly over the reportable-area union
+  (uniform over equal-area reportable cells, uniform within cell — D-5:
+  "permutation of dispute locations restricted to reportable area"),
+  applies that dispute's own precision radius, and counts overlaps T_j;
+  one-sided **p = (1 + #{T_j ≥ T_obs})/(B+1)**.
+  (g) **Reporting:** reportable-area stats, hotspot area + share,
+  per-dispute table (incl. exclusions with reasons), T_obs, E, p;
+  **EXPLORATORY flag on every output; no significance language (D-5)**;
+  wording restricted to "the spatial distribution of documented records";
+  documentation-bias caveat mandatory (disputes documented by press/LCW —
+  reporting likelihood rises with media attention and salience, e.g. near
+  the 2024 landslide scene, not uniformly with exposure).
+
 ## 8. Pre-analysis inspection checklist (gate before P2)
 
 Before outcome work starts, confirm: ☐ hypotheses §3 unchanged ☐ controls §4 unchanged ☐

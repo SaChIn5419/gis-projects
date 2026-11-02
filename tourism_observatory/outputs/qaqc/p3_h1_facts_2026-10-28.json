@@ -1,0 +1,187 @@
+{
+ "date": "2026-10-28",
+ "freeze": "R6",
+ "spec": "dev-D-14 (measurement spec pinned before this comparison)",
+ "pairs_total": 50,
+ "radii_m": [
+  250,
+  500,
+  1000
+ ],
+ "primary_radius_m": 500,
+ "grid": {
+  "crs": "EPSG:32643",
+  "res_m": 30.0,
+  "origin": [
+   584340.0,
+   1324380.0
+  ],
+  "shape": [
+   1942,
+   2438
+  ],
+  "cci_upscaled_300m_to_30m_nearest": true
+ },
+ "eligibility_mask": "AOI ∩ ¬WorldCover-water(80) ∩ ¬WDPA-all_touched ∩ ¬scar-v2 (identical to matching mask)",
+ "tests": {
+  "250": {
+   "n_pairs_used": 50,
+   "mean_treat_pct": 45.5299,
+   "mean_ctrl_pct": 21.5181,
+   "mean_diff_pp": 24.0119,
+   "sd_diff_pp": 25.5362,
+   "paired_t": {
+    "stat": 6.64897852310063,
+    "p": 2.3211600473906442e-08,
+    "p_holm": 6.96348e-08,
+    "p_raw": 2.32116e-08
+   },
+   "wilcoxon": {
+    "stat": 106.0,
+    "p": 1.4895306321704993e-08,
+    "p_holm": 4.46859e-08,
+    "p_raw": 1.48953e-08
+   }
+  },
+  "500": {
+   "n_pairs_used": 50,
+   "mean_treat_pct": 38.4276,
+   "mean_ctrl_pct": 22.1076,
+   "mean_diff_pp": 16.3201,
+   "sd_diff_pp": 20.4676,
+   "paired_t": {
+    "stat": 5.63818151092571,
+    "p": 8.404991781549491e-07,
+    "p_holm": 1.681e-06,
+    "p_raw": 8.40499e-07
+   },
+   "wilcoxon": {
+    "stat": 147.0,
+    "p": 3.256713547727941e-07,
+    "p_holm": 6.51343e-07,
+    "p_raw": 3.25671e-07
+   }
+  },
+  "1000": {
+   "n_pairs_used": 50,
+   "mean_treat_pct": 32.8372,
+   "mean_ctrl_pct": 21.2314,
+   "mean_diff_pp": 11.6057,
+   "sd_diff_pp": 17.2404,
+   "paired_t": {
+    "stat": 4.760042493453589,
+    "p": 1.7523832814924626e-05,
+    "p_holm": 1.75238e-05,
+    "p_raw": 1.75238e-05
+   },
+   "wilcoxon": {
+    "stat": 229.0,
+    "p": 3.818192634774675e-05,
+    "p_holm": 3.81819e-05,
+    "p_raw": 3.81819e-05
+   }
+  }
+ },
+ "robustness_500m": {
+  "worldcover_strict": {
+   "n_pairs": 50,
+   "mean_diff_pp": 5.2416,
+   "sign_matches_primary": true
+  },
+  "hansen_loss": {
+   "n_pairs": 50,
+   "mean_diff_pp": 1.9569,
+   "sign_matches_primary": true
+  }
+ },
+ "h1_falsified_by_frozen_rule": false,
+ "primary_mean_diff_pp": 16.3201,
+ "stratum_preexisting_development": {
+  "count": 0,
+  "note": "All 51 registry order dates 2023-2026 → zero facilities pre-date the 2000-2005 baseline by the registry-date proxy; imagery-based construction dating not run (D-14(v), labelled limitation)."
+ },
+ "transition_matrix_500m_pooled": {
+  "treatment": {
+   "cropland_10_12": {
+    "0": 3637,
+    "1": 5577,
+    "2": 0
+   },
+   "mosaic_20_30": {
+    "0": 746,
+    "1": 491,
+    "2": 0
+   },
+   "shrub_40_50": {
+    "0": 6557,
+    "1": 3097,
+    "2": 0
+   },
+   "forest_60_75": {
+    "0": 919,
+    "1": 430,
+    "2": 0
+   },
+   "grass_sparse_100_180": {
+    "0": 14630,
+    "1": 8388,
+    "2": 0
+   },
+   "urban_190": {
+    "0": 0,
+    "1": 2,
+    "2": 0
+   },
+   "water_210": {
+    "0": 0,
+    "1": 0,
+    "2": 0
+   }
+  },
+  "control": {
+   "cropland_10_12": {
+    "0": 4259,
+    "1": 1901,
+    "2": 0
+   },
+   "mosaic_20_30": {
+    "0": 1942,
+    "1": 559,
+    "2": 0
+   },
+   "shrub_40_50": {
+    "0": 6591,
+    "1": 1071,
+    "2": 0
+   },
+   "forest_60_75": {
+    "0": 600,
+    "1": 0,
+    "2": 0
+   },
+   "grass_sparse_100_180": {
+    "0": 19586,
+    "1": 5664,
+    "2": 0
+   },
+   "urban_190": {
+    "0": 0,
+    "1": 0,
+    "2": 0
+   },
+   "water_210": {
+    "0": 0,
+    "1": 0,
+    "2": 0
+   }
+  }
+ },
+ "qa": {
+  "buffer_area_deviation_max_pct": 2.2,
+  "geometries_with_zero_denominator": 0,
+  "numerator_gt_denominator_violations": 0,
+  "treatment_control_geometry_overlap_px_500m": 0,
+  "pairs_missing_facilities": [],
+  "note": "Pixel-centre rasterisation (all_touched=False) on both arms; area deviation = |rasterised px − geometry area clipped to grid / 900| / expected. Treatment geometry is the union of k facility buffers, so the check uses the true union area, not a single circle."
+ }
+}

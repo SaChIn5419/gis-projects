@@ -1,0 +1,142 @@
+{
+ "date": "2026-10-28",
+ "hypothesis": "H2b \u2014 event exposure (descriptive register; no significance test by design, prereg D-2 + D-15)",
+ "footprints": {
+  "a_scar_2024": {
+   "precision_class": "digitized NRSC impact-map outline (VAP3 31-Jul-2024, ~1.6 m/px, graticule georeferencing +/-15 m; 150 m corridor buffer)",
+   "source": "digitized NRSC VAP3 (Charter Call 1029, 31/07/2024) debris-flow outline; scar_chooralmala_mundakkai_2024_32643.gpkg",
+   "event_population": "2024 Chooralmala-Mundakkai",
+   "union_area_km2": 1.781,
+   "facilities": {
+    "count": 0,
+    "facility_ids": [],
+    "note": "points intersect the footprint union; dist_m is the exact planar distance (0 inside)"
+   },
+   "buildings": {
+    "google": {
+     "count": 0,
+     "area_inside_km2": 0.0,
+     "count_confidence_ge_0.7": 0,
+     "count_jitter_pm_m": 15.0,
+     "count_jitter_range": [
+      0,
+      0
+     ]
+    },
+    "osm": {
+     "count": 0,
+     "area_inside_km2": 0.0,
+     "count_jitter_pm_m": 15.0,
+     "count_jitter_range": [
+      0,
+      0
+     ]
+    }
+   },
+   "roads_osm": {
+    "segments_intersecting": 1,
+    "length_inside_km": 0.758,
+    "length_inside_by_highway_km": {
+     "construction": 0.758
+    },
+    "length_jitter_pm_m": 15.0,
+    "length_jitter_range_km": [
+     0.72,
+     0.835
+    ]
+   }
+  },
+  "b_inventory_buffers_1km": {
+   "precision_class": "WMS-render polygonized (10 m px, +/-1 px boundary; no attributes/vintage)",
+   "source": "1 km buffer around 990 proxy polygons; inventory_wms_kl_landslides_new_32643.gpkg (D-15/D-17a)",
+   "event_population": "pre-Jul-2024 mapped inventory (Jul-2024 event EXCLUDED)",
+   "union_area_km2": 992.9006,
+   "facilities": {
+    "count": 26,
+    "facility_ids": [
+     "F001",
+     "F007",
+     "F008",
+     "F013",
+     "F015",
+     "F017",
+     "F020",
+     "F022",
+     "F023",
+     "F030",
+     "F033",
+     "F040",
+     "F047",
+     "F050",
+     "F053",
+     "F059",
+     "F062",
+     "F063",
+     "F064",
+     "F065",
+     "F080",
+     "F091",
+     "F111",
+     "F112",
+     "F115",
+     "F122"
+    ],
+    "note": "points intersect the footprint union; dist_m is the exact planar distance (0 inside)"
+   },
+   "buildings": {
+    "google": {
+     "count": 73027,
+     "area_inside_km2": 5.6495,
+     "count_confidence_ge_0.7": 57291,
+     "count_jitter_pm_m": 10.0,
+     "count_jitter_range": [
+      71980,
+      74050
+     ]
+    },
+    "osm": {
+     "count": 10389,
+     "area_inside_km2": 1.4499,
+     "count_jitter_pm_m": 10.0,
+     "count_jitter_range": [
+      10242,
+      10521
+     ]
+    }
+   },
+   "roads_osm": {
+    "segments_intersecting": 3184,
+    "length_inside_km": 1370.055,
+    "length_inside_by_highway_km": {
+     "residential": 433.07,
+     "unclassified": 402.759,
+     "track": 201.774,
+     "secondary": 94.694,
+     "tertiary": 66.031,
+     "path": 60.232,
+     "primary": 42.575,
+     "service": 34.281,
+     "footway": 11.989,
+     "trunk": 8.14,
+     "construction": 5.331,
+     "living_street": 5.176,
+     "road": 3.319,
+     "pedestrian": 0.436,
+     "steps": 0.224,
+     "trunk_link": 0.023
+    },
+    "length_jitter_pm_m": 10.0,
+    "length_jitter_range_km": [
+     1355.112,
+     1384.882
+    ]
+   }
+  }
+ },
+ "caveats": [
+  "(b) proxy excludes the Jul-2024 event (see H2a log / D-15): the two footprints cover different event populations and must not be merged into one exposure number.",
+  "Documentation bias presumed for (b) (mapped-landslide density near roads/settlements); counts are exposure of the MAPPED stock, never risk.",
+  "Building vintages: Google Open Buildings v3 = imagery up to May 2023 (pre-event stock); OSM snapshot 2026-10-26 (mixed, partly post-event rebuild).",
+  "Facility set = 107/123 registry entries verified inside the district (existence-verified universe, same as H1/H2a)."
+ ]
+}

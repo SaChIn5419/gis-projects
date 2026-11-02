@@ -60,6 +60,20 @@ outputs/qaqc/*
 # Kept because it is the evidence that the §4.4 scar sits at the published crown.
 !outputs/qaqc/p2_scar_digitization_qa.json
 !outputs/qaqc/p2_scar_digitization_overlay.png
+# P3: H1 outcome-ingest facts (endpoint epochs, hashes, consistency checks incl.
+# the GLAD-vs-WorldCover definitional caveat recorded under D-13). The ingest
+# itself is reproducible from data + scripts, but the facts file pins what the
+# run actually read (raw-tile sha256) and is the pre-analysis record.
+!outputs/qaqc/p3_outcome_ingest_facts.json
+# P3 hypothesis blocks: the five facts-of-record outputs (H1/H2a/H2b/H3/H4)
+# and the H4 dispute read table. Data artifacts stay gitignored; these are
+# the audited outcome records, also hash-pinned in PROJECTSTATE §9.
+!outputs/qaqc/p3_h1_facts_2026-10-28.json
+!outputs/qaqc/p3_h2a_facts_2026-10-28.json
+!outputs/qaqc/p3_h2b_facts_2026-10-28.json
+!outputs/qaqc/p3_h3_facts_2026-11-02.json
+!outputs/qaqc/p4_h4_facts_2026-11-02.json
+!outputs/qaqc/p4_h4_dispute_table_2026-11-02.csv
 !outputs/qaqc/.gitkeep
 
 # --- OS / python ------------------------------------------------------------
