@@ -1,0 +1,43 @@
+{
+ "note": "rendering-only visualization of frozen outputs; prereg at R8; no statistics computed here; facts of record asserted",
+ "figures": {
+  "F1_context_facilities_wdpa": {
+   "file": "F1_context_facilities_wdpa.png",
+   "note": "universe 123 / verified 107 (facts of record, P2)"
+  },
+  "F2_topography_elevation_slope": {
+   "file": "F2_topography_elevation_slope.png",
+   "note": "display only \u2014 no covariate change vs frozen run"
+  },
+  "F3_h1_matched_pairs_builtup_change": {
+   "file": "F3_h1_matched_pairs_builtup_change.png",
+   "note": "pair/rate table of record h1_pair_rates (radius 500 rows)"
+  },
+  "F4_h2a_hazard_kde_facility_percentiles": {
+   "file": "F4_h2a_hazard_kde_facility_percentiles.png",
+   "note": "facet markers = pct_ii (facts f3432795); no new statistics"
+  },
+  "F5_h2b_footprints_two_populations": {
+   "file": "F5_h2b_footprints_two_populations.png",
+   "note": "counts quoted from p3_h2b facts (sha e50ae8bd)"
+  },
+  "F6_h3_rainfall_sensitivity_panels": {
+   "file": "F6_h3_rainfall_sensitivity_panels.png",
+   "note": "KDE re-render asserted; rho matches facts e1ab4cbe"
+  },
+  "F7_h4_dispute_hotspot": {
+   "file": "F7_h4_dispute_hotspot.png",
+   "note": "hotspot geometry from D-19(c) recipe, asserted vs facts d945c4a6"
+  }
+ },
+ "f6_display_raster": "f6_incident_kde_rank_500m_32643.tif (display product; KDE of record re-rendered, rank values)",
+ "assertions": {
+  "f6_rain_annual_rho": -0.571,
+  "f7_hotspot_area_km2": 15.0578,
+  "sources": {
+   "incident_kde": "p3_h3 module of record re-render (facts dd73bddb, e1ab4cbe)",
+   "hotspot": "D-19(c) recipe re-executed (facts d945c4a6)",
+   "layers": "data/ files of record, manifest 36 entries"
+  }
+ }
+}

@@ -828,3 +828,43 @@ traced to the hashed facts of record; prereg still at R8.
 **Site 1 (Wayanad) pipeline closed. Next: Mussoorie (Site 2) preplan —
 rainfall pinned PRE-freeze per D-20 plan; mountain-road-lifeline context;
 same facility/matching/grading recipe.**
+
+### P6 opened (2026-11-02): Wayanad map suite — RENDERING-ONLY scope, no statistics
+
+**Scope assertion (before any figure is rendered):** P6 produces display
+products only. Every layer rendered is a file already in `data/` (manifest
+36) or an output of the frozen scripts (facts/logs of record). No new
+covariate, statistic, test, or reclassification enters the analysis; the
+prereg stays at R8 (synthesis closed above); figures are labelled
+"visualization of frozen outputs". Deliverables: `outputs/figures/F1–F7`
+(context, topography, H1 pairs, H2a KDE, H2b footprints, H3+D-20 rainfall,
+H4 disputes) + a QGIS project referencing the frozen data layers + a
+render log.
+
+### P6 COMPLETE (2026-11-02): Wayanad map suite — rendering-only scope honored, prereg still at R8
+
+**Executed per the scope assertion above;** all seven figures + QGIS
+project + render log delivered:
+- `outputs/figures/F1_context_facilities_wdpa.png` … `F7_h4_dispute_hotspot.png`
+  (context, topography/elevation/slope, H1 matched pairs over built-up
+  change, H2a hazard KDE vs facility percentiles, H2b two-population
+  footprints, H3+D-20 rainfall 3-panel, H4 disputes vs hotspot with
+  24/94/143 m margins annotated).
+- `outputs/figures/render_log.json` + `f6_incident_kde_rank_500m_32643.tif`
+  (display raster).
+- `outputs/figures/wayanad_observatory_site1.qgs` — QGIS 3 project,
+  20 frozen data layers, relative datasources, default styles (hand-built;
+  no QGIS bindings in env — restyle in QGIS).
+
+**Rendering-only assertions (both matched the facts of record):**
+incident-KDE/rain corr **−0.571** vs facts −0.572; hotspot re-render
+**15.0578 km²** vs facts 15.0625 km² (display-scale agreement).
+
+**No statistics, covariates or classifications were computed or
+reinterpreted; prereg verified unchanged at R8;** scripts of record
+`scripts/p6_render_maps.py`, `scripts/p6_build_qgis_project.py`. One
+figure-note fix during delivery: imshow extent semantics corrected to
+(left,right,bottom,top) — display-only error, caught by visual QC and the
+rain-panel white-render, then re-verified against raster bounds.
+
+**Next: Mussoorie (Site 2) preplan** (rainfall pinned PRE-freeze).
