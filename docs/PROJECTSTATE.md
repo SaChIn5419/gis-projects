@@ -797,3 +797,34 @@ H3's stable negative forest-cover feature; NOT quotable as H3
 confirmation (D-20(e) precommitment honored; no p-values computed).
 
 **Log of record:** `tourism_observatory/docs/p3_d20_rainfall_sensitivity_log.md`.
+
+### P4–P5 COMPLETE (2026-11-02): Wayanad risk register + evidence brief — Site 1 synthesis closed
+
+**Deliverables:**
+- `tourism_observatory/docs/p4_risk_register_wayanad.md` — exposure-
+  evidence synthesis (NOT a probabilistic risk assessment): **R-1**
+  landslide-exposure co-location (Moderate-High; H2a(ii) p_holm=0.014,
+  T_obs 2.55× null mean; H2b(b) 26/107 facilities, 73,027 GOB buildings,
+  1,370.1 km roads in 992.90 km² buffers); **R-2** conversion pressure in
+  the remnant class (High; H1 +16.32 pp @500 m, Holm 1.7e-06, robustness
+  signs agree); **R-3** 2024 scar status register (1.781 km², 0 facilities
+  /0 buildings, 0.758 km `construction` road; event-population separation
+  guard); **R-4** HEC adjacency (no-verdict; D-20 rainfall appendix
+  labelled non-inferential); **R-5** dispute adjacency (EXPLORATORY;
+  T_obs=1 vs E=0.457; margins 24/94/143 m). §2 caveat blast-radius table
+  (D-15 bounded by D-17a re-render agreement; deeper probe would need a
+  new §7 pin), §3 unknowns, §4 explicit trigger list. **Register
+  introduces no new statistics** (only D-20 facts cited, labelled).
+- `tourism_observatory/docs/p5_evidence_brief_wayanad.md` — verdict block
+  (H1 High / H2a Moderate / H2b descriptive / H3 No-verdict / H4
+  Exploratory), consensus statement ("hazard-adjacent development
+  pressure, not tourism-causes-conflict"), H2b enumeration table, methods,
+  limitations, **§6 hash-ledger provenance** (facts sha256 re-verified by
+  QA pass; manifest 36), Site-2 pointer.
+
+**QA pass:** all facts JSONs re-opened; every number in both documents
+traced to the hashed facts of record; prereg still at R8.
+
+**Site 1 (Wayanad) pipeline closed. Next: Mussoorie (Site 2) preplan —
+rainfall pinned PRE-freeze per D-20 plan; mountain-road-lifeline context;
+same facility/matching/grading recipe.**
