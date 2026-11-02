@@ -868,3 +868,12 @@ figure-note fix during delivery: imshow extent semantics corrected to
 rain-panel white-render, then re-verified against raster bounds.
 
 **Next: Mussoorie (Site 2) preplan** (rainfall pinned PRE-freeze).
+
+**P6 revision (2026-11-02, post-review):** figure labels simplified to
+short titles (descriptive paragraphs removed — information lives in the
+register/brief and figure legends); CHIRPS panels (F6 ii/iii) now render
+the continuous 500 m covariate rasters clipped exactly to the district
+outline (visual fit; the D-18 analytic join — centre-in-district cells —
+is unchanged and the −0.572 assertion still passes at −0.571). No data,
+statistics or labels beyond layout changed; D-20 POST-HOC labelling
+retained on F6.

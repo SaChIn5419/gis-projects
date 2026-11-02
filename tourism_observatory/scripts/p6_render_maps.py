@@ -109,7 +109,35 @@ def add_scalebar(ax, length_km=10):
                 "k-", lw=1)
 
 
-def new_axes(fig_ncols, district, title, subtitle, figsize):
+_DIST_PATH = None
+
+
+def district_clip_patch(ax):
+    """Clip-path from the district polygon — colors stay strictly inside."""
+    global _DIST_PATH
+    if _DIST_PATH is None:
+        from matplotlib.path import Path as MPath
+        rings = []
+        for g in gpd.read_file(DISTRICT).geometry:
+            for poly in (list(g.geoms) if g.geom_type == "MultiPolygon"
+                         else [g]):
+                rings.append(np.asarray(poly.exterior.coords))
+                rings.extend(np.asarray(h.coords) for h in poly.interiors)
+        verts, codes = [], []
+        for r in rings:
+            verts.append(r)
+            codes.append(np.array([MPath.MOVETO] +
+                                  [MPath.LINETO] * (len(r) - 2) +
+                                  [MPath.CLOSEPOLY]))
+        _DIST_PATH = MPath(np.vstack(verts), np.concatenate(codes))
+    import matplotlib.patches as mpatches
+    patch = mpatches.PathPatch(_DIST_PATH, transform=ax.transData,
+                               facecolor="none", edgecolor="none")
+    ax.add_patch(patch)
+    return patch
+
+
+def new_axes(fig_ncols, district, title, figsize):
     ext = extent_of(district)
     fig, axes = plt.subplots(1, fig_ncols, figsize=figsize)
     axes = [axes] if fig_ncols == 1 else list(axes)
@@ -122,8 +150,6 @@ def new_axes(fig_ncols, district, title, subtitle, figsize):
         ax.set_xticks([])
         ax.set_yticks([])
     fig.suptitle(title, fontsize=13, fontweight="bold")
-    fig.text(0.5, 0.92, subtitle, ha="center", va="top", fontsize=8,
-             fontstyle="italic")
     return fig, axes
 
 
@@ -180,10 +206,7 @@ def main() -> int:
 
     # ---------------------------- F1 context -------------------------------
     fig, axes = new_axes(
-        1, district, "F1 — Wayanad study site (Site 1 of 2)",
-        "Tourism facility universe (P1–P2) over protected-area complexes. "
-        "Base: Copernicus 30 m DEM hillshade (frozen P2 inputs). "
-        "P6 rendering-only — visualization of frozen outputs.",
+        1, district, "F1 — Wayanad study site: facilities & WDPA",
         (8.0, 7.4))
     ax = axes[0]
     hillshade_base(ax)
@@ -212,9 +235,7 @@ def main() -> int:
     dem, tr = read_raster(DEM_R)
     slope, trs = read_raster(SLOPE_R)
     fig, axes = new_axes(
-        1, district, "F2 — Topography: elevation bands + slope ≥ 25°",
-        "Copernicus 30 m DEM (P2); slope from the frozen P2 raster. "
-        "Red shade = slope ≥ 25° — the H2a(i) registered slope band.",
+        1, district, "F2 — Topography: elevation bands & slope ≥ 25°",
         (8.0, 7.4))
     ax = axes[0]
     hs = hillshade(dem, azdeg=315, altitude=45)
@@ -251,12 +272,7 @@ def main() -> int:
     pid2geom = parcels.set_index("parcel_id").geometry.to_dict()
     del pairs
     fig, axes = new_axes(
-        1, district, "F3 — H1: matched pairs over built-up change 2000–2020",
-        "50/50 deterministic pairs (P2). Treatment parcels = facility-holding "
-        "remnant parcels, colored by pair Δ built-up change @500 m "
-        "(mean +16.32 pp, Holm p = 1.7e-06, facts of record). "
-        "Control outlines = the matched comparators. Base: GLAD change raster "
-        "(faded).",
+        1, district, "F3 — H1 matched pairs: built-up change 2000–2020",
         (8.6, 7.4))
     ax = axes[0]
     chg, trc = read_raster(CHANGE_R)
@@ -295,12 +311,7 @@ def main() -> int:
     fpts = gpd.GeoSeries(gpd.points_from_xy(h2p.lon, h2p.lat),
                          crs="EPSG:4326").to_crs("EPSG:32643")
     fig, axes = new_axes(
-        1, district,
-        "F4 — H2a: mapped landslide inventory density (KDE) vs facilities",
-        "WMS-proxy inventory, 990 polygons (D-15/D-17a), KDE σ = 1 km "
-        "percentile surface (frozen raster). Facility markers = H2a(ii) "
-        "observed-density percentile (evaluable mean 0.846 vs null mean "
-        "0.001–0.002 scale). P6 rendering-only.",
+        1, district, "F4 — H2a: hazard KDE vs facilities",
         (8.0, 7.4))
     ax = axes[0]
     hillshade_base(ax)
@@ -322,13 +333,7 @@ def main() -> int:
     assert len(fac_scar) == 0, "facts of record: scar has 0 facilities"
     fac_inv = verified[verified.intersects(inv_union)]
     fig, axes = new_axes(
-        2, district,
-        "F5 — H2b enumeration: 2024 scar (a) vs mapped-inventory buffers (b)",
-        "DIFFERENT event populations — never merged (facts of record, "
-        "H2b). (a) NRSC VAP3 digitized scar: 1.781 km², 0 facilities, "
-        "0 buildings (GOB pre-event AND OSM 2026), 0.758 km `construction` "
-        "road. (b) 1 km buffers around 990 proxy polygons (pre-Jul-2024 "
-        "stock): 992.90 km², 26/107 facilities, 73,027 GOB buildings.",
+        2, district, "F5 — H2b: 2024 scar vs inventory buffers",
         (14.2, 6.2))
     axl, axr = axes
     hillshade_base(axl)
@@ -395,10 +400,11 @@ def main() -> int:
 
     kde2d = np.full((ci.ny, ci.nx), np.nan)
     kde2d[ci.lut >= 0] = kde_rank[ci.lut[ci.lut >= 0]]
-    rk2d = np.full((ci.ny, ci.nx), np.nan)
-    rk2d[ci.lut >= 0] = rk
-    ms2d = np.full((ci.ny, ci.nx), np.nan)
-    ms2d[ci.lut >= 0] = ms
+    # display: the continuous 500 m covariate rasters themselves (full grid,
+    # already aligned to the same origin) — the analytic join above remains
+    # the centre-in-district aggregate of record.
+    rk_disp, tr_disp = read_raster(PROC / "chirps_rain_annual_2011_2014_32643.tif")
+    ms_disp, _ = read_raster(PROC / "chirps_rain_monsoon_share_2011_2014_32643.tif")
     with rasterio.open(QA / "f6_incident_kde_rank_500m_32643.tif", "w",
                        driver="GTiff", height=ci.ny, width=ci.nx, count=1,
                        dtype="float32", crs="EPSG:32643",
@@ -410,10 +416,9 @@ def main() -> int:
     ext = extent_of(district)
     fig, axes = plt.subplots(1, 3, figsize=(15.8, 5.8))
     fig.suptitle(
-        "F6 — H3 incident hotspots vs forest cover and the D-20 "
-        "record-window rainfall covariates "
-        "(POST-HOC SENSITIVITY, non-inferential; ρ = −0.572 of record)",
-        fontsize=12.5, fontweight="bold")
+        "F6 — H3 hotspots vs forest cover & D-20 rainfall "
+        "(POST-HOC, non-inferential)",
+        fontsize=13, fontweight="bold")
     a1, a2, a3 = [ax for ax in axes]
     for ax in axes:
         ax.set_xlim(ext[0], ext[2])
@@ -433,12 +438,15 @@ def main() -> int:
     add_scalebar(a1)
     a1.set_title("(i) incident KDE rank (dots) vs tree cover 2000 (%)",
                  fontsize=10)
-    _panel_cells(a2, rk2d, _cell_transform(ci), district, "YlGnBu",
+    _panel_cells(a2, rk_disp, tr_disp, district, "YlGnBu",
                  "(ii) CHIRPS rain annual total 2011–2014", "mm/yr",
                  vmin=1100, vmax=3650)
-    _panel_cells(a3, ms2d, _cell_transform(ci), district, "PuOr_r",
+    _panel_cells(a3, ms_disp, tr_disp, district, "PuOr_r",
                  "(iii) CHIRPS Jun–Sep share 2011–2014", "SW-monsoon share",
                  vmin=0.50, vmax=0.65)
+    fig.text(0.99, 0.01, "POST-HOC SENSITIVITY (D-20) — non-inferential; "
+             "facts of record: ρ(annual, KDE) = −0.572", ha="right",
+             fontsize=7.5, fontstyle="italic")
     finish(fig, "F6_h3_rainfall_sensitivity_panels",
            "KDE re-render asserted; rho matches facts e1ab4cbe")
 
@@ -457,13 +465,7 @@ def main() -> int:
 
     margins = {"D-003": 94, "D-004": 24, "D-008": 143}
     fig, axes = new_axes(
-        1, district,
-        "F7 — H4: documented disputes vs the tourism-hazard exposure hotspot",
-        "Hotspot = (500 m facility buffers) ∩ (1 km inventory buffers ∪ "
-        "2024 scar) — D-19(c) recipe. EXPLORATORY, n = 6: observed overlap 1 "
-        "vs area-proportion expectation E = 0.457 (facts of record). "
-        "Anchor rings = precision radius; D-003/D-004/D-008 distances to the "
-        "hotspot: 94 / 24 / 143 m.",
+        1, district, "F7 — H4: disputes vs exposure hotspot",
         (8.4, 7.4))
     ax = axes[0]
     hillshade_base(ax)
@@ -524,6 +526,7 @@ def _panel_cells(ax, arr, tr, district, cmapv, title, cb_label, vmin, vmax):
     im = ax.imshow(np.ma.masked_invalid(arr), extent=analyze_extent(tr, arr.shape),
                    cmap=cmapv, vmin=vmin, vmax=vmax, zorder=2,
                    interpolation="nearest")
+    im.set_clip_path(district_clip_patch(ax))   # colors fit the outline
     district_border(ax)
     add_scalebar(ax)
     ax.set_title(title, fontsize=10)
