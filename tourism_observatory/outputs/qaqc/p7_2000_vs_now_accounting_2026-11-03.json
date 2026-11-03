@@ -1,0 +1,144 @@
+{
+ "task": "P7 / D-21 descriptive 2000-vs-now accounting",
+ "prereg": {
+  "pin": "D-21",
+  "freeze": "R9",
+  "sha256": "bcaa92235ae1d92ce377b23f9da47946d6a176ccc05343715c24d99a06fe508b"
+ },
+ "inferential": false,
+ "label": "descriptive accounting, no test, no p-value, no CI",
+ "date": "2026-11-03",
+ "district": {
+  "area_km2": 2026.39,
+  "boundary_sha256": "1d4f92cdc028726bbd5c606ba79e3cc9800f87320a8cdd5790310a2dc701e352"
+ },
+ "grids": {
+  "built_30m": {
+   "shape": [
+    1942,
+    2438
+   ],
+   "px_km2": 0.0009
+  },
+  "hansen_30m": {
+   "shape": [
+    1950,
+    2450
+   ],
+   "px_km2": 0.0009
+  },
+  "display_500m": {
+   "nx": 147,
+   "ny": 117,
+   "cells": 8112
+  }
+ },
+ "builtup": {
+  "product": "GLAD GLCLUC2020 built-up change 2000-2020",
+  "extent_2000_km2": 145.114,
+  "extent_2020_km2": 246.921,
+  "expansion_2000_2020_km2": 101.807,
+  "growth_factor_2000_to_2020": 1.702,
+  "pct_of_district_2000": 7.161,
+  "pct_of_district_2020": 12.185,
+  "inside_wdpa": {
+   "extent_2000_km2": 24.166,
+   "extent_2020_km2": 42.471,
+   "expansion_km2": 18.305
+  },
+  "outside_wdpa": {
+   "extent_2000_km2": 120.948,
+   "extent_2020_km2": 204.45,
+   "expansion_km2": 83.502
+  },
+  "worldcover2021_built_km2": 16.214
+ },
+ "forest": {
+  "product": "Hansen GFC-2024 v1.12 treecover2000 / lossyear",
+  "canopy_threshold_pct": 30,
+  "forest_2000_km2": 1601.214,
+  "forest_2020_km2": 1575.776,
+  "forest_2024_km2": 1557.524,
+  "loss_2001_2010_km2": 8.752,
+  "loss_2011_2020_km2": 16.686,
+  "loss_2021_2024_km2": 18.252,
+  "loss_2001_2024_km2": 43.691,
+  "pct_forest2000_lost_2001_2020": 1.589,
+  "pct_forest2000_lost_2001_2024": 2.729,
+  "pct_of_district_forest2000": 79.018,
+  "pct_of_district_forest2024": 76.862,
+  "inside_wdpa": {
+   "forest_2000_km2": 745.428,
+   "loss_2001_2024_km2": 10.326
+  },
+  "outside_wdpa": {
+   "forest_2000_km2": 855.787,
+   "loss_2001_2024_km2": 33.365
+  },
+  "annual_loss_km2": {
+   "1": 0.181,
+   "2": 0.205,
+   "3": 0.444,
+   "4": 0.517,
+   "5": 0.91,
+   "6": 0.514,
+   "7": 3.651,
+   "8": 1.676,
+   "9": 0.605,
+   "10": 0.049,
+   "11": 1.783,
+   "12": 1.49,
+   "13": 0.92,
+   "14": 1.304,
+   "15": 0.456,
+   "16": 1.996,
+   "17": 1.811,
+   "18": 2.892,
+   "19": 2.135,
+   "20": 1.9,
+   "21": 1.411,
+   "22": 1.954,
+   "23": 9.929,
+   "24": 4.958
+  },
+  "worldcover2021_tree_km2_crosscheck": 1816.199
+ },
+ "context_non_inferential": {
+  "label": "context share only; H1 is the registered test",
+  "facilities_verified": 107,
+  "buffer_m": 500.0,
+  "buffer_union_km2": 67.485,
+  "buffer_share_of_district": 0.0333,
+  "expansion_in_buffer_km2": 6.31,
+  "expansion_share_in_buffer": 0.062,
+  "share_ratio_expansion_vs_area": 1.861
+ },
+ "inputs_sha256": {
+  "builtup_change_2000_2020_32643.tif": "243d6ddfc87371d04929b00c781f8547ef194c70781c59bf4744b8418771e04a",
+  "builtup_expansion_2000_2020_32643.tif": "70c40c7dc0270f4cd07304728a50b714c508038a0d330f91835604009f6badf8",
+  "hansen_treecover2000_32643.tif": "23c7334792314ddccf4534d54d9d1f9108fd430744b96f2292ec04ceb9373e68",
+  "hansen_lossyear_32643.tif": "b2c788dc30259bb204dbe7e3a0204e2d309b36e4715424bf196ba460db82ad67",
+  "worldcover_2021_32643.tif": "0bdc1797b12cd4371830b785bdafccba47603d09b136f26962af648adf05c50c",
+  "wdpa_all_touched_32643.tif": "d2e28b0ed5ada64758f11507395f82578218b6daa9ff9cda00bd13a996cff800"
+ },
+ "display_raster": {
+  "path": "outputs/qaqc/p7_500m_display_32643.tif",
+  "bands": [
+   "built_share_2000",
+   "built_share_2020",
+   "built_expansion_share",
+   "forest_share_2000",
+   "forest_share_2020",
+   "forest_share_2024",
+   "loss_share_2001_2024",
+   "loss_share_2021_2024",
+   "loss_decade_dominant"
+  ],
+  "sha256": "1b888fd19b368c6ea7ca7656c6e4e7b12356f7071d85463c434de4864f1fc1df"
+ },
+ "notes": [
+  "treecover_loss_2000_2020_32643.tif is `lossyear>0` (2001-2024) despite its filename; D-21 reads lossyear by code instead.",
+  "Areas are pixel counts x 900 m2 on the frozen 30 m grids; district mask = pixel-centre-in-district.",
+  "WorldCover 2021 tree area is a different product and is never averaged with Hansen."
+ ]
+}

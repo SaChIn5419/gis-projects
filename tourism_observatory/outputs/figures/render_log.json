@@ -1,5 +1,5 @@
 {
- "note": "rendering-only visualization of frozen outputs; prereg at R8; no statistics computed here; facts of record asserted",
+ "note": "rendering-only visualization of frozen outputs; F1-F7 executed under R8 and re-rendered 2026-11-03 with prereg at R9 (layout only; no statistic depends on D-21); no statistics computed here; facts of record asserted",
  "figures": {
   "F1_context_facilities_wdpa": {
    "file": "F1_context_facilities_wdpa.png",
@@ -15,7 +15,7 @@
   },
   "F4_h2a_hazard_kde_facility_percentiles": {
    "file": "F4_h2a_hazard_kde_facility_percentiles.png",
-   "note": "facet markers = pct_ii (facts f3432795); no new statistics"
+   "note": "surface = inventory KDE percentile, colour capped at 0.10 for legibility (p99 = 0.104); dot size = pct_ii (facts f3432795); no new statistics"
   },
   "F5_h2b_footprints_two_populations": {
    "file": "F5_h2b_footprints_two_populations.png",
@@ -28,6 +28,18 @@
   "F7_h4_dispute_hotspot": {
    "file": "F7_h4_dispute_hotspot.png",
    "note": "hotspot geometry from D-19(c) recipe, asserted vs facts d945c4a6"
+  },
+  "F8_builtup_2000_vs_2020": {
+   "file": "F8_builtup_2000_vs_2020.png",
+   "note": "D-21 descriptive (R9) \u2014 GLAD built-up extent/expansion aggregated to the 500 m grid of record",
+   "prereg": "D-21 / R9 bcaa9223\u2026",
+   "facts": "outputs/qaqc/p7_2000_vs_now_accounting_2026-11-03.json"
+  },
+  "F9_forest_2000_vs_now": {
+   "file": "F9_forest_2000_vs_now.png",
+   "note": "D-21 descriptive (R9) \u2014 Hansen forest 2000 / 2024 and loss share 2001-2024 / 2021-2024 per 500 m cell",
+   "prereg": "D-21 / R9 bcaa9223\u2026",
+   "facts": "outputs/qaqc/p7_2000_vs_now_accounting_2026-11-03.json"
   }
  },
  "f6_display_raster": "f6_incident_kde_rank_500m_32643.tif (display product; KDE of record re-rendered, rank values)",
@@ -39,5 +51,6 @@
    "hotspot": "D-19(c) recipe re-executed (facts d945c4a6)",
    "layers": "data/ files of record, manifest 36 entries"
   }
- }
+ },
+ "p7_note": "F8\u2013F9 are D-21 descriptive displays (no test). Prereg pinned at R9 before computation."
 }

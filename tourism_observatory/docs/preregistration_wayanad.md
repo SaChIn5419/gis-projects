@@ -704,6 +704,63 @@ number D-0 records this freeze itself.
   language anywhere; results may be quoted in P4-P5 only as "post-hoc
   sensitivity, non-inferential" annotations - never as H3 confirmation.
 
+### D-21 - descriptive 2000-vs-now land-cover accounting for the P7 research report (2026-11-03) - BEFORE any 2000/now statistic
+
+- **Status:** report-support, descriptive. **No hypothesis is added, changed
+  or re-tested.** §3 (hypotheses) and §4 (controls) are byte-unchanged by
+  this entry; this pin exists so that the 2000-vs-now numbers in the P7
+  report are computed under a rule recorded *before* they exist.
+- **Why:** the P7 deliverable (literature-gap analysis + 2000-vs-now map
+  comparison + paper-style report) needs district-level "then vs now" land
+  cover quantities. Computing them without a pin would be post-hoc
+  number-mining; computing them under a declared recipe keeps them
+  auditable and clearly separated from the registered H1-H4 family.
+- **Non-inferential labelling (binding):** every quantity below is a
+  **descriptive accounting** output. No p-value, no CI, no test, no
+  significance or causal language is permitted. Where a comparison of
+  shares appears (item (e)) it is explicitly a *context share*, and H1
+  remains the registered test of facility-proximate conversion.
+- **Data (already in the manifest; no new downloads):**
+  GLAD GLCLUC2020 built-up change 2000-2020 (`builtup_change_2000_2020_32643`,
+  `builtup_expansion_2000_2020_32643`); Hansen GFC-2024 v1.12
+  `hansen_treecover2000_32643` + `hansen_lossyear_32643`; ESA WorldCover
+  2021 (`worldcover_2021_32643`, class 10 cross-check); WDPA all-touched
+  (`wdpa_all_touched_32643`); district boundary. Analysis grid = the same
+  frozen 30 m grid used by the P3 ingest.
+- **Recipe (exact):**
+  (a) **Built-up.** Extent 2020 = GLAD px in class {1 expansion, 2 stable}.
+  Extent 2000 = extent 2020 minus class-1 expansion. Expansion = class 1.
+  Report district totals (km², ha), share of district area (district area
+  as in the frozen boundary, 2,026.39 km²), and *x*-fold growth.
+  (b) **Forest.** Forest 2000 = Hansen treecover2000 >= 30% canopy. Loss
+  is read from `hansen_lossyear` **by code**, not from the binary
+  robustness layer (whose filename says 2000-2020 but whose code path is
+  `lossyear > 0`, i.e. 2001-2024): loss 2001-2010 = codes 1-10,
+  2011-2020 = codes 11-20, 2021-2024 = codes 21-24. Forest remaining
+  2020 = forest 2000 minus loss codes 1-20; remaining 2024 = forest 2000
+  minus codes 1-24. Report km², % of 2000 forest lost, and percent of
+  district. Independent cross-check: WorldCover 2021 class 10 (tree) area
+  - reported as a *different product*, never averaged with Hansen.
+  (c) **Split.** All item (a)/(b) quantities split inside vs outside the
+  WDPA all-touched mask, plus the annual loss-year histogram 2001-2024.
+  (d) **Site map panels.** Two display rasters: built-up 2000-vs-2020
+  (stable vs expansion) and forest 2000-vs-remaining-2020/2024 with the
+  decade-band loss overlay. Rendering only, same conventions as P6.
+  (e) **Context share (non-inferential).** Share of 2000-2020 built-up
+  expansion falling inside the union of 500 m buffers around the 107
+  verified facilities, reported against that union's share of district
+  area, *labelled "context only - H1 is the registered test"*. No test
+  statistic is computed for this comparison.
+- **Outputs of record:** `scripts/p7_2000_vs_now.py`; facts ->
+  `outputs/qaqc/p7_2000_vs_now_accounting_{date}.json` (+ sha256 recorded
+  in the P7 report and PROJECTSTATE); figures F8/F9 written through the
+  P6 render conventions. No file enters `data/` - all inputs are already
+  manifested.
+- **Precommitment (binding):** these numbers may not be promoted into the
+  H1-H4 family, may not be described as "confirming" any mechanism, and
+  may not be used to alter any H1-H4 verdict. If a reviewer wants a test,
+  it requires a new §7 entry and a fresh R-chain hash before computation.
+
 ## 8. Pre-analysis inspection checklist (gate before P2)
 
 Before outcome work starts, confirm: ☐ hypotheses §3 unchanged ☐ controls §4 unchanged ☐

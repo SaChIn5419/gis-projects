@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""P6 — build a QGIS project (.qgs) referencing the FROZEN data layers.
+"""P6/P7 — build a QGIS project (.qgs) referencing the FROZEN data layers.
 
 Hand-built minimal-but-valid QGIS 3 project XML (no QGIS bindings in this
 env): relative datasources, per-layer CRS/extent, default styling (restyle
-in QGIS). Figures F1-F7 in outputs/figures mirror these layers. Rendering-
+in QGIS). Figures F1-F9 in outputs/figures mirror these layers. Rendering-
 only scope: no data modified, no statistics computed.
 
 Usage: python scripts/p6_build_qgis_project.py
@@ -57,6 +57,9 @@ RASTERS = [
     ("D-20 CHIRPS Jun-Sep share 2011-2014", "chirps_rain_monsoon_share_2011_2014_32643.tif"),
     ("F6 incident KDE rank (display raster)", None, "f6_incident_kde_rank_500m_32643.tif"),
     ("H2a hazard KDE percentile (frozen)", None, "p3_h2a_kde_inventory_500m_32643.tif"),
+    ("P7 D-21 display stack, 9 bands: built 2000/2020, expansion, forest "
+     "2000/2020/2024, loss 2001-2024, loss 2021-2024, dominant loss decade",
+     None, "p7_500m_display_32643.tif"),
 ]
 
 VECTORS = [
@@ -145,7 +148,7 @@ def main() -> int:
         tree_nodes.append(f"""<layer-tree-layer expanded="1" checked="Qt::Checked" id="{node.split('id="')[1].split('"')[0]}" source="{escape(path)}" name="{escape(name)}"/>""")
 
     qgs = f"""<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="3.34.15-Prizren" projectname="tourism_observatory — Wayanad Site 1 (rendering-only P6)">
+<qgis version="3.34.15-Prizren" projectname="tourism_observatory — Wayanad Site 1 (rendering-only P6/P7)">
   <projectCrs>
     <spatialrefsys>
       <proj4>+proj=utm +zone=43 +datum=WGS84 +units=m +no_defs</proj4>

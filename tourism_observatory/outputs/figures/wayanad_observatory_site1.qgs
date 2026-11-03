@@ -1,5 +1,5 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="3.34.15-Prizren" projectname="tourism_observatory — Wayanad Site 1 (rendering-only P6)">
+<qgis version="3.34.15-Prizren" projectname="tourism_observatory — Wayanad Site 1 (rendering-only P6/P7)">
   <projectCrs>
     <spatialrefsys>
       <proj4>+proj=utm +zone=43 +datum=WGS84 +units=m +no_defs</proj4>
@@ -13,30 +13,31 @@
     </spatialrefsys>
   </projectCrs>
   <layer-tree-group>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{be652bc9-cb74-4749-8345-c931723f1a64}" source="../../data/processed/dem_copernicus30m_32643.tif" name="Copernicus DEM 30 m (topography)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{2af0eee6-c7f3-4f04-a455-13a2e533468a}" source="../../data/processed/slope_deg_32643.tif" name="Slope (degrees, P2)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{54c4c1ba-9a80-47f2-b218-543ea641056e}" source="../../data/processed/builtup_change_2000_2020_32643.tif" name="H1 built-up change 2000-2020 (GLAD)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{6c245296-2513-4980-8723-a7c9ab05b9c4}" source="../../data/processed/builtup_expansion_2000_2020_32643.tif" name="H1 built-up expansion 2000-2020 (GLAD)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{3b6bf52e-4f75-4b18-9508-41343b08e9e1}" source="../../data/processed/builtup_worldcover2021_32643.tif" name="ESA WorldCover 2021 (built-up check)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{3f7c1a75-8a38-4c87-a218-3fa4f0a37b0a}" source="../../data/processed/hansen_treecover2000_32643.tif" name="Hansen tree cover 2000"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{a45d6c3c-7be4-413e-9655-3272cdf0ac47}" source="../../data/processed/treecover_loss_2000_2020_32643.tif" name="Hansen treecover_loss 2000-2020"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{50769894-1122-44a5-84a6-f0f71e1b7b5f}" source="../../data/processed/chirps_rain_annual_2011_2014_32643.tif" name="D-20 CHIRPS rain annual total 2011-2014"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{1f759ad6-357e-4221-8c58-ab3fcee92ba9}" source="../../data/processed/chirps_rain_monsoon_share_2011_2014_32643.tif" name="D-20 CHIRPS Jun-Sep share 2011-2014"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{8a71ffbd-e658-4841-bee6-7056c59ea1db}" source="../qaqc/f6_incident_kde_rank_500m_32643.tif" name="F6 incident KDE rank (display raster)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{af4e5e5f-713c-4f07-a308-c2334d269aaa}" source="../qaqc/p3_h2a_kde_inventory_500m_32643.tif" name="H2a hazard KDE percentile (frozen)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{658816ca-6ba8-4a9a-bba1-047bf4a90b94}" source="../../data/processed/wayanad_boundary_32643.geojson" name="Wayanad district boundary (geoBoundaries ADM2)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{b62b709c-f130-4a59-ad21-c4ae785bfd83}" source="../../data/processed/wdpa_wayanad_32643.gpkg|layername=wdpa" name="Protected-area complexes (WDPA, all-touched)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{665e1cf9-e113-4e19-bf27-87ddb05a0f56}" source="../../data/processed/parcels_1km_32643.gpkg|layername=parcels" name="Protected remnant parcels (1 km, P2)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{be3455c5-3f3b-412e-9ba3-912e62b9a4dd}" source="../../data/processed/inventory_wms_kl_landslides_new_32643.gpkg|layername=inventory_wms" name="Landslide inventory - WMS proxy (D-15/D-17a)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{1e9ff8df-1d7d-40f6-ad92-313f8417463c}" source="../../data/processed/scar_chooralmala_mundakkai_2024_32643.gpkg|layername=scar" name="2024 Chooralmala-Mundakkai scar (NRSC VAP3 digitized)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{ab5bb253-da98-4e20-bad3-9189b95e5922}" source="../../data/processed/roads_wayanad_32643.gpkg|layername=roads" name="Roads (OSM 2026-10)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{4008c6f4-6e24-4dab-8f45-e63cda77d09e}" source="../../data/processed/buildings_google_wayanad_32643.gpkg|layername=buildings" name="Google Open Buildings v3 (imagery &lt;= 2023-05)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{fbf9651e-d954-428f-b7b1-c41ec462243d}" source="../../data/processed/buildings_osm_wayanad_32643.gpkg|layername=buildings" name="OSM buildings (snapshot 2026-10-26)"/>
-<layer-tree-layer expanded="1" checked="Qt::Checked" id="{8276d5ac-dc94-4369-aa1c-66ff4d23dbac}" source="../../data/processed/registry_geocoded_2026-10-23.geojson" name="Facility registry geocoded (P1 universe 123)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{5d37be0a-eab0-4904-8ebd-9649b3d8b875}" source="../../data/processed/dem_copernicus30m_32643.tif" name="Copernicus DEM 30 m (topography)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{060b7cf3-2d83-4c06-add8-4187083074f5}" source="../../data/processed/slope_deg_32643.tif" name="Slope (degrees, P2)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{45576339-902d-40d2-969a-73c3c393ddf4}" source="../../data/processed/builtup_change_2000_2020_32643.tif" name="H1 built-up change 2000-2020 (GLAD)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{ba43c011-4745-48af-8510-9185ef277b15}" source="../../data/processed/builtup_expansion_2000_2020_32643.tif" name="H1 built-up expansion 2000-2020 (GLAD)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{ce031e4a-d83b-49ee-a212-b38b26529bbe}" source="../../data/processed/builtup_worldcover2021_32643.tif" name="ESA WorldCover 2021 (built-up check)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{2463dcb4-14b4-4d54-8d4a-af179da9742c}" source="../../data/processed/hansen_treecover2000_32643.tif" name="Hansen tree cover 2000"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{b524d220-5477-4992-941b-6e82c511f6e8}" source="../../data/processed/treecover_loss_2000_2020_32643.tif" name="Hansen treecover_loss 2000-2020"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{69185bcc-882d-451b-aed7-59d268f09400}" source="../../data/processed/chirps_rain_annual_2011_2014_32643.tif" name="D-20 CHIRPS rain annual total 2011-2014"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{3fa72fbc-87a2-4a3f-9910-69cdaa52e264}" source="../../data/processed/chirps_rain_monsoon_share_2011_2014_32643.tif" name="D-20 CHIRPS Jun-Sep share 2011-2014"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{671e1d3b-2c7c-49e2-92c0-edadb549da6d}" source="../qaqc/f6_incident_kde_rank_500m_32643.tif" name="F6 incident KDE rank (display raster)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{3928a861-9d48-4ad0-8a1e-a53fa319d9d7}" source="../qaqc/p3_h2a_kde_inventory_500m_32643.tif" name="H2a hazard KDE percentile (frozen)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{8e933c35-a7aa-4562-aea3-602ff2100eed}" source="../qaqc/p7_500m_display_32643.tif" name="P7 D-21 display stack, 9 bands: built 2000/2020, expansion, forest 2000/2020/2024, loss 2001-2024, loss 2021-2024, dominant loss decade"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{6c03b01d-8241-47e2-9688-5e43557d523a}" source="../../data/processed/wayanad_boundary_32643.geojson" name="Wayanad district boundary (geoBoundaries ADM2)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{728268c4-27ee-402f-9586-137be34a83d4}" source="../../data/processed/wdpa_wayanad_32643.gpkg|layername=wdpa" name="Protected-area complexes (WDPA, all-touched)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{2d7456a9-b501-47c7-b2f4-ae80fc189914}" source="../../data/processed/parcels_1km_32643.gpkg|layername=parcels" name="Protected remnant parcels (1 km, P2)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{07f76017-60f0-4430-9b34-0e57089db020}" source="../../data/processed/inventory_wms_kl_landslides_new_32643.gpkg|layername=inventory_wms" name="Landslide inventory - WMS proxy (D-15/D-17a)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{262a44f5-a07a-438f-990d-4657abdfba50}" source="../../data/processed/scar_chooralmala_mundakkai_2024_32643.gpkg|layername=scar" name="2024 Chooralmala-Mundakkai scar (NRSC VAP3 digitized)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{6f020b40-0c7a-4dee-aaa2-d696301e1450}" source="../../data/processed/roads_wayanad_32643.gpkg|layername=roads" name="Roads (OSM 2026-10)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{095c491a-c8f0-47d9-830f-74030d1ddd1c}" source="../../data/processed/buildings_google_wayanad_32643.gpkg|layername=buildings" name="Google Open Buildings v3 (imagery &lt;= 2023-05)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{0b3866c4-0ef0-4510-8a85-1820d6cb16b6}" source="../../data/processed/buildings_osm_wayanad_32643.gpkg|layername=buildings" name="OSM buildings (snapshot 2026-10-26)"/>
+<layer-tree-layer expanded="1" checked="Qt::Checked" id="{f8550490-f034-4eb8-a3f3-804c33213cfb}" source="../../data/processed/registry_geocoded_2026-10-23.geojson" name="Facility registry geocoded (P1 universe 123)"/>
     <custom-order enabled="0"/>
   </layer-tree-group>
   <projectlayers>
-    <maplayer type="raster" id="{be652bc9-cb74-4749-8345-c931723f1a64}" name="Copernicus DEM 30 m (topography)">
+    <maplayer type="raster" id="{5d37be0a-eab0-4904-8ebd-9649b3d8b875}" name="Copernicus DEM 30 m (topography)">
       <datasource>../../data/processed/dem_copernicus30m_32643.tif</datasource>
       <provider>gdal</provider>
       <layername>Copernicus DEM 30 m (topography)</layername>
@@ -59,7 +60,7 @@
         <ymin>1266000.0</ymin>
       </extent>
     </maplayer>
-    <maplayer type="raster" id="{2af0eee6-c7f3-4f04-a455-13a2e533468a}" name="Slope (degrees, P2)">
+    <maplayer type="raster" id="{060b7cf3-2d83-4c06-add8-4187083074f5}" name="Slope (degrees, P2)">
       <datasource>../../data/processed/slope_deg_32643.tif</datasource>
       <provider>gdal</provider>
       <layername>Slope (degrees, P2)</layername>
@@ -82,7 +83,7 @@
         <ymin>1266000.0</ymin>
       </extent>
     </maplayer>
-    <maplayer type="raster" id="{54c4c1ba-9a80-47f2-b218-543ea641056e}" name="H1 built-up change 2000-2020 (GLAD)">
+    <maplayer type="raster" id="{45576339-902d-40d2-969a-73c3c393ddf4}" name="H1 built-up change 2000-2020 (GLAD)">
       <datasource>../../data/processed/builtup_change_2000_2020_32643.tif</datasource>
       <provider>gdal</provider>
       <layername>H1 built-up change 2000-2020 (GLAD)</layername>
@@ -105,7 +106,7 @@
         <ymin>1266120.0</ymin>
       </extent>
     </maplayer>
-    <maplayer type="raster" id="{6c245296-2513-4980-8723-a7c9ab05b9c4}" name="H1 built-up expansion 2000-2020 (GLAD)">
+    <maplayer type="raster" id="{ba43c011-4745-48af-8510-9185ef277b15}" name="H1 built-up expansion 2000-2020 (GLAD)">
       <datasource>../../data/processed/builtup_expansion_2000_2020_32643.tif</datasource>
       <provider>gdal</provider>
       <layername>H1 built-up expansion 2000-2020 (GLAD)</layername>
@@ -128,7 +129,7 @@
         <ymin>1266120.0</ymin>
       </extent>
     </maplayer>
-    <maplayer type="raster" id="{3b6bf52e-4f75-4b18-9508-41343b08e9e1}" name="ESA WorldCover 2021 (built-up check)">
+    <maplayer type="raster" id="{ce031e4a-d83b-49ee-a212-b38b26529bbe}" name="ESA WorldCover 2021 (built-up check)">
       <datasource>../../data/processed/builtup_worldcover2021_32643.tif</datasource>
       <provider>gdal</provider>
       <layername>ESA WorldCover 2021 (built-up check)</layername>
@@ -151,7 +152,7 @@
         <ymin>1266120.0</ymin>
       </extent>
     </maplayer>
-    <maplayer type="raster" id="{3f7c1a75-8a38-4c87-a218-3fa4f0a37b0a}" name="Hansen tree cover 2000">
+    <maplayer type="raster" id="{2463dcb4-14b4-4d54-8d4a-af179da9742c}" name="Hansen tree cover 2000">
       <datasource>../../data/processed/hansen_treecover2000_32643.tif</datasource>
       <provider>gdal</provider>
       <layername>Hansen tree cover 2000</layername>
@@ -174,7 +175,7 @@
         <ymin>1266000.0</ymin>
       </extent>
     </maplayer>
-    <maplayer type="raster" id="{a45d6c3c-7be4-413e-9655-3272cdf0ac47}" name="Hansen treecover_loss 2000-2020">
+    <maplayer type="raster" id="{b524d220-5477-4992-941b-6e82c511f6e8}" name="Hansen treecover_loss 2000-2020">
       <datasource>../../data/processed/treecover_loss_2000_2020_32643.tif</datasource>
       <provider>gdal</provider>
       <layername>Hansen treecover_loss 2000-2020</layername>
@@ -197,7 +198,7 @@
         <ymin>1266120.0</ymin>
       </extent>
     </maplayer>
-    <maplayer type="raster" id="{50769894-1122-44a5-84a6-f0f71e1b7b5f}" name="D-20 CHIRPS rain annual total 2011-2014">
+    <maplayer type="raster" id="{69185bcc-882d-451b-aed7-59d268f09400}" name="D-20 CHIRPS rain annual total 2011-2014">
       <datasource>../../data/processed/chirps_rain_annual_2011_2014_32643.tif</datasource>
       <provider>gdal</provider>
       <layername>D-20 CHIRPS rain annual total 2011-2014</layername>
@@ -220,7 +221,7 @@
         <ymin>1266000.0</ymin>
       </extent>
     </maplayer>
-    <maplayer type="raster" id="{1f759ad6-357e-4221-8c58-ab3fcee92ba9}" name="D-20 CHIRPS Jun-Sep share 2011-2014">
+    <maplayer type="raster" id="{3fa72fbc-87a2-4a3f-9910-69cdaa52e264}" name="D-20 CHIRPS Jun-Sep share 2011-2014">
       <datasource>../../data/processed/chirps_rain_monsoon_share_2011_2014_32643.tif</datasource>
       <provider>gdal</provider>
       <layername>D-20 CHIRPS Jun-Sep share 2011-2014</layername>
@@ -243,7 +244,7 @@
         <ymin>1266000.0</ymin>
       </extent>
     </maplayer>
-    <maplayer type="raster" id="{8a71ffbd-e658-4841-bee6-7056c59ea1db}" name="F6 incident KDE rank (display raster)">
+    <maplayer type="raster" id="{671e1d3b-2c7c-49e2-92c0-edadb549da6d}" name="F6 incident KDE rank (display raster)">
       <datasource>../qaqc/f6_incident_kde_rank_500m_32643.tif</datasource>
       <provider>gdal</provider>
       <layername>F6 incident KDE rank (display raster)</layername>
@@ -266,7 +267,7 @@
         <ymin>1266000.0</ymin>
       </extent>
     </maplayer>
-    <maplayer type="raster" id="{af4e5e5f-713c-4f07-a308-c2334d269aaa}" name="H2a hazard KDE percentile (frozen)">
+    <maplayer type="raster" id="{3928a861-9d48-4ad0-8a1e-a53fa319d9d7}" name="H2a hazard KDE percentile (frozen)">
       <datasource>../qaqc/p3_h2a_kde_inventory_500m_32643.tif</datasource>
       <provider>gdal</provider>
       <layername>H2a hazard KDE percentile (frozen)</layername>
@@ -289,7 +290,30 @@
         <ymin>1266000.0</ymin>
       </extent>
     </maplayer>
-    <maplayer type="vector" id="{658816ca-6ba8-4a9a-bba1-047bf4a90b94}" name="Wayanad district boundary (geoBoundaries ADM2)"
+    <maplayer type="raster" id="{8e933c35-a7aa-4562-aea3-602ff2100eed}" name="P7 D-21 display stack, 9 bands: built 2000/2020, expansion, forest 2000/2020/2024, loss 2001-2024, loss 2021-2024, dominant loss decade">
+      <datasource>../qaqc/p7_500m_display_32643.tif</datasource>
+      <provider>gdal</provider>
+      <layername>P7 D-21 display stack, 9 bands: built 2000/2020, expansion, forest 2000/2020/2024, loss 2001-2024, loss 2021-2024, dominant loss decade</layername>
+      <srs>
+        <spatialrefsys>
+        <proj4>+proj=utm +zone=43 +datum=WGS84 +units=m +no_defs</proj4>
+        <srsid>32643</srsid>
+        <srid>32643</srid>
+        <authid>EPSG:32643</authid>
+        <description>WGS 84 / UTM zone 43N</description>
+        <projectionacronym>utm</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <extent>
+        <xmin>584000.0</xmin>
+        <ymax>1324500.0</ymax>
+        <xmax>657500.0</xmax>
+        <ymin>1266000.0</ymin>
+      </extent>
+    </maplayer>
+    <maplayer type="vector" id="{6c03b01d-8241-47e2-9688-5e43557d523a}" name="Wayanad district boundary (geoBoundaries ADM2)"
               geometry="Polygon">
       <datasource>../../data/processed/wayanad_boundary_32643.geojson</datasource>
       <provider>ogr</provider>
@@ -313,7 +337,7 @@
         <ymin>1266151.5084729344</ymin>
       </extent>
     </maplayer>
-    <maplayer type="vector" id="{b62b709c-f130-4a59-ad21-c4ae785bfd83}" name="Protected-area complexes (WDPA, all-touched)"
+    <maplayer type="vector" id="{728268c4-27ee-402f-9586-137be34a83d4}" name="Protected-area complexes (WDPA, all-touched)"
               geometry="Polygon">
       <datasource>../../data/processed/wdpa_wayanad_32643.gpkg|layername=wdpa</datasource>
       <provider>ogr</provider>
@@ -337,7 +361,7 @@
         <ymin>1266151.5084729344</ymin>
       </extent>
     </maplayer>
-    <maplayer type="vector" id="{665e1cf9-e113-4e19-bf27-87ddb05a0f56}" name="Protected remnant parcels (1 km, P2)"
+    <maplayer type="vector" id="{2d7456a9-b501-47c7-b2f4-ae80fc189914}" name="Protected remnant parcels (1 km, P2)"
               geometry="Polygon">
       <datasource>../../data/processed/parcels_1km_32643.gpkg|layername=parcels</datasource>
       <provider>ogr</provider>
@@ -361,7 +385,7 @@
         <ymin>1266500.0</ymin>
       </extent>
     </maplayer>
-    <maplayer type="vector" id="{be3455c5-3f3b-412e-9ba3-912e62b9a4dd}" name="Landslide inventory - WMS proxy (D-15/D-17a)"
+    <maplayer type="vector" id="{07f76017-60f0-4430-9b34-0e57089db020}" name="Landslide inventory - WMS proxy (D-15/D-17a)"
               geometry="Polygon">
       <datasource>../../data/processed/inventory_wms_kl_landslides_new_32643.gpkg|layername=inventory_wms</datasource>
       <provider>ogr</provider>
@@ -385,7 +409,7 @@
         <ymin>1262680.5416518054</ymin>
       </extent>
     </maplayer>
-    <maplayer type="vector" id="{1e9ff8df-1d7d-40f6-ad92-313f8417463c}" name="2024 Chooralmala-Mundakkai scar (NRSC VAP3 digitized)"
+    <maplayer type="vector" id="{262a44f5-a07a-438f-990d-4657abdfba50}" name="2024 Chooralmala-Mundakkai scar (NRSC VAP3 digitized)"
               geometry="Polygon">
       <datasource>../../data/processed/scar_chooralmala_mundakkai_2024_32643.gpkg|layername=scar</datasource>
       <provider>ogr</provider>
@@ -409,7 +433,7 @@
         <ymin>1267643.7931716526</ymin>
       </extent>
     </maplayer>
-    <maplayer type="vector" id="{ab5bb253-da98-4e20-bad3-9189b95e5922}" name="Roads (OSM 2026-10)"
+    <maplayer type="vector" id="{6f020b40-0c7a-4dee-aaa2-d696301e1450}" name="Roads (OSM 2026-10)"
               geometry="LineString">
       <datasource>../../data/processed/roads_wayanad_32643.gpkg|layername=roads</datasource>
       <provider>ogr</provider>
@@ -433,7 +457,7 @@
         <ymin>1269024.9870759076</ymin>
       </extent>
     </maplayer>
-    <maplayer type="vector" id="{4008c6f4-6e24-4dab-8f45-e63cda77d09e}" name="Google Open Buildings v3 (imagery &lt;= 2023-05)"
+    <maplayer type="vector" id="{095c491a-c8f0-47d9-830f-74030d1ddd1c}" name="Google Open Buildings v3 (imagery &lt;= 2023-05)"
               geometry="Polygon">
       <datasource>../../data/processed/buildings_google_wayanad_32643.gpkg|layername=buildings</datasource>
       <provider>ogr</provider>
@@ -457,7 +481,7 @@
         <ymin>1264738.328094566</ymin>
       </extent>
     </maplayer>
-    <maplayer type="vector" id="{fbf9651e-d954-428f-b7b1-c41ec462243d}" name="OSM buildings (snapshot 2026-10-26)"
+    <maplayer type="vector" id="{0b3866c4-0ef0-4510-8a85-1820d6cb16b6}" name="OSM buildings (snapshot 2026-10-26)"
               geometry="Polygon">
       <datasource>../../data/processed/buildings_osm_wayanad_32643.gpkg|layername=buildings</datasource>
       <provider>ogr</provider>
@@ -481,7 +505,7 @@
         <ymin>1262511.425336192</ymin>
       </extent>
     </maplayer>
-    <maplayer type="vector" id="{8276d5ac-dc94-4369-aa1c-66ff4d23dbac}" name="Facility registry geocoded (P1 universe 123)"
+    <maplayer type="vector" id="{f8550490-f034-4eb8-a3f3-804c33213cfb}" name="Facility registry geocoded (P1 universe 123)"
               geometry="Point">
       <datasource>../../data/processed/registry_geocoded_2026-10-23.geojson</datasource>
       <provider>ogr</provider>

@@ -76,6 +76,11 @@ outputs/qaqc/*
 !outputs/qaqc/p4_h4_dispute_table_2026-11-02.csv
 !outputs/qaqc/p3_h3_rainfall_sensitivity_2026-11-02.json
 !outputs/qaqc/f6_incident_kde_rank_500m_32643.tif
+# P7 / D-21: the descriptive 2000-vs-now facts of record and the 9-band
+# display stack F8-F9 are rendered from. Regenerable from data + scripts, but
+# the facts file pins what the run read and is hash-pinned in PROJECTSTATE §9.
+!outputs/qaqc/p7_2000_vs_now_accounting_2026-11-03.json
+!outputs/qaqc/p7_500m_display_32643.tif
 !outputs/qaqc/.gitkeep
 
 # --- OS / python ------------------------------------------------------------

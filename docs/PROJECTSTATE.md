@@ -867,6 +867,33 @@ figure-note fix during delivery: imshow extent semantics corrected to
 (left,right,bottom,top) — display-only error, caught by visual QC and the
 rain-panel white-render, then re-verified against raster bounds.
 
+
+### D-21 pre-computation pin: 2000-vs-now descriptive accounting for the P7 report (2026-11-03) — BEFORE any such statistic
+
+**D-21 written to prereg §7 (append-only; §3 hypotheses and §4 controls
+byte-unchanged). Full-file re-hash recorded BEFORE computing anything:**
+
+**R9 = `bcaa92235ae1d92ce377b23f9da47946d6a176ccc05343715c24d99a06fe508b`**
+(history: R7 `541bd46e` → R7a `5637e6ac` → R7b `d4e258cd` → R7c `176da474` →
+R7d `943e9f9c…` → R7e `c4ac9606…` → R8 `da2baee8…` → **R9 `bcaa9223…`**).
+
+**D-21 pins (descriptive only, no hypothesis, no test):** (a) built-up extent
+2020 = GLAD classes {1 expansion, 2 stable}; extent 2000 = 2020 − expansion;
+district totals, % of district (2,026.39 km²), *x*-fold growth. (b) forest
+2000 = Hansen treecover2000 ≥ 30%; loss read **by lossyear code** (the binary
+`treecover_loss_2000_2020` layer is in fact `lossyear > 0`, i.e. 2001–2024 —
+filename/code mismatch noted) into 2001–2010 / 2011–2020 / 2021–2024 bands;
+forest remaining 2020 and 2024; % of 2000 forest lost; WorldCover 2021 class
+10 as an independent cross-check, never averaged with Hansen. (c) all
+quantities split inside/outside WDPA all-touched + annual 2001–2024 loss
+histogram. (d) two display rasters → F8 (built-up then/now) and F9 (forest
+then/now + decade loss), P6 conventions. (e) **context share only**
+(non-inferential, no test statistic): expansion inside the union of 500 m
+buffers around the 107 verified facilities vs that union's district share —
+explicitly labelled "H1 is the registered test". (f) **binding:** these
+numbers may not enter the H1–H4 family, may not "confirm" any mechanism, and
+may not alter any verdict.
+
 **Next: Mussoorie (Site 2) preplan** (rainfall pinned PRE-freeze).
 
 **P6 revision (2026-11-02, post-review):** figure labels simplified to
@@ -877,3 +904,84 @@ outline (visual fit; the D-18 analytic join — centre-in-district cells —
 is unchanged and the −0.572 assertion still passes at −0.571). No data,
 statistics or labels beyond layout changed; D-20 POST-HOC labelling
 retained on F6.
+
+### P7 COMPLETE (2026-11-03): Wayanad research report + 2000-vs-now maps — D-21 executed under R9; prereg untouched since the pin
+
+**Scope:** the deliverable requested after P4–P6 — a research-paper-style
+report for Site 1 (literature gap, 2000-vs-now map comparison, new
+hypotheses/RQs and thesis territory), plus the figure-quality pass held
+back from P6. **No hypothesis, covariate or control rule changed.**
+
+**Pinned before computation:** D-21 in prereg §7, **R9 =
+`bcaa92235ae1d92ce377b23f9da47946d6a176ccc05343715c24d99a06fe508b`**
+(full-file hash recorded in the section above *before* any number below
+existed). §3 hypotheses and §4 controls byte-unchanged.
+
+**Outputs of record:**
+- `outputs/qaqc/p7_2000_vs_now_accounting_2026-11-03.json` — D-21 facts,
+  sha256 `a9a1b29f341a0739…`, `inferential: false`,
+  label "descriptive accounting, no test, no p-value, no CI".
+- `outputs/qaqc/p7_500m_display_32643.tif` — 9-band display stack,
+  sha256 `1b888fd19b368c6e…` (built 2000/2020, expansion, forest
+  2000/2020/2024, loss 2001–2024, loss 2021–2024, dominant loss decade).
+- `outputs/figures/F8_builtup_2000_vs_2020.png`, `F9_forest_2000_vs_now.png`.
+- `docs/p7_literature_gap_analysis_wayanad.md` (gaps G1–G7, novelty verdict,
+  claim-strength ledger, verified references).
+- `docs/p7_hypotheses_research_questions.md` (H1–H4 verdicts, H5–H11,
+  RQ1–RQ8, thesis skeleton, falsification list).
+- `docs/p7_research_report_wayanad.md` (abstract → methods → results →
+  discussion → limitations → conclusion → references → appendices).
+- Scripts: `scripts/p7_2000_vs_now.py`, `scripts/p7_render_maps.py`.
+
+**D-21 headline facts (descriptive only — quotable as such, never as a
+test):** built-up 145.114 → 246.921 km² (**×1.702**; 7.161 % → 12.185 % of
+the 2,026.39 km² district; +101.807 km²). WDPA split of the expansion:
+24.166 → 42.471 inside (+18.305, 18.0 % of expansion), 120.948 → 204.450
+outside. Forest ≥ 30 %: 1,601.214 (2000) → 1,575.776 (2020) → 1,557.524 km²
+(2024). Hansen loss 2001–2024 = **43.691 km² (2.729 %** of 2000 forest);
+by band 8.752 / 16.686 / 18.252 km², so **2021–2024 carries 41.8 % of all
+loss at 4.563 km²/yr** vs 1.669 and 0.875. Inside-WDPA loss 1.385 % vs
+outside 3.899 % (**2.82×**). Product disagreement kept visible: GLAD
+built-up 246.921 vs WorldCover 16.214 km² (**15.2×**); WorldCover tree
+1,816.199 km². **Context share only (non-inferential):** the 500 m buffers
+around the 107 verified facilities cover 67.485 km² (3.33 % of district)
+and contain 6.310 km² of expansion (6.20 %), ratio 1.861 — labelled in the
+figure and report as context, with H1 named as the registered test.
+
+**Novelty handled honestly:** the framing "tourism urbanisation → landslide
+susceptibility in Wayanad" is already published as a **2026 Research Square
+preprint** (Kellengere Shankarnarayan, doi 10.21203/rs.3.rs-10568295/v1).
+The report therefore claims no new framing; the claimed contribution is the
+identification strategy (parcel-level matched counterfactual at a facility
+radius), the exposure null test (H2a density + slope-share), the two-register
+asset enumeration (H2b), the measurement-bias demonstration (H1 robustness
+sign flip under WorldCover/Hansen), and claim discipline (H3 no verdict,
+H4 exploratory). Stated in those words in both the gap analysis and §1 of
+the report.
+
+**Figure revision pass (this entry) — display-only, no data change:**
+`legend_below()` helper added to `scripts/p6_render_maps.py` (figure-level
+legend under the frame, bottom margin grows with row count, so a legend can
+no longer sit on the data); unverified/outside markers darkened
+(`#2f2f2f`/`#303030`) and control outlines to `#1f4e79` for legibility on
+grey hillshade; single-panel figure heights tightened (7.4 → 6.6/6.7) to
+remove dead space; **F4 simplified** to one OrRd percentile surface with
+dark size-coded facility dots, colour scale capped at 0.10 for legibility
+(p99 = 0.104 — cap is stated on the colour bar and in the render log);
+**F7** label collisions removed via fixed staggered offsets (D-003 +2,600 m,
+D-008 −2,600 m) with white label backing, and two previously unlabelled
+layers (1 km inventory buffers, 500 m facility buffers) given legend
+entries. **F3 defect found and fixed:** the old panel drew the treated
+parcel twice and **never drew the matched control parcels** the legend
+named — it now draws the control geometry (dashed navy) and the
+treatment parcel separately, with the binary built-up gain mask shown in
+muted brown over hillshade. Colour bars are now re-fitted to the *drawn*
+(equal-aspect) frame rather than the subplot box, so they no longer overshoot
+the map, and multi-panel heights were set to the map aspect (F6 5.8 → 4.9 in;
+F8/F9 6.0/5.6 → 4.4/4.5 in) to remove dead space. All assertions still pass
+(rain ρ −0.571 vs −0.572; hotspot 15.0578 vs 15.0625 km²). QGIS project
+rebuilt with the P7 display stack → **21 layers**.
+
+**Facts-hash ledger (first 8):** h1 `85d1597c`, h2a `f3432795`, h2b
+`e50ae8bd`, h3 `dd73bddb`, D-20 `e1ab4cbe`, h4 `d945c4a6`, dispute CSV
+`7a1996cd`, **D-21 `a9a1b29f`**, display stack `1b888fd1`.

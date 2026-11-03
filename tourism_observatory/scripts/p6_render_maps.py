@@ -49,11 +49,26 @@ CHANGE_R = PROC / "builtup_change_2000_2020_32643.tif"
 
 FAC_BUF, HAZ_BUF = 500.0, 1000.0          # D-19(c) / H2b(b) radii of record
 MARGIN_M = 2000.0
-LOG = {"note": "rendering-only visualization of frozen outputs; prereg at R8; "
-               "no statistics computed here; facts of record asserted", "figures": {}}
+LOG = {"note": "rendering-only visualization of frozen outputs; F1-F7 executed "
+               "under R8 and re-rendered 2026-11-03 with prereg at R9 (layout "
+               "only; no statistic depends on D-21); no statistics computed "
+               "here; facts of record asserted", "figures": {}}
 
 
 # ------------------------------- helpers ----------------------------------
+def legend_below(fig, handles, ncol=1, fontsize=8, y=-0.01):
+    """Figure-level legend under the map frame (never over the data).
+
+    Bottom margin grows with the number of legend rows so a long legend
+    can never creep back over the map.
+    """
+    rows = math.ceil(len(handles) / ncol)
+    fig.subplots_adjust(bottom=min(0.42, 0.08 + 0.05 * rows))
+    return fig.legend(handles=handles, loc="lower center",
+                      bbox_to_anchor=(0.5, y), ncol=ncol,
+                      fontsize=fontsize, frameon=False)
+
+
 def hillshade(a, azdeg=315.0, altitude=45.0, cell=30.0):
     """Local Horn-method hillshade (rasterio.dem unavailable in this env).
 
@@ -207,27 +222,27 @@ def main() -> int:
     # ---------------------------- F1 context -------------------------------
     fig, axes = new_axes(
         1, district, "F1 — Wayanad study site: facilities & WDPA",
-        (8.0, 7.4))
+        (8.0, 6.6))
     ax = axes[0]
     hillshade_base(ax)
     wdpa = gpd.read_file(PROC / "wdpa_wayanad_32643.gpkg")
     wdpa.plot(ax=ax, facecolor="#2e7d32", edgecolor="#1b5e20", alpha=0.45,
               zorder=2, linewidth=0.4)
-    others.plot(ax=ax, color="grey", edgecolor="white", linewidth=0.3,
+    others.plot(ax=ax, color="#2f2f2f", edgecolor="white", linewidth=0.3,
                 markersize=14, zorder=4)
     verified.plot(ax=ax, color="#b30000", edgecolor="white", linewidth=0.4,
                   markersize=26, zorder=5)
     district_border(ax)
     add_scalebar(ax)
-    ax.legend(handles=[
+    legend_below(fig, [
         Line2D([], [], marker="o", ls="", mfc="#b30000", mec="white",
                markersize=8,
                label=f"verified facilities inside district (n={len(verified)})"),
-        Line2D([], [], marker="o", ls="", mfc="grey", mec="white",
+        Line2D([], [], marker="o", ls="", mfc="#2f2f2f", mec="white",
                markersize=6, label="registry entries not verified / outside"),
         Patch(facecolor="#2e7d32", alpha=0.45,
               label="protected-area complexes (WDPA, all-touched)")],
-        loc="lower right", fontsize=8, framealpha=0.9)
+        ncol=1, fontsize=8)
     finish(fig, "F1_context_facilities_wdpa",
            "universe 123 / verified 107 (facts of record, P2)")
 
@@ -236,7 +251,7 @@ def main() -> int:
     slope, trs = read_raster(SLOPE_R)
     fig, axes = new_axes(
         1, district, "F2 — Topography: elevation bands & slope ≥ 25°",
-        (8.0, 7.4))
+        (8.0, 6.6))
     ax = axes[0]
     hs = hillshade(dem, azdeg=315, altitude=45)
     ax.imshow(hs, extent=analyze_extent(tr, hs.shape), cmap="gray",
@@ -258,9 +273,9 @@ def main() -> int:
     cb = fig.colorbar(im2, ax=ax, shrink=0.65, pad=0.01,
                       boundaries=bands, ticks=bands)
     cb.set_label("elevation (m)", fontsize=8)
-    ax.legend(handles=[Patch(facecolor="#d7301f", alpha=0.5,
+    legend_below(fig, [Patch(facecolor="#d7301f", alpha=0.5,
                              label="slope ≥ 25° (H2a(i) band)")],
-              loc="lower right", fontsize=8, framealpha=0.9)
+                 ncol=1, fontsize=8)
     finish(fig, "F2_topography_elevation_slope",
            "display only — no covariate change vs frozen run")
 
@@ -273,15 +288,19 @@ def main() -> int:
     del pairs
     fig, axes = new_axes(
         1, district, "F3 — H1 matched pairs: built-up change 2000–2020",
-        (8.6, 7.4))
+        (8.6, 6.7))
     ax = axes[0]
+    hillshade_base(ax)
     chg, trc = read_raster(CHANGE_R)
-    ax.imshow(chg, extent=analyze_extent(trc, chg.shape), cmap="copper",
-              alpha=0.28, zorder=1, interpolation="nearest")
-    gpd.GeoSeries(
-        [g for g in (pid2geom.get(t) for t in r500.treated) if g is not None],
-        crs="EPSG:32643").plot(
-        ax=ax, facecolor="none", edgecolor="#3187bd", linewidth=0.9, zorder=4)
+    ax.imshow(np.ma.masked_invalid(chg), extent=analyze_extent(trc, chg.shape),
+              cmap=ListedColormap(["#b0794f"]), alpha=0.55, zorder=2,
+              interpolation="nearest")
+    # controls: the matched parcel geometry, not the treated one (the old
+    # version drew the treated parcel twice and no control parcel at all)
+    gpd.GeoSeries([g for g in (pid2geom.get(c) for c in r500.control)
+                   if g is not None], crs="EPSG:32643").plot(
+        ax=ax, facecolor="none", edgecolor="#1f4e79", linewidth=1.0,
+        linestyle=(0, (4, 2)), zorder=4)
     dv = r500.diff_pp.to_numpy()
     vmax = float(max(abs(dv.min()), abs(dv.max())))
     cmap_r = plt.get_cmap("RdBu_r")
@@ -299,9 +318,13 @@ def main() -> int:
         norm=plt.Normalize(-vmax, vmax), cmap=cmap_r), ax=ax,
         shrink=0.6, pad=0.01)
     cb3.set_label("treated-parcel Δ built-up 2000–2020 @500 m (pp)", fontsize=8)
-    ax.legend(handles=[Patch(facecolor="#3187bd", alpha=0.9,
-                             label="matched control parcels")],
-              loc="lower right", fontsize=8, framealpha=0.9)
+    legend_below(fig, [
+        Patch(facecolor="#b0794f", alpha=0.55, label="built-up gain 2000–2020"),
+        Patch(facecolor="none", edgecolor="#1f4e79", linestyle=(0, (4, 2)),
+              label="matched control parcel"),
+        Patch(facecolor="#d6604d", edgecolor="#b30000",
+              label="treated parcel (fill = Δ, colour bar)")],
+        ncol=2, fontsize=8)
     finish(fig, "F3_h1_matched_pairs_builtup_change",
            "pair/rate table of record h1_pair_rates (radius 500 rows)")
 
@@ -311,22 +334,35 @@ def main() -> int:
     fpts = gpd.GeoSeries(gpd.points_from_xy(h2p.lon, h2p.lat),
                          crs="EPSG:4326").to_crs("EPSG:32643")
     fig, axes = new_axes(
-        1, district, "F4 — H2a: hazard KDE vs facilities",
-        (8.0, 7.4))
+        1, district, "F4 — H2a: hazard surface & facility percentiles",
+        (8.0, 6.6))
     ax = axes[0]
-    hillshade_base(ax)
     km = np.ma.masked_invalid(kde)
-    im = ax.imshow(km, extent=analyze_extent(trk, kde.shape), cmap="magma",
-                   vmin=0, vmax=1, alpha=0.75, zorder=2,
+    im = ax.imshow(km, extent=analyze_extent(trk, kde.shape), cmap="OrRd",
+                   vmin=0, vmax=0.10, alpha=0.9, zorder=1,
                    interpolation="nearest")
+    im.set_clip_path(district_clip_patch(ax))
     district_border(ax)
-    fpts.plot(ax=ax, c=h2p.pct_ii, cmap="viridis", markersize=34,
-              edgecolor="white", linewidth=0.4, zorder=6)
+    # One surface + one marker family: size encodes the H2a(ii) observed
+    # density percentile, dark fill stays legible on the warm surface.
+    pct = h2p.pct_ii.to_numpy()
+    ax.scatter(fpts.x, fpts.y, s=18 + 110 * pct, c="#111111",
+               edgecolor="white", linewidth=0.45, zorder=6)
     add_scalebar(ax)
     cb4 = fig.colorbar(im, ax=ax, shrink=0.62, pad=0.01)
-    cb4.set_label("inventory KDE percentile", fontsize=8)
+    cb4.set_label("inventory KDE percentile (display cap 0.10)", fontsize=8)
+    legend_below(fig, [
+        Line2D([], [], marker="o", ls="", mfc="#111111", mec="white",
+               markersize=6.7, label="facility percentile 0.25"),
+        Line2D([], [], marker="o", ls="", mfc="#111111", mec="white",
+               markersize=8.5, label="0.50"),
+        Line2D([], [], marker="o", ls="", mfc="#111111", mec="white",
+               markersize=10.8, label="0.90")],
+        ncol=3, fontsize=7.5)
     finish(fig, "F4_h2a_hazard_kde_facility_percentiles",
-           "facet markers = pct_ii (facts f3432795); no new statistics")
+           "surface = inventory KDE percentile, colour capped at 0.10 for "
+           "legibility (p99 = 0.104); dot size = pct_ii (facts f3432795); "
+           "no new statistics")
 
     # ---------------------------- F5 H2b footprints ------------------------
     fac_scar = verified[verified.intersects(scar)]
@@ -345,7 +381,8 @@ def main() -> int:
     add_scalebar(axl)
     axl.legend(handles=[Patch(facecolor="#d7301f", alpha=0.85,
                               label="scar footprint (0 facilities / 0 buildings)")],
-               loc="lower right", fontsize=7.5, framealpha=0.9)
+               loc="upper center", bbox_to_anchor=(0.5, -0.035),
+               fontsize=7.5, frameon=False)
     hillshade_base(axr)
     gser(inv_union).plot(ax=axr, facecolor="#ff7f00", alpha=0.35,
                          edgecolor="none", zorder=2)
@@ -353,7 +390,7 @@ def main() -> int:
     fac_inv.plot(ax=axr, color="#004529", edgecolor="white", linewidth=0.4,
                  markersize=26, zorder=6)
     facibility = verified[~verified.intersects(inv_union)]
-    facibility.plot(ax=axr, color="grey", edgecolor="white", linewidth=0.3,
+    facibility.plot(ax=axr, color="#303030", edgecolor="white", linewidth=0.3,
                     markersize=12, zorder=5)
     district_border(axr)
     axr.set_title("(b) 1 km inventory-buffer register — 992.90 km² (26/107)",
@@ -362,9 +399,11 @@ def main() -> int:
     axr.legend(handles=[
         Line2D([], [], marker="o", ls="", mfc="#004529", mec="white",
                markersize=8, label="facilities inside buffers (26)"),
-        Line2D([], [], marker="o", ls="", mfc="grey", mec="white",
+        Line2D([], [], marker="o", ls="", mfc="#303030", mec="white",
                markersize=6, label="outside (81)")],
-        loc="lower right", fontsize=7.5, framealpha=0.9)
+        loc="upper center", bbox_to_anchor=(0.5, -0.035),
+        fontsize=7.5, frameon=False)
+    fig.subplots_adjust(bottom=0.14)
     finish(fig, "F5_h2b_footprints_two_populations",
            "counts quoted from p3_h2b facts (sha e50ae8bd)")
 
@@ -414,7 +453,7 @@ def main() -> int:
         "(display product; KDE of record re-rendered, rank values)"
 
     ext = extent_of(district)
-    fig, axes = plt.subplots(1, 3, figsize=(15.8, 5.8))
+    fig, axes = plt.subplots(1, 3, figsize=(15.8, 4.9))
     fig.suptitle(
         "F6 — H3 hotspots vs forest cover & D-20 rainfall "
         "(POST-HOC, non-inferential)",
@@ -466,13 +505,13 @@ def main() -> int:
     margins = {"D-003": 94, "D-004": 24, "D-008": 143}
     fig, axes = new_axes(
         1, district, "F7 — H4: disputes vs exposure hotspot",
-        (8.4, 7.4))
+        (8.0, 6.6))
     ax = axes[0]
     hillshade_base(ax)
-    gser(inv_union).plot(ax=ax, facecolor="#ff7f00", alpha=0.25,
-                         edgecolor="none", zorder=2)
+    gser(inv_union).plot(ax=ax, facecolor="#ff7f00", alpha=0.18,
+                         edgecolor="#b15928", linewidth=0.35, zorder=2)
     gser(fac_union).plot(ax=ax, facecolor="none", edgecolor="#05529c",
-                         linewidth=0.3, zorder=3)
+                         linewidth=0.3, alpha=0.75, zorder=3)
     gser(hotspot).plot(ax=ax, facecolor="#d7301f", edgecolor="#7f0000",
                        alpha=0.85, linewidth=1.3, zorder=4)
     for disp_id, pt in anchor.items():
@@ -486,19 +525,29 @@ def main() -> int:
                    c="#31a354" if ov else "black", edgecolor="white",
                    linewidth=0.6, zorder=6)
         extra = f" ({margins[disp_id]} m)" if disp_id in margins else ""
-        ax.annotate(disp_id + extra, (pt.x, pt.y + rr * 1.6), fontsize=7,
-                    zorder=7, ha="center", fontweight="bold",
-                    color="#7f0000" if disp_id in margins else "black")
+        # fixed, staggered offsets: precision radii are too small to space
+        # the labels and D-003/D-008 previously overlapped
+        dy = {"D-003": 2600.0, "D-008": -2600.0, "D-004": 2200.0}.get(
+            disp_id, 1800.0)
+        ax.annotate(disp_id + extra, (pt.x, pt.y + dy), fontsize=7,
+                    zorder=8, ha="center", fontweight="bold",
+                    color="#7f0000" if disp_id in margins else "black",
+                    bbox=dict(facecolor="white", alpha=0.78, edgecolor="none",
+                              pad=0.7))
     district_border(ax)
     add_scalebar(ax)
-    ax.legend(handles=[
+    legend_below(fig, [
         Patch(facecolor="#d7301f", alpha=0.85,
               label="exposure hotspot (15.06 km², 0.74% of district)"),
+        Patch(facecolor="#ff7f00", alpha=0.18, edgecolor="#b15928",
+              label="1 km inventory buffers (H2b register b)"),
+        Patch(facecolor="none", edgecolor="#05529c",
+              label="500 m facility buffers (H1 radius)"),
         Line2D([], [], marker="D", ls="", mfc="#31a354", mec="white",
                markersize=8, label="anchor overlapping hotspot (D-004, 24 m)"),
         Line2D([], [], marker="D", ls="", mfc="black", mec="white",
                markersize=6, label="anchor outside (D-003 miss 94 m; D-008 miss 143 m)")],
-        loc="lower right", fontsize=7.5, framealpha=0.9)
+        ncol=2, fontsize=7.5)
     finish(fig, "F7_h4_dispute_hotspot",
            "hotspot geometry from D-19(c) recipe, asserted vs facts d945c4a6")
 
@@ -512,7 +561,16 @@ def main() -> int:
         },
     }
     FIGDIR.mkdir(parents=True, exist_ok=True)
-    (FIGDIR / "render_log.json").write_text(json.dumps(LOG, indent=1))
+    # merge, do not clobber: F8-F9 entries and the P7 note are written by
+    # scripts/p7_render_maps.py and must survive a P6 re-render
+    path = FIGDIR / "render_log.json"
+    prev = json.loads(path.read_text()) if path.exists() else {}
+    merged = dict(prev)
+    merged.update(LOG)
+    figs = dict(prev.get("figures", {}))
+    figs.update(LOG["figures"])
+    merged["figures"] = figs
+    path.write_text(json.dumps(merged, indent=1))
     print("render log written")
     return 0
 
@@ -530,8 +588,19 @@ def _panel_cells(ax, arr, tr, district, cmapv, title, cb_label, vmin, vmax):
     district_border(ax)
     add_scalebar(ax)
     ax.set_title(title, fontsize=10)
-    cb = plt.colorbar(im, ax=ax, shrink=0.75, pad=0.01)
+    # the colour bar must match the DRAWN map, not the pre-aspect subplot
+    # box: with an equal-aspect map the axes shrinks at draw time, and a
+    # plain shrink= fraction leaves the bar sticking out beyond the frame.
+    # small fraction: the bar steals width from its panel, which (with an
+    # equal-aspect map) shrinks that panel's drawn height; a 0.045 fraction
+    # keeps every panel in a row the same size.
+    cb = plt.colorbar(im, ax=ax, shrink=0.92, fraction=0.045, pad=0.012)
     cb.set_label(cb_label, fontsize=8)
+    # the equal-aspect map shrinks its axes only at draw time, so the bar
+    # is re-fitted here to the DRAWN frame instead of the subplot box
+    cb.ax.figure.canvas.draw()
+    pa, pc = ax.get_position(), cb.ax.get_position()
+    cb.ax.set_position([pc.x0, pa.y0, pc.width, pa.height])
 
 
 if __name__ == "__main__":
