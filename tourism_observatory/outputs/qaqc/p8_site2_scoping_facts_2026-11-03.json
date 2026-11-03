@@ -1,0 +1,84 @@
+{
+ "task": "P8 Site 2 (Mussoorie) preplan scoping \u2014 AOI + protection inventory",
+ "label": "site-definition facts only; no hypothesis, no arm comparison, no outcome",
+ "inferential": false,
+ "date": "2026-11-03",
+ "site": {
+  "analysis_frame": "Dehradun district (geoBoundaries ADM2)",
+  "boundary_feature": "Dehradun",
+  "shape_id": "76128533B67005208112053",
+  "anchor_4326": [
+   78.074,
+   30.4598
+  ],
+  "anchor_note": "Mussoorie town centre; used only to draw AOI rings",
+  "crs": "EPSG:32644",
+  "utm_zone_basis": "AOI anchor lon 78.0740 E sets zone 44; the district straddles the 78 E zone edge (extent 77.5759\u201378.3133 E, 40.0% of area east of 78 E), so an extent/centroid rule would have picked zone 43 and distorted the AOI.",
+  "area_km2": 3095.742,
+  "bounds_4326": [
+   77.5759,
+   29.9597,
+   78.3133,
+   30.9908
+  ]
+ },
+ "protection": {
+  "wdpa_vintage": "WDPA Oct 2026 public, India",
+  "features_intersecting": 198,
+  "area_by_designation_km2": {
+   "Eco Sensitive Area": 1779.348,
+   "Reserve Forest": 1246.564,
+   "Wetland of International Importance (Ramsar Site)": 3.998,
+   "Protected Forest": 0.028
+  },
+  "reserve_forest_km2": 1246.146,
+  "eco_sensitive_km2": 1779.348,
+  "reserve_forest_x_esa_km2": 830.591,
+  "union_km2": 2194.93,
+  "union_pct_of_district": 70.9,
+  "wdpa_free_km2": 900.812,
+  "iucn_categories": {
+   "Not Reported": 197,
+   "Not Applicable": 1
+  },
+  "strict_pa_features": 1,
+  "strict_pa_km2": 3.998,
+  "strict_pa_note": "no IUCN I-IV, National Park or Wildlife Sanctuary feature intersects Dehradun in this WDPA vintage; the only Ramsar site is Asan (valley, ~4 km2)."
+ },
+ "rings": {
+  "5km": {
+   "zone_km2": 51.503,
+   "wdpa_km2": 36.61,
+   "wdpa_pct": 71.08,
+   "wdpa_free_km2": 14.893,
+   "reserve_forest_km2": 10.723,
+   "eco_sensitive_km2": 36.581
+  },
+  "8km": {
+   "zone_km2": 115.906,
+   "wdpa_km2": 96.981,
+   "wdpa_pct": 83.67,
+   "wdpa_free_km2": 18.926,
+   "reserve_forest_km2": 50.037,
+   "eco_sensitive_km2": 96.906
+  },
+  "10km": {
+   "zone_km2": 171.709,
+   "wdpa_km2": 151.818,
+   "wdpa_pct": 88.42,
+   "wdpa_free_km2": 19.891,
+   "reserve_forest_km2": 84.29,
+   "eco_sensitive_km2": 151.69
+  }
+ },
+ "inputs_sha256": {
+  "geoBoundaries_adm2": "d68db39cd3e2d0892af268e2b0454166368ce3b5b8a78fcda63069ec92a641db",
+  "wdpa_ind_zip": "2d5ea2f72cd35c46f9699c433414f7a52d9bfc2478bddba48faf864c503711d7",
+  "boundary_processed": "3f3a72ab5cd998633687d1929ccfd8c110a94c069af3d9dbf22961c913da2b0d"
+ },
+ "notes": [
+  "WDPA for India includes Reserve/Protected Forest administrative polygons, which is why the union covers 70.9% of the district.",
+  "The Doon Valley Ecologically Sensitive Area alone covers 1,779 km2 and overlaps 831 km2 of Reserve Forest; areas are unioned, never summed.",
+  "Ring zones are district-clipped: the 8 km ring is only 115.9 km2 of the 201 km2 circle because the district boundary cuts it."
+ ]
+}

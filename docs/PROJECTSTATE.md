@@ -985,3 +985,58 @@ rebuilt with the P7 display stack → **21 layers**.
 **Facts-hash ledger (first 8):** h1 `85d1597c`, h2a `f3432795`, h2b
 `e50ae8bd`, h3 `dd73bddb`, D-20 `e1ab4cbe`, h4 `d945c4a6`, dispute CSV
 `7a1996cd`, **D-21 `a9a1b29f`**, display stack `1b888fd1`.
+
+### P8 PREPLAN (2026-11-03): Mussoorie (Site 2) scoped — three findings that change the design; nothing frozen
+
+**Scope:** the step after closing P7 — decide *what* Site 2 can measure before
+any outcome work. No hypothesis is registered, no outcome layer opened, no arm
+compared. Wayanad remains at **R9**; this entry does not touch the frozen
+Wayanad design.
+
+**Artifacts**
+- `tourism_observatory/scripts/p8_site2_scoping.py` — site-definition only.
+- `tourism_observatory/outputs/qaqc/p8_site2_scoping_facts_2026-11-03.json`
+  (facts of record, sha `c36a7c51`; `inferential: false`).
+- `tourism_observatory/data/processed/dehradun_boundary_32644.geojson`
+  (sha `3f3a72ab…`; manifest entry `boundary_dehradun`).
+- `tourism_observatory/docs/preplan_mussoorie.md` — decisions M-1…M-7,
+  source plan with honest availability statuses, feasibility gates G-M1…G-M4.
+- `tourism_observatory/config/mussoorie.yaml` — `stage: PREPLAN`,
+  `audit_status: NOT_YET_AUDITED`; outcome layers absent by design.
+
+**Scoping facts (site definition, not results).** Dehradun ADM2 (simplified)
+**3,095.742 km²**; WDPA Oct-2026 union inside it **2,194.93 km² (70.9 %)** —
+Reserve Forest 1,246.15, Doon Valley Eco-Sensitive Area 1,779.35, overlap 830.59
+— leaving **900.81 km²** WDPA-free. **No IUCN I–IV, National Park or Wildlife
+Sanctuary** intersects the district in this vintage; the only Ramsar site is Asan
+(4.00 km², valley). Ring around the Mussoorie anchor: 5 km = 51.50 km² (71.1 %
+WDPA, 14.89 free); **8 km = 115.91 km² (83.7 %, 18.93 free)**; 10 km = 171.67 km²
+(88.4 %, 19.92 free).
+
+**Three findings that invalidate naive transfer of the Wayanad defaults:**
+1. **Zone edge.** 40.0 % of the district lies east of 78° E and the AOI sits at
+   78.074° E, so the extent/centroid rule would have picked zone 43 and put the
+   AOI 3.07° off-centre. Zone follows the **anchor**: EPSG:32644, asserted in the
+   script (it refuses to guess).
+2. **Protection rule does not transfer.** Wayanad excluded all WDPA from both
+   arms. In Uttarakhand WDPA carries Reserve Forest administrative polygons and
+   the Doon Valley ESA — excluding them leaves **18.93 km²** in the 8 km ring, no
+   control universe. Proposed **M-2**: exclude strict protection only (IUCN I–IV,
+   NP, WLS, Ramsar), keep RF/ESA as strata, pre-register a WDPA-free robustness
+   run.
+3. **Control scarcity.** WDPA-free area saturates (14.9 → 18.9 → 19.9 km² across
+   5/8/10 km): widening the ring buys forest, not controls. Hence **M-3** (500 m
+   parcels instead of Wayanad's 1 km) and **M-7** (pre-registered downgrade to a
+   descriptive density design if the gates fail rather than a post-hoc switch).
+
+**Other proposals awaiting C-M1:** M-1 anchor + 8 km primary ring; M-4 treatment
+definition; M-5 outcome window identical to D-13/D-21 for comparability;
+**M-6 CHIRPS over IMD** (comparability with D-20, recorded as a trade-off).
+
+**Biggest open risk:** no verified Uttarakhand equivalent of Kerala Tourism's
+approved-accommodation list. `tourism_registry_uttarakhand` is marked
+**unverified**; if none exists the treatment arm changes and the report must say
+so before results, not after.
+
+**Nothing was computed about tourism, change or hazard** — §1 of the preplan is
+site description and is barred from migrating into an impact claim.

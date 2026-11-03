@@ -1,0 +1,95 @@
+# Mussoorie (Site 2) — P8 PREPLAN config (BASELINE + SITE-DEFINITION ONLY)
+#
+# This config authorises nothing. It records the site frame and the decisions
+# proposed in docs/preplan_mussoorie.md so that the next step (P8 ingest) has a
+# written starting point. No outcome layer, no treatment arm and no hypothesis
+# is defined here: those enter only through the Site 2 preregistration at the
+# C-M1 gate, exactly as Wayanad did at C1.
+#
+# Every value below is either (a) hashed in data/manifest.json, or (b) a
+# proposal awaiting sign-off. Invented certainty is not permitted in this file.
+
+program: tourism_observatory
+site_index: 2
+stage: PREPLAN
+audit_status: NOT_YET_AUDITED      # no Site 2 data audit exists yet — this is honest, not a blocker
+
+region:
+  name: Mussoorie (Dehradun district)
+  state: Uttarakhand
+  analysis_frame: Dehradun district (geoBoundaries ADM2)
+  boundary_feature: Dehradun
+  boundary_shape_id: 76128533B67005208112053
+  snapshot_file: data/raw/geoBoundaries-IND-ADM2_simplified.geojson
+  snapshot_sha256: d68db39cd3e2d0892af268e2b0454166368ce3b5b8a78fcda63069ec92a641db
+  processed_boundary: data/processed/dehradun_boundary_32644.geojson
+  processed_sha256: 3f3a72ab5cd998633687d1929ccfd8c110a94c069af3d9dbf22961c913da2b0d
+  area_km2_observed: 3095.742          # simplified boundary; official district area differs (recorded, not reconciled)
+
+  # Zone rule (preplan M-1): the district straddles the 78 E zone edge
+  # (40.0 % of its area lies east of it) and the AOI sits at 78.074 E, so the
+  # zone follows the ANCHOR, not the district extent/centroid.
+  crs: EPSG:32644
+  utm_zone_basis: anchor lon 78.0740 E
+  anchor_4326: [78.0740, 30.4598]      # Mussoorie town centre — PROPOSED (M-1)
+
+aoi:
+  primary_ring_km: 8                   # PROPOSED (M-1); sensitivity 5 / 10 km
+  ring_clip: district                  # rings are intersected with the district frame
+  zone_km2: 115.906
+  wdpa_covered_pct: 83.67              # why M-2 exists
+  wdpa_free_km2: 18.926
+
+grid:
+  # PROPOSED (M-3): 500 m parcels. Wayanad used 1 km; at 8 km this AOI would
+  # yield only ~116 cells, too few for matching plus tenure strata.
+  parcel_size_m: 500
+  effective_resolution_m: 30
+  snap_rule: envelope_anchor
+  notes: nothing disaggregated upward
+
+protection:
+  source: data/raw/WDPA_WDOECM_Oct2026_Public_IND.zip   # hashed in data/manifest.json (wdpa_ind_oct2026)
+  vintage: WDPA Oct 2026 public, India
+  # PROPOSED (M-2): exclude STRICT protection only. Reserve Forest and the
+  # Doon Valley ESA stay in the domain as strata; a WDPA-free robustness run
+  # is pre-registered instead of a blanket exclusion.
+  exclude_strict_only: true
+  strict_classes: [IUCN I-IV, National Park, Wildlife Sanctuary, Ramsar]
+  keep_as_strata: [Reserve Forest, Eco Sensitive Area]
+  district_wdpa_union_km2: 2194.93
+  district_wdpa_union_pct: 70.9
+  strict_pa_in_district_km2: 3.998     # Asan Ramsar only; no NP/WLS in this vintage
+
+# ---------- layers that must NOT be added before the C-M1 freeze ----------
+# Built-up change, forest loss, facility density surfaces, hazard surfaces and
+# any exposure register are all OUTCOME work. Their absence here is the
+# equivalent of Wayanad's pre-C1 boundary. Adding them is a freeze event, not
+# a config edit.
+
+sources_planned:
+  - name: dem_copernicus_30m_n30
+    status: to_fetch              # Wayanad tiles are 11N; Uttarakhand needs 30N 077/078
+  - name: glad_glcluc2020_30n075e_30n080e
+    status: to_fetch
+  - name: hansen_gfc2024_30n075e_30n080e
+    status: to_fetch
+  - name: worldcover_2021_30n075e_30n080e
+    status: to_fetch
+  - name: tourism_registry_uttarakhand
+    status: unverified            # biggest single risk to the Site 2 design
+  - name: landslide_inventory_uttarakhand
+    status: unverified
+  - name: osm_roads_current
+    status: to_fetch
+  - name: buildings_google_v3
+    status: to_fetch
+  - name: chirps_v2_monthly
+    status: to_fetch              # PROPOSED (M-6) for cross-site comparability
+
+feasibility_gates:
+  g_m1_min_verified_facilities: 40
+  g_m2_min_usable_pairs: 25
+  g_m2_max_abs_smd: 0.10
+  g_m3_min_inventory_coverage_pct: 80
+  downgrade_if_failed: descriptive density design (M-7, pre-registered)

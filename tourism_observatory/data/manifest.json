@@ -1,20 +1,20 @@
 {
  "project": "tourism_observatory_wayanad",
- "convention": "Every entry records a file actually present on disk with its SHA-256 at recording time. Status 'verified' requires both (prereg dev-D-6). Rationale: manifest trust is banned for QA — qaqc opens the actual files.",
+ "convention": "Every entry records a file actually present on disk with its SHA-256 at recording time. Status 'verified' requires both (prereg dev-D-6). Rationale: manifest trust is banned for QA \u2014 qaqc opens the actual files.",
  "recorded_at": "2026-11-02",
  "district": {
   "name": "Wayanad",
   "state": "Kerala",
   "boundary_feature": "IND-ADM2-76128533 / shapeID 76128533B82539771173603",
   "analysis_crs": "EPSG:32643",
-  "utm_zone_basis": "district lon extent 75.7742–76.4443 E — zone 43 confirmed by extent rule, not assumed (dev-D-9(c) OI-3 closed)",
+  "utm_zone_basis": "district lon extent 75.7742\u201376.4443 E \u2014 zone 43 confirmed by extent rule, not assumed (dev-D-9(c) OI-3 closed)",
   "area_km2_boundary": 2026.393,
-  "area_note": "official district area ≈2,131 km2; simplified-boundary underestimate ≈4.9% recorded, acceptable for AOI/parcel work"
+  "area_note": "official district area \u22482,131 km2; simplified-boundary underestimate \u22484.9% recorded, acceptable for AOI/parcel work"
  },
  "sources": [
   {
    "id": "boundary_raw",
-   "audit_ref": "audit §2 D-source n/a (boundary is §1 AOI)",
+   "audit_ref": "audit \u00a72 D-source n/a (boundary is \u00a71 AOI)",
    "path": "tourism_observatory/data/raw/geoBoundaries-IND-ADM2_simplified.geojson",
    "type": "vector",
    "source": "geoBoundaries gbOpen IND ADM2 (simplified), pinned commit 9469f09, boundaryID IND-ADM2-76128533",
@@ -42,7 +42,7 @@
   },
   {
    "id": "registry_homestays_raw",
-   "audit_ref": "§2 D-1",
+   "audit_ref": "\u00a72 D-1",
    "path": "tourism_observatory/data/raw/keralatourism_approved_homestays_2026-10-22.html",
    "type": "table (html)",
    "source": "Kerala Tourism 'List of Homestays approved by Dept. of Tourism, Govt. of Kerala as on 22-10-2026' (live page snapshot)",
@@ -52,11 +52,11 @@
    "status": "verified",
    "rows_statewide": 1386,
    "districts_covered": 14,
-   "note": "Live page snapshot semantics confirmed: 'Order Number Date' = LATEST approval/renewal order, current-validity list. Wayanad subset order years = 2024 (17) / 2025 (17) / 2026 (17). Historical approvals (2015-scheme era) not visible in this snapshot → timing-cohort caveat for dev-D-4 (OI-4 partially closed: snapshot semantics confirmed; historical annexure hunting remains open)."
+   "note": "Live page snapshot semantics confirmed: 'Order Number Date' = LATEST approval/renewal order, current-validity list. Wayanad subset order years = 2024 (17) / 2025 (17) / 2026 (17). Historical approvals (2015-scheme era) not visible in this snapshot \u2192 timing-cohort caveat for dev-D-4 (OI-4 partially closed: snapshot semantics confirmed; historical annexure hunting remains open)."
   },
   {
    "id": "registry_homestays_wayanad",
-   "audit_ref": "§2 D-1 (derived)",
+   "audit_ref": "\u00a72 D-1 (derived)",
    "path": "tourism_observatory/data/processed/registry_homestays_wayanad_2026-10-22.csv",
    "type": "table (csv)",
    "source": "Wayanad subset parsed from registry_homestays_raw (scripts/p1_registry_ingest.py)",
@@ -64,11 +64,11 @@
    "status": "verified",
    "rows": 51,
    "duplicate_name_rows": 0,
-   "note": "Facility existences only — geocoding NOT yet performed; existence verification against imagery is the next permitted P1 step. No outcome maps derived."
+   "note": "Facility existences only \u2014 geocoding NOT yet performed; existence verification against imagery is the next permitted P1 step. No outcome maps derived."
   },
   {
    "id": "cci_lulc_2005",
-   "audit_ref": "§5 audit-D-14; OI-2 (vintage fixed at this ingest)",
+   "audit_ref": "\u00a75 audit-D-14; OI-2 (vintage fixed at this ingest)",
    "path": "tourism_observatory/data/raw/ESACCI-LC-L4-LCCS-Map-300m-P1Y-2005-v2.0.7cds-N00E045-lccs_class.tif",
    "type": "raster",
    "source": "ESA CCI Land Cover L4 LCCS 300 m annual 2005, v2.0.7cds (Microsoft Planetary Computer STAC mirror)",
@@ -84,7 +84,7 @@
   },
   {
    "id": "dem_cop_n11e075",
-   "audit_ref": "§3 audit-D-7",
+   "audit_ref": "\u00a73 audit-D-7",
    "path": "tourism_observatory/data/raw/Copernicus_DSM_COG_10_N11_00_E075_00_DEM.tif",
    "type": "raster",
    "source": "Copernicus DEM GLO-30 DGED (1 arcsec), AWS open-data mirror",
@@ -99,7 +99,7 @@
   },
   {
    "id": "dem_cop_n11e076",
-   "audit_ref": "§3 audit-D-7",
+   "audit_ref": "\u00a73 audit-D-7",
    "path": "tourism_observatory/data/raw/Copernicus_DSM_COG_10_N11_00_E076_00_DEM.tif",
    "type": "raster",
    "source": "Copernicus DEM GLO-30 DGED (1 arcsec), AWS open-data mirror",
@@ -114,7 +114,7 @@
   },
   {
    "id": "worldcover_2021_n09e075",
-   "audit_ref": "§5 audit-D-15",
+   "audit_ref": "\u00a75 audit-D-15",
    "path": "tourism_observatory/data/raw/ESA_WorldCover_10m_2021_v200_N09E075_Map.tif",
    "type": "raster",
    "source": "ESA WorldCover 2021 v200 (10 m), official S3",
@@ -130,7 +130,7 @@
   },
   {
    "id": "hansen_treecover2000",
-   "audit_ref": "§5 audit-D-16",
+   "audit_ref": "\u00a75 audit-D-16",
    "path": "tourism_observatory/data/raw/Hansen_GFC-2024-v1.12_treecover2000_20N_070E.tif",
    "type": "raster",
    "source": "Hansen Global Forest Change v1.12 (2024), treecover2000 band, 10-degree tile",
@@ -146,12 +146,12 @@
   },
   {
    "id": "wdpa_ind_oct2026",
-   "audit_ref": "§5 audit-D-18",
+   "audit_ref": "\u00a75 audit-D-18",
    "path": "tourism_observatory/data/raw/WDPA_WDOECM_Oct2026_Public_IND.zip",
    "type": "archive (vector)",
    "source": "UNEP-WCMC / IUCN WDPA + WDOECM October 2026 public release, India",
    "source_url": "https://d1gam3xoknrgr2.cloudfront.net/current/WDPA_WDOECM_Oct2026_Public_IND.zip",
-   "license": "free with registration terms; NOT redistributable — local use + attribution only (UNEP-WCMC/IUCN)",
+   "license": "free with registration terms; NOT redistributable \u2014 local use + attribution only (UNEP-WCMC/IUCN)",
    "sha256": "2d5ea2f72cd35c46f9699c433414f7a52d9bfc2478bddba48faf864c503711d7",
    "bytes": 262364833,
    "acquired_utc": "2026-10-23",
@@ -161,7 +161,7 @@
   },
   {
    "id": "osm_southern_zone_20261026",
-   "audit_ref": "§5 (baseline access covariate, prereg dev-D-4 current-network proxy)",
+   "audit_ref": "\u00a75 (baseline access covariate, prereg dev-D-4 current-network proxy)",
    "path": "tourism_observatory/data/raw/southern-zone-261020.osm.pbf",
    "type": "vector (osm.pbf)",
    "source": "Geofabrik India southern-zone extract (Kerala + peninsular states), dated snapshot 2026-10-26 build",
@@ -183,12 +183,12 @@
    "type": "table (csv) + geojson",
    "url": "(derived: scripts/p1_registry_geocode.py round 2)",
    "license": "derived from registry (public web page) + OSM/ODbL geocoding",
-   "note": "Round-2 geocoding 2026-10-23: 51/51, 100% inside district; precision P2=2 P3=12 P4=23 P5=14 (round 1 was 43xP5, archived outputs/qaqc/geocode_log_r1.json). GeoJSON twin data/processed/registry_geocoded_2026-10-23.geojson sha256 711639ec76b2e1e1…; success-rate log outputs/qaqc/geocode_log.json sha256 5a2594f2269aa348…. Precision classes cap claims (P3/P5 = locality-level, not facility-exact); no jitter; construction dating forbidden (prereg §5).",
-   "audit_ref": "§2 D-1 (geocoding; audit-D-1 success-rate log)"
+   "note": "Round-2 geocoding 2026-10-23: 51/51, 100% inside district; precision P2=2 P3=12 P4=23 P5=14 (round 1 was 43xP5, archived outputs/qaqc/geocode_log_r1.json). GeoJSON twin data/processed/registry_geocoded_2026-10-23.geojson sha256 711639ec76b2e1e1\u2026; success-rate log outputs/qaqc/geocode_log.json sha256 5a2594f2269aa348\u2026. Precision classes cap claims (P3/P5 = locality-level, not facility-exact); no jitter; construction dating forbidden (prereg \u00a75).",
+   "audit_ref": "\u00a72 D-1 (geocoding; audit-D-1 success-rate log)"
   },
   {
    "id": "d3_ecostat_hotels_2014_15",
-   "audit_ref": "§2 audit-D-3",
+   "audit_ref": "\u00a72 audit-D-3",
    "path": "tourism_observatory/data/raw/ecostat_286_report_hotels_restaurants_2014-15.pdf",
    "type": "pdf (survey report)",
    "source": "Dept. of Economics & Statistics Kerala, 'Report on Hotels & Restaurants in Kerala 2014-15' (published 2016-05-26)",
@@ -199,14 +199,14 @@
    "acquired_utc": "2026-10-23",
    "status": "verified",
    "version": "2014-15 survey (publication 286)",
-   "note": "THE hotel survey carrying year-of-starting cohorts: Table 1.1 Wayanad total 413 (346 panchayat + 67 municipality; cohort row 7,3,9,8,16,24,104,242). Verified 2026-10-23: the audit's '(publications 286, 119, 150)' conflated series — 119/150 are Kerala Tourism Statistics books (= D-4), and NO hotel survey later than 2014-15 is findable on ecostat."
+   "note": "THE hotel survey carrying year-of-starting cohorts: Table 1.1 Wayanad total 413 (346 panchayat + 67 municipality; cohort row 7,3,9,8,16,24,104,242). Verified 2026-10-23: the audit's '(publications 286, 119, 150)' conflated series \u2014 119/150 are Kerala Tourism Statistics books (= D-4), and NO hotel survey later than 2014-15 is findable on ecostat."
   },
   {
    "id": "d4_kts_arrivals_2025_26",
-   "audit_ref": "§2 audit-D-4 (V1 target)",
+   "audit_ref": "\u00a72 audit-D-4 (V1 target)",
    "path": "tourism_observatory/data/raw/keralatourism_tourist_statistics_2025-26.pdf",
    "type": "pdf (statistics)",
-   "source": "Kerala Tourism tourist statistics 2025-26 (arrivals series; index /touriststatistics/ lists 2003–2025)",
+   "source": "Kerala Tourism tourist statistics 2025-26 (arrivals series; index /touriststatistics/ lists 2003\u20132025)",
    "source_url": "https://www.keralatourism.org/tourismstatistics/tourists_statistics_202520260507114657.pdf",
    "license": "public government publication",
    "sha256": "7fe9107c81ffd4013a790f15e88a44a15658dca644cf1296f8887b63b0713309",
@@ -214,11 +214,11 @@
    "acquired_utc": "2026-10-23",
    "status": "verified",
    "version": "2025-26 edition",
-   "note": "Outcome-adjacent statistics (arrivals): acquired and hashed for provenance ONLY; no pre-freeze computation or V1 comparison before freeze (prereg §5)."
+   "note": "Outcome-adjacent statistics (arrivals): acquired and hashed for provenance ONLY; no pre-freeze computation or V1 comparison before freeze (prereg \u00a75)."
   },
   {
    "id": "d4_kts_book_2019",
-   "audit_ref": "§2 audit-D-4",
+   "audit_ref": "\u00a72 audit-D-4",
    "path": "tourism_observatory/data/raw/ecostat_150_kerala_tourism_statistics_2019.pdf",
    "type": "pdf (statistics book)",
    "source": "ecostat Kerala Tourism Statistics book series (150 = 2019; 148 = 2018; 119 = 2017)",
@@ -229,11 +229,11 @@
    "acquired_utc": "2026-10-23",
    "status": "verified",
    "version": "KTS 2019 (latest book edition on ecostat, verified 2026-10-23)",
-   "note": "Second D-4 series (ecostat book) vs the arrivals PDF series; provenance-only until freeze (prereg §5)."
+   "note": "Second D-4 series (ecostat book) vs the arrivals PDF series; provenance-only until freeze (prereg \u00a75)."
   },
   {
    "id": "oi4_homestay_order_m5_1903",
-   "audit_ref": "§2 audit-D-1 / OI-4",
+   "audit_ref": "\u00a72 audit-D-1 / OI-4",
    "path": "tourism_observatory/data/raw/homestay_order_M5-1903_90th_2019.pdf",
    "type": "pdf (government order)",
    "source": "Kerala Tourism homestay classification ORDER M5-1903/2015 dated 06-08-2019 (90th order)",
@@ -244,14 +244,14 @@
    "acquired_utc": "2026-10-23",
    "status": "verified",
    "version": "order text as published 2026-10-23",
-   "note": "OI-4 closure evidence: quotes GO (MS) No. 299/06/TSM dated 18-08-2006 (original Homestay Classification scheme) and GO (MS) No. 324/15/TSM dated 28-12-2015 (revised Diamond/Gold/Silver guidelines) → scheme origin 2006, revision 2015; the M5-1903/2015 file number is NOT a start year. 'valid for three years from the date of issue' clause confirmed."
+   "note": "OI-4 closure evidence: quotes GO (MS) No. 299/06/TSM dated 18-08-2006 (original Homestay Classification scheme) and GO (MS) No. 324/15/TSM dated 28-12-2015 (revised Diamond/Gold/Silver guidelines) \u2192 scheme origin 2006, revision 2015; the M5-1903/2015 file number is NOT a start year. 'valid for three years from the date of issue' clause confirmed."
   },
   {
    "id": "d2_classified_wayanad_portal",
-   "audit_ref": "§2 audit-D-2",
+   "audit_ref": "\u00a72 audit-D-2",
    "path": "tourism_observatory/data/raw/keralatourism_classified_wayanad_2026-10-23.html",
    "type": "table (html)",
-   "source": "Kerala Tourism service-provider portal — Wayanad district slice of classified hotels/resorts (filters + pagination, browse-only, no bulk export)",
+   "source": "Kerala Tourism service-provider portal \u2014 Wayanad district slice of classified hotels/resorts (filters + pagination, browse-only, no bulk export)",
    "source_url": "https://www.keralatourism.org/where-to-stay/all/wayanad",
    "license": "public web page, use with attribution",
    "sha256": "3a493ba297c6485ee35e836eab5be752e0d14e839d806848cb0529ecafbd987f",
@@ -259,14 +259,14 @@
    "acquired_utc": "2026-10-23",
    "status": "verified",
    "version": "snapshot 2026-10-23",
-   "note": "Classified subset only — not all operating resorts (audit row caveat). The URL serves an auto-submitting form, not the list: snapshot assembled 2026-10-23 via GET /where-to-stay/all/wayanad -> POST /where-to-stay (district=14) -> infinite-scroll POSTs /where-to-stay/scrollajax (nvalue 30/60/90) until totalrows=111; assembled document carries all 111 cards (verified: 111 'sp-card' markers). Portal filter landing: /hotels/; applicant login: /service-provider-classification."
+   "note": "Classified subset only \u2014 not all operating resorts (audit row caveat). The URL serves an auto-submitting form, not the list: snapshot assembled 2026-10-23 via GET /where-to-stay/all/wayanad -> POST /where-to-stay (district=14) -> infinite-scroll POSTs /where-to-stay/scrollajax (nvalue 30/60/90) until totalrows=111; assembled document carries all 111 cards (verified: 111 'sp-card' markers). Portal filter landing: /hotels/; applicant login: /service-provider-classification."
   },
   {
    "id": "d6_scar_paper_path",
-   "audit_ref": "audit §3 D-6 (2024 Chooralmala–Mundakkai scar)",
+   "audit_ref": "audit \u00a73 D-6 (2024 Chooralmala\u2013Mundakkai scar)",
    "path": "tourism_observatory/data/raw/staging_d5d6/PMC12290006_Fig1_location_runout_map.jpg",
    "type": "figure-digitized-raster",
-   "source": "Peer-reviewed debris-flow path — PMC12290006 Fig. 1 (location/runout map: source Chooralmala 842 m → Mundakkai 955 m → deposit 1,558 m, with lat/lon graticule)",
+   "source": "Peer-reviewed debris-flow path \u2014 PMC12290006 Fig. 1 (location/runout map: source Chooralmala 842 m \u2192 Mundakkai 955 m \u2192 deposit 1,558 m, with lat/lon graticule)",
    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12290006/",
    "license": "open access (PMC)",
    "sha256": "64336faee2a44d118cabdd9a6b779035529cffda9e8f2ee07eca4ad15793835a",
@@ -274,11 +274,11 @@
    "acquired_utc": "2026-10-23",
    "status": "verified",
    "version": "PMC12290006",
-   "note": "D-6 v1 source (SUPERSEDED by D-12): centerline digitized by eye from this figure's graticule and compiled by scripts/p2_compile_scar_d6.py. QA against the NRSC VAP3 impact map showed v1 sat ~2 km north of the published crown with 0.000 km² overlap with the published debris-flow extent; it was discarded before any matching ran on it. The §4.4 scar exclusion in use is the VAP3-derived v2 (scripts/p2_digitize_vap3_scar.py); this file is retained as provenance for the v1 attempt."
+   "note": "D-6 v1 source (SUPERSEDED by D-12): centerline digitized by eye from this figure's graticule and compiled by scripts/p2_compile_scar_d6.py. QA against the NRSC VAP3 impact map showed v1 sat ~2 km north of the published crown with 0.000 km\u00b2 overlap with the published debris-flow extent; it was discarded before any matching ran on it. The \u00a74.4 scar exclusion in use is the VAP3-derived v2 (scripts/p2_digitize_vap3_scar.py); this file is retained as provenance for the v1 attempt."
   },
   {
    "id": "d6_scar_nrsc_impact_map",
-   "audit_ref": "audit §3 D-6 (2024 Chooralmala–Mundakkai scar)",
+   "audit_ref": "audit \u00a73 D-6 (2024 Chooralmala\u2013Mundakkai scar)",
    "path": "tourism_observatory/data/raw/staging_d5d6/NRSC_Landslide_Impact_Map_Chooralmala_VAP8_6Aug2024.pdf",
    "type": "figure-digitized-raster",
    "source": "NRSC/ISRO Landslide Impact Map, Chooralmala (Charter Call 1029, AOI 01, observed 06/07/2024, published 06-08-2024); UTM Zone 43N / WGS84, scale 1:5,000",
@@ -289,14 +289,14 @@
    "acquired_utc": "2026-10-23",
    "status": "verified",
    "version": "VAP8 06-08-2024",
-   "note": "D-6 confirmation + D-12 v2 source: NRSC/ISRO impact map carrying the published Debris Flow outline and the exact crown coordinate in its legend (76°8′10.58″E, 11°28′0.347″N). Byte-identical copy also staged as NRSC_Landslide_Impact_Map_Chooralmala_VAP3_31july2024.pdf (same SHA-256). The §4.4 scar exclusion in use (v2, D-12) was georeferenced from this map's in-map graticule and extracted by scripts/p2_digitize_vap3_scar.py (centerline 7,221 m, corridor 1.781 km², 150 m buffer)."
+   "note": "D-6 confirmation + D-12 v2 source: NRSC/ISRO impact map carrying the published Debris Flow outline and the exact crown coordinate in its legend (76\u00b08\u203210.58\u2033E, 11\u00b028\u20320.347\u2033N). Byte-identical copy also staged as NRSC_Landslide_Impact_Map_Chooralmala_VAP3_31july2024.pdf (same SHA-256). The \u00a74.4 scar exclusion in use (v2, D-12) was georeferenced from this map's in-map graticule and extracted by scripts/p2_digitize_vap3_scar.py (centerline 7,221 m, corridor 1.781 km\u00b2, 150 m buffer)."
   },
   {
    "id": "glad_glcluc2020_builtup_change_20n070e",
-   "audit_ref": "prereg §3 H1 (land-conversion outcome) + D-13 (endpoint vintage)",
+   "audit_ref": "prereg \u00a73 H1 (land-conversion outcome) + D-13 (endpoint vintage)",
    "path": "tourism_observatory/data/raw/staging_p3/GLCLUC2020_Builtup_change_2000_2020_20N_070E.tif",
    "type": "outcome-raster",
-   "source": "GLAD Global Land Cover and Land Use Change 2000-2020 (GLCLUC2020), Built-up_change_2000_2020 layer, 10° tile 20N_070E (1=expansion, 2=stable built); Potapov et al. 2022, Frontiers in Remote Sensing; 30 m Landsat ARD CNN",
+   "source": "GLAD Global Land Cover and Land Use Change 2000-2020 (GLCLUC2020), Built-up_change_2000_2020 layer, 10\u00b0 tile 20N_070E (1=expansion, 2=stable built); Potapov et al. 2022, Frontiers in Remote Sensing; 30 m Landsat ARD CNN",
    "source_url": "https://gladxfer.umd.edu/users/Potapov/GLCLUC2020/Built-up_change_2000_2020/Change_20N_070E.tif",
    "license": "CC-BY 4.0",
    "sha256": "6377e9336367cc3c04e106490837dfb6de8463faadee582ea8975d34ccfed2a8",
@@ -304,14 +304,14 @@
    "acquired_utc": "2026-10-26",
    "status": "verified",
    "version": "GLCLUC2020 (release 2022-01-11)",
-   "note": "H1 PRIMARY outcome layer (D-13). Wayanad lies entirely in this tile (11.45-11.98°N). Ingested by scripts/p3_outcome_ingest.py to the frozen 30 m grid (builtup_change_2000_2020_32643.tif = 2020 built extent; builtup_expansion_2000_2020_32643.tif = 2000-2020 expansion only). Definitional caveat recorded in outputs/qaqc/p3_outcome_ingest_facts.json: GLAD built class = any Landsat pixel with a man-made surface (12.2% of district) vs 0.8% WorldCover strict-built — direction of the treatment/control contrast must agree across both per §3 H1."
+   "note": "H1 PRIMARY outcome layer (D-13). Wayanad lies entirely in this tile (11.45-11.98\u00b0N). Ingested by scripts/p3_outcome_ingest.py to the frozen 30 m grid (builtup_change_2000_2020_32643.tif = 2020 built extent; builtup_expansion_2000_2020_32643.tif = 2000-2020 expansion only). Definitional caveat recorded in outputs/qaqc/p3_outcome_ingest_facts.json: GLAD built class = any Landsat pixel with a man-made surface (12.2% of district) vs 0.8% WorldCover strict-built \u2014 direction of the treatment/control contrast must agree across both per \u00a73 H1."
   },
   {
    "id": "glad_glcluc2020_builtup_change_10n070e",
-   "audit_ref": "prereg §3 H1 (land-conversion outcome) + D-13 (endpoint vintage)",
+   "audit_ref": "prereg \u00a73 H1 (land-conversion outcome) + D-13 (endpoint vintage)",
    "path": "tourism_observatory/data/raw/staging_p3/GLCLUC2020_Builtup_change_2000_2020_10N_070E.tif",
    "type": "outcome-raster",
-   "source": "GLAD GLCLUC2020 Built-up_change_2000_2020, 10° tile 10N_070E (southern neighbour of the AOI tile)",
+   "source": "GLAD GLCLUC2020 Built-up_change_2000_2020, 10\u00b0 tile 10N_070E (southern neighbour of the AOI tile)",
    "source_url": "https://gladxfer.umd.edu/users/Potapov/GLCLUC2020/Built-up_change_2000_2020/Change_10N_070E.tif",
    "license": "CC-BY 4.0",
    "sha256": "7cee911970148f316ba70e6c7480cd0db8490d681aae7ffceb21a3c913ec2b22",
@@ -319,14 +319,14 @@
    "acquired_utc": "2026-10-26",
    "status": "verified",
    "version": "GLCLUC2020 (release 2022-01-11)",
-   "note": "Fetched to make the ingest mosaic tile-complete; verified to have ZERO overlap with the AOI (Wayanad is 11.45-11.98°N, this tile ends at 10°N) — contributes nothing to the outcome rasters. Retained for provenance of the mosaic inputs recorded in p3_outcome_ingest_facts.json."
+   "note": "Fetched to make the ingest mosaic tile-complete; verified to have ZERO overlap with the AOI (Wayanad is 11.45-11.98\u00b0N, this tile ends at 10\u00b0N) \u2014 contributes nothing to the outcome rasters. Retained for provenance of the mosaic inputs recorded in p3_outcome_ingest_facts.json."
   },
   {
    "id": "hansen_gfc2024_lossyear_20n070e",
-   "audit_ref": "prereg §3 H1 robustness run (Hansen-built indicator)",
+   "audit_ref": "prereg \u00a73 H1 robustness run (Hansen-built indicator)",
    "path": "tourism_observatory/data/raw/Hansen_GFC-2024-v1.12_lossyear_20N_070E.tif",
    "type": "outcome-raster",
-   "source": "Hansen Global Forest Change v1.12 (2024), lossyear band (0=no loss, 1-24 = 2001-2024), 10° tile 20N_070E; 30 m Landsat",
+   "source": "Hansen Global Forest Change v1.12 (2024), lossyear band (0=no loss, 1-24 = 2001-2024), 10\u00b0 tile 20N_070E; 30 m Landsat",
    "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_lossyear_20N_070E.tif",
    "license": "CC-BY 4.0 (Hansen/UMD/Google)",
    "sha256": "e90eef0372f3b8127c736007df2b6b9f2b809b39dacdff380f7685139aa19388",
@@ -347,11 +347,11 @@
    "sha256": "c189c9e3162214bda50378bf11e2bd7ba403b8ee747be68f848808bf1d12f7db",
    "status": "verified",
    "feature_count": 69126,
-   "note": "Wayanad-window building footprints for the H2b(a)/(b) exposure registers; ODbL attribution required. Re-extracted 2026-10-28 under prereg §7 D-17b (extent audit: the original 75.73-76.40E / 11.20-11.80N window truncated the district's north and east strips); supersedes the 76,206-feature window extract (sha 3baee316…), which is retained in PROJECTSTATE history only (data artifacts are gitignored)."
+   "note": "Wayanad-window building footprints for the H2b(a)/(b) exposure registers; ODbL attribution required. Re-extracted 2026-10-28 under prereg \u00a77 D-17b (extent audit: the original 75.73-76.40E / 11.20-11.80N window truncated the district's north and east strips); supersedes the 76,206-feature window extract (sha 3baee316\u2026), which is retained in PROJECTSTATE history only (data artifacts are gitignored)."
   },
   {
    "id": "h2_inventory_wms_render_mosaic",
-   "audit_ref": "prereg §7 D-15 (H2 inventory input substitution); data-audit D-5",
+   "audit_ref": "prereg \u00a77 D-15 (H2 inventory input substitution); data-audit D-5",
    "path": "tourism_observatory/data/raw/staging_h2/kl_landslides_new_wayanad_mosaic_10m.tif",
    "type": "raster-derived-from-wms",
    "source": "NRSC Bhuvan WMS GetMap renders of layer disaster:kl_landslides_new (style disaster:kl_landslide_style, 'Kerala Landslide'), WMS 1.1.1 SRS=EPSG:4326, 72 tiles of 2048x1920 px at 10 m/px over 75.75-76.47E / 11.42-12.00N (D-17a corrected, district-complete window), 50% overlap, brown-fill mask union (removes per-tile 'bhuvan' watermark); fetched by scripts/h2_fetch_wms_inventory.py",
@@ -360,24 +360,24 @@
    "sha256": "17938cee277734df38043e725a9400770f57db7d9f3b86d3c98ac7c6ee2da835",
    "status": "verified",
    "retrieved_at": "2026-10-28",
-   "note": "Intermediate georeferenced mosaic (EPSG:4326 RGBA) for the D-15 inventory substitution; refetched 2026-10-28 under prereg §7 D-17a (extent audit: the original 11.20-11.82N window truncated the district's north strip), supersedes mosaic sha da8b3af6… (retained in PROJECTSTATE history only; data artifacts are gitignored). QA facts + caveats in outputs/qaqc/h2_wms_inventory_facts_2026-10-28.json. Layer vintage/selection criteria undocumented; Jul-2024 Chooralmala-Mundakkai event absent."
+   "note": "Intermediate georeferenced mosaic (EPSG:4326 RGBA) for the D-15 inventory substitution; refetched 2026-10-28 under prereg \u00a77 D-17a (extent audit: the original 11.20-11.82N window truncated the district's north strip), supersedes mosaic sha da8b3af6\u2026 (retained in PROJECTSTATE history only; data artifacts are gitignored). QA facts + caveats in outputs/qaqc/h2_wms_inventory_facts_2026-10-28.json. Layer vintage/selection criteria undocumented; Jul-2024 Chooralmala-Mundakkai event absent."
   },
   {
    "id": "inventory_wms_kl_landslides_new",
-   "audit_ref": "prereg §7 D-15 (H2a(ii) KDE source; H2b(b) buffer source)",
+   "audit_ref": "prereg \u00a77 D-15 (H2a(ii) KDE source; H2b(b) buffer source)",
    "path": "tourism_observatory/data/processed/inventory_wms_kl_landslides_new_32643.gpkg",
    "type": "vector",
-   "source": "Polygonized from the 10 m Bhuvan WMS mosaic of disaster:kl_landslides_new (rasterio shapes on the brown-fill mask), reprojected EPSG:32643; 990 polygons, 24.061 km2, all within the district boundary (229 polys / 3.57 km2 north of 11.82N — the strip the D-17a-refetch recovered)",
+   "source": "Polygonized from the 10 m Bhuvan WMS mosaic of disaster:kl_landslides_new (rasterio shapes on the brown-fill mask), reprojected EPSG:32643; 990 polygons, 24.061 km2, all within the district boundary (229 polys / 3.57 km2 north of 11.82N \u2014 the strip the D-17a-refetch recovered)",
    "source_url": "https://bhuvan-vec2.nrsc.gov.in/bhuvan/wms",
    "license": "NRSC/ISRO Bhuvan (render-derived; research use)",
    "sha256": "c12ee632fe7da200759370c530ea63b4db61cbf503e76315765049bf48656e78",
    "status": "verified",
    "feature_count": 990,
-   "note": "Substituted Atlas inventory proxy per prereg §7 D-15, user decision 2026-10-28 logged before any H2 statistic; refetched 2026-10-28 under D-17a (corrected district-complete window), superseding the 1,151-poly / 29.82 km2 window extract (sha 4411b9bb…, retained in PROJECTSTATE history only — data artifacts are gitignored). Precision +/-10 m; no attributes/dates; excludes Jul-2024 event."
+   "note": "Substituted Atlas inventory proxy per prereg \u00a77 D-15, user decision 2026-10-28 logged before any H2 statistic; refetched 2026-10-28 under D-17a (corrected district-complete window), superseding the 1,151-poly / 29.82 km2 window extract (sha 4411b9bb\u2026, retained in PROJECTSTATE history only \u2014 data artifacts are gitignored). Precision +/-10 m; no attributes/dates; excludes Jul-2024 event."
   },
   {
    "id": "scar_chooralmala_mundakkai_2024",
-   "audit_ref": "prereg §4 exclusions (D-2: scar = H2b(a) outcome footprint, not an exclusion); audit §3 D-6/D-12",
+   "audit_ref": "prereg \u00a74 exclusions (D-2: scar = H2b(a) outcome footprint, not an exclusion); audit \u00a73 D-6/D-12",
    "path": "tourism_observatory/data/processed/scar_chooralmala_mundakkai_2024_32643.gpkg",
    "type": "vector-digitized-from-pdf-map",
    "source": "NRSC/ISRO Landslide Impact Map, Chooralmala (International Charter Call 1029, VAP3 scene 31/07/2024, Debris Flow outline); digitized as centerline (7,220.5 m) buffered 150 m, georeferenced by the map graticule (QA: control-point check error 15.2 m, ~1.6 m/px); D-12 correction of v1 (PMC Fig.1 centerline, ~2 km N of the published crown)",
@@ -394,7 +394,7 @@
    "audit_ref": "prereg D-2 H2b exposure register (buildings: Google Open Buildings + OSM)",
    "path": "tourism_observatory/data/processed/buildings_google_wayanad_32643.gpkg",
    "type": "vector-derived-from-ml-dataset",
-   "source": "Google Open Buildings v3 polygons, per-S2-level-6-cell gzip CSVs (no header) streamed from Google's public bucket and filtered on the fly to 75.76-76.46E / 11.44-11.99N (district + >=1.2 km pad, covers every 1 km H2b(b) buffer spill); raw streams hashed in flight, not stored: 3ba5 sha 14a31a93… (211,608 kept), 3ba7 sha 50c943a2… (423,736), 3ba9 sha dde8b055… (797), 3baf sha 6d34787d… (304); fetched by scripts/h2b_fetch_google_buildings.py",
+   "source": "Google Open Buildings v3 polygons, per-S2-level-6-cell gzip CSVs (no header) streamed from Google's public bucket and filtered on the fly to 75.76-76.46E / 11.44-11.99N (district + >=1.2 km pad, covers every 1 km H2b(b) buffer spill); raw streams hashed in flight, not stored: 3ba5 sha 14a31a93\u2026 (211,608 kept), 3ba7 sha 50c943a2\u2026 (423,736), 3ba9 sha dde8b055\u2026 (797), 3baf sha 6d34787d\u2026 (304); fetched by scripts/h2b_fetch_google_buildings.py",
    "source_url": "https://storage.googleapis.com/open-buildings-data/v3/polygons_s2_level_6_gzip_no_header/",
    "license": "CC BY 4.0 (Google Open Buildings terms of use)",
    "sha256": "d8ea52b199289347ef7d4a707cc293b47631569e9519c7181fb2cb4e1948e780",
@@ -405,16 +405,16 @@
   },
   {
    "id": "h3_incident_records",
-   "audit_ref": "audit-D-10 R1 gate (2026-10-23); prereg §7 D-18 (H3 descriptive fallback)",
+   "audit_ref": "audit-D-10 R1 gate (2026-10-23); prereg \u00a77 D-18 (H3 descriptive fallback)",
    "path": "tourism_observatory/data/raw/staging_h3/Original_records_sensitive_data_removed_including_namesandaddress.xlsx",
    "type": "table",
-   "source": "Morrison et al. (2025) Global Ecology and Conservation 62:e03742, Figshare dataset: de-identified HEC/HWC incident records, 4 year-sheets (2011-2014), columns Place/Range/Section/Nature of Lost/Species/Date/Time/Remarks; NO coordinate columns — locations recorded to village name level only (paper simulated points by conditional random sampling; GPS never collected)",
+   "source": "Morrison et al. (2025) Global Ecology and Conservation 62:e03742, Figshare dataset: de-identified HEC/HWC incident records, 4 year-sheets (2011-2014), columns Place/Range/Section/Nature of Lost/Species/Date/Time/Remarks; NO coordinate columns \u2014 locations recorded to village name level only (paper simulated points by conditional random sampling; GPS never collected)",
    "source_url": "https://doi.org/10.6084/m9.figshare.27908769.v1",
    "license": "CC BY 4.0 (Figshare)",
    "sha256": "c86dd642c9032b0767a6b222e47f3cddce528d96ea13e26ca7ea9a264a22ec96",
    "status": "verified",
    "retrieved_at": "2026-10-28",
-   "note": "H3 incident input (D-3 gate: records exist but coordinates do not → descriptive hotspot-overlap fallback, no count models). Parsed rows 2,745; date typos/out-of-window values to be screened per D-18. Paper DOI 10.1016/j.gecco.2025.e03742."
+   "note": "H3 incident input (D-3 gate: records exist but coordinates do not \u2192 descriptive hotspot-overlap fallback, no count models). Parsed rows 2,745; date typos/out-of-window values to be screened per D-18. Paper DOI 10.1016/j.gecco.2025.e03742."
   },
   {
    "id": "h3_author_preprocess_code",
@@ -431,12 +431,12 @@
   },
   {
    "id": "h3_place_geocodes_2026-10-28",
-   "audit_ref": "prereg §7 D-18 (geocode cache path pinned verbatim pre-computation, freeze R7d); audit-D-10 R1 gate",
+   "audit_ref": "prereg \u00a77 D-18 (geocode cache path pinned verbatim pre-computation, freeze R7d); audit-D-10 R1 gate",
    "path": "tourism_observatory/data/processed/h3_place_geocodes_2026-10-28.csv",
    "type": "table-geocache",
    "source": "OpenStreetMap via Nominatim search API, viewbox-bounded (75.70,11.40,76.50,12.02), suffix \", Wayanad, Kerala, India\", 1 req/s; D-18 tier fallback place -> section -> range centroid (range centroids computed in-script from matched record medians, not stored here). 425 unique (name, tier) pairs = 367 place + 58 section; 99 matched (unmatched fall to range-centroid tier at assign-time). Filename date = run start 2026-10-28; queries resumed after a host restart and completed 2026-11-02.",
    "source_url": "https://nominatim.openstreetmap.org/search",
-   "license": "ODbL 1.0 (© OpenStreetMap contributors) — attribution required",
+   "license": "ODbL 1.0 (\u00a9 OpenStreetMap contributors) \u2014 attribution required",
    "sha256": "180bff998b2e98e7a05f3bf646074613298771acef8c0b9803c8a6d83a2b13c2",
    "status": "verified",
    "retrieved_at": "2026-10-28",
@@ -444,7 +444,7 @@
   },
   {
    "id": "hansen_lossyear_32643",
-   "audit_ref": "prereg §7 D-18 recipe (H3 pre-2011 forest-loss covariate); derived-from manifest id hansen_gfc2024_lossyear_20n070e",
+   "audit_ref": "prereg \u00a77 D-18 recipe (H3 pre-2011 forest-loss covariate); derived-from manifest id hansen_gfc2024_lossyear_20n070e",
    "path": "tourism_observatory/data/processed/hansen_lossyear_32643.tif",
    "type": "raster-derived",
    "source": "Warped from Hansen GFC-2024 v1.12 lossyear tile (manifest id hansen_gfc2024_lossyear_20n070e) onto the P1 envelope-anchor 30 m grid by scripts/p3_prep_lossyear.py (nearest-neighbour, uint8, nodata 255 = outside read window). Loss-year codes 0..24 (0 = no loss, 1..24 = 2001..2024). QC: 5,357,500 px read window, 4,777,500 valid px, loss pixels 93,050 (8,374.5 ha), years 1..24.",
@@ -457,25 +457,25 @@
   },
   {
    "id": "h4_event_table_2026-11-02",
-   "audit_ref": "prereg §7 D-19 (event table pinned pre-computation, freeze R7e); D-5 event-observation process",
+   "audit_ref": "prereg \u00a77 D-19 (event table pinned pre-computation, freeze R7e); D-5 event-observation process",
    "path": "tourism_observatory/data/processed/h4_event_table_2026-11-02.csv",
    "type": "table-compiled",
-   "source": "Compiled from open web sources: Wikipedia (Muthanga incident), Down To Earth 2026 retrospective, Land Conflict Watch (LCW conflict page, cited by Dr K.H. Amitha Bachan, updated 2026-03), Earth Island Journal + Maktoob media (Jenu Kuruba 2025), Deccan Herald 13 Sep 2024, The Hindu Feb 2025, Onmanorama 17 Jan / 28 Aug 2025 / 9 Dec 2025, New Indian Express 23 Mar 2026. 8 disputes / 12 records, schema per prereg §4 D-5 (record type, dates, location label + precision class, source URL, corroboration, cell-test status with logged exclusion reasons).",
-   "source_url": "https://en.wikipedia.org/wiki/Muthanga_incident (one of several per record — full URLs in the table)",
+   "source": "Compiled from open web sources: Wikipedia (Muthanga incident), Down To Earth 2026 retrospective, Land Conflict Watch (LCW conflict page, cited by Dr K.H. Amitha Bachan, updated 2026-03), Earth Island Journal + Maktoob media (Jenu Kuruba 2025), Deccan Herald 13 Sep 2024, The Hindu Feb 2025, Onmanorama 17 Jan / 28 Aug 2025 / 9 Dec 2025, New Indian Express 23 Mar 2026. 8 disputes / 12 records, schema per prereg \u00a74 D-5 (record type, dates, location label + precision class, source URL, corroboration, cell-test status with logged exclusion reasons).",
+   "source_url": "https://en.wikipedia.org/wiki/Muthanga_incident (one of several per record \u2014 full URLs in the table)",
    "license": "Factual event data (dates, places, published accounts); sources cited per record",
    "sha256": "c452c653b2077a52610e822ea67c7445da6b75c98940ed2ce259b03229aa608a",
    "status": "verified",
-   "retrieved_at": "2026-10-31…2026-11-02",
-   "note": "Cell-eligible disputes: 6 (<15 → EXPLORATORY per D-5). SHA recorded in D-19 §7 pin BEFORE computing (freeze R7e c4ac9606…)."
+   "retrieved_at": "2026-10-31\u20262026-11-02",
+   "note": "Cell-eligible disputes: 6 (<15 \u2192 EXPLORATORY per D-5). SHA recorded in D-19 \u00a77 pin BEFORE computing (freeze R7e c4ac9606\u2026)."
   },
   {
    "id": "h4_event_geocodes_2026-11-02",
-   "audit_ref": "prereg §7 D-19 (geocode cache path pinned verbatim pre-computation, freeze R7e)",
+   "audit_ref": "prereg \u00a77 D-19 (geocode cache path pinned verbatim pre-computation, freeze R7e)",
    "path": "tourism_observatory/data/processed/h4_event_geocodes_2026-11-02.csv",
    "type": "table-geocache",
-   "source": "OpenStreetMap via Nominatim search API, viewbox-bounded (75.70,11.40,76.50,12.02), suffix \", Wayanad, Kerala, India\", 1 req/s; D-19(b) deterministic query rule from the event-table location labels. 6 queries: Muthanga, Valavayal, Chooralmala, Valathoor, Vengappally, Kalpetta — all matched.",
+   "source": "OpenStreetMap via Nominatim search API, viewbox-bounded (75.70,11.40,76.50,12.02), suffix \", Wayanad, Kerala, India\", 1 req/s; D-19(b) deterministic query rule from the event-table location labels. 6 queries: Muthanga, Valavayal, Chooralmala, Valathoor, Vengappally, Kalpetta \u2014 all matched.",
    "source_url": "https://nominatim.openstreetmap.org/search",
-   "license": "ODbL 1.0 (© OpenStreetMap contributors) — attribution required",
+   "license": "ODbL 1.0 (\u00a9 OpenStreetMap contributors) \u2014 attribution required",
    "sha256": "4b68abc49beeca8c9577e7e017fce22f2ab457b4ba25e244d5a3b84cc39aa607",
    "status": "verified",
    "retrieved_at": "2026-11-02",
@@ -483,10 +483,10 @@
   },
   {
    "id": "chirps_v2_monthly_2011_2014_wayanad_bbox",
-   "audit_ref": "prereg §7 D-20(b) (freeze R8 da2baee8…); 48 source files window-read",
+   "audit_ref": "prereg \u00a77 D-20(b) (freeze R8 da2baee8\u2026); 48 source files window-read",
    "path": "tourism_observatory/data/raw/chirps_v2_monthly_2011_2014_wayanad_bbox_4326.tif",
    "type": "raster-subset",
-   "source": "CHIRPS v2.0 global monthly 0.05° precipitation (UCSB Climate Hazards Center; public domain — CC0-style waiver by Pete Peterson, per chc.ucsb.edu/data/chirps; attribution Funk et al. 2015, Scientific Data 2:150066). 48 monthly GeoTIFFs chirps-v2.0.{Y}.{M}.tif.gz window-read to bbox 75.70-76.50 E / 11.40-12.02 N by scripts/p3_fetch_chirps.py; gz downloads transient in /tmp/opencode (not kept).",
+   "source": "CHIRPS v2.0 global monthly 0.05\u00b0 precipitation (UCSB Climate Hazards Center; public domain \u2014 CC0-style waiver by Pete Peterson, per chc.ucsb.edu/data/chirps; attribution Funk et al. 2015, Scientific Data 2:150066). 48 monthly GeoTIFFs chirps-v2.0.{Y}.{M}.tif.gz window-read to bbox 75.70-76.50 E / 11.40-12.02 N by scripts/p3_fetch_chirps.py; gz downloads transient in /tmp/opencode (not kept).",
    "source_url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/global_monthly/tifs/",
    "license": "Public domain (CC0-style waiver), attribution requested: Funk et al. (2015)",
    "sha256": "58fdd6a5425e1ddea461a9d7d39e4d886f6b0ccf16a1ff9f1c323c86f0e2537e",
@@ -496,10 +496,10 @@
   },
   {
    "id": "chirps_rain_annual_2011_2014_32643",
-   "audit_ref": "prereg §7 D-20(b) (freeze R8 da2baee8…); derived chirps_v2_monthly_2011_2014_wayanad_bbox",
+   "audit_ref": "prereg \u00a77 D-20(b) (freeze R8 da2baee8\u2026); derived chirps_v2_monthly_2011_2014_wayanad_bbox",
    "path": "tourism_observatory/data/processed/chirps_rain_annual_2011_2014_32643.tif",
    "type": "raster-derived",
-   "source": "Mean over the four years of annual sum of CHIRPS v2.0 0.05° monthly values (subset stack chirps_v2_monthly_2011_2014_wayanad_bbox), bilinear-resampled to the H3 500 m origin-aligned cell grid by scripts/p3_fetch_chirps.py. Record-window (contemporaneous) covariate per D-20(b) deviation note.",
+   "source": "Mean over the four years of annual sum of CHIRPS v2.0 0.05\u00b0 monthly values (subset stack chirps_v2_monthly_2011_2014_wayanad_bbox), bilinear-resampled to the H3 500 m origin-aligned cell grid by scripts/p3_fetch_chirps.py. Record-window (contemporaneous) covariate per D-20(b) deviation note.",
    "source_url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/global_monthly/tifs/",
    "license": "Public domain (CC0-style waiver), attribution requested: Funk et al. (2015)",
    "sha256": "5200897dcea5ee42332b5ca129c2bcda43fc22609458de82df54cc3d7dd5acdc",
@@ -509,26 +509,37 @@
   },
   {
    "id": "chirps_rain_monsoon_2011_2014_32643",
-   "audit_ref": "prereg §7 D-20(b) (freeze R8 da2baee8…); derived chirps_v2_monthly_2011_2014_wayanad_bbox",
+   "audit_ref": "prereg \u00a77 D-20(b) (freeze R8 da2baee8\u2026); derived chirps_v2_monthly_2011_2014_wayanad_bbox",
    "path": "tourism_observatory/data/processed/chirps_rain_monsoon_2011_2014_32643.tif",
    "type": "raster-derived",
-   "source": "Mean over the four years of the Jun-Sep share of annual total from CHIRPS v2.0 0.05° monthly values (subset stack chirps_v2_monthly_2011_2014_wayanad_bbox), bilinear-resampled to the H3 500 m origin-aligned cell grid by scripts/p3_fetch_chirps.py. Record-window (contemporaneous) covariate per D-20(b) deviation note.",
+   "source": "Mean over the four years of the Jun-Sep share of annual total from CHIRPS v2.0 0.05\u00b0 monthly values (subset stack chirps_v2_monthly_2011_2014_wayanad_bbox), bilinear-resampled to the H3 500 m origin-aligned cell grid by scripts/p3_fetch_chirps.py. Record-window (contemporaneous) covariate per D-20(b) deviation note.",
    "source_url": "https://data.chc.ucsb.edu/products/CHIRPS/v2.0/global_monthly/tifs/",
    "license": "Public domain (CC0-style waiver), attribution requested: Funk et al. (2015)",
    "sha256": "TBD",
    "status": "verified",
    "retrieved_at": "2026-11-02",
    "note": "QC: valid px 17,199, native-grid range 0.499-0.645; warped min 0.50 / max 0.60 / mean 0.60."
+  },
+  {
+   "id": "boundary_dehradun",
+   "audit_ref": "P8 preplan \u00a71 (site definition; no audit yet)",
+   "path": "tourism_observatory/data/processed/dehradun_boundary_32644.geojson",
+   "type": "vector",
+   "source": "Dehradun ADM2 selected from the pinned geoBoundaries snapshot (boundary_raw) and reprojected by scripts/p8_site2_scoping.py",
+   "sha256": "3f3a72ab5cd998633687d1929ccfd8c110a94c069af3d9dbf22961c913da2b0d",
+   "status": "verified",
+   "feature_count": 1,
+   "note": "Site 2 AOI frame only. UTM 44N because the AOI anchor (78.0740 E) sets the zone; the district straddles the 78 E edge (40.0 % of area east of it), so an extent/centroid rule would have chosen zone 43. No outcome layer derived from this file."
   }
  ],
  "pending_wayanad_sources": [
-  "audit §2 D-2 (classified hotel/resort portal)",
-  "audit §2 D-3 (ecostat hotel survey cohorts)",
-  "audit §2 D-4 (Kerala Tourism Statistics)",
-  "audit §3 D-5..D-8 (hazard & terrain)",
-  "audit §4 D-9, D-10 (HEC — R1 gate)",
-  "audit §5 D-11..D-19 (land systems)",
-  "audit §6 D-20, D-21 (community events)"
+  "audit \u00a72 D-2 (classified hotel/resort portal)",
+  "audit \u00a72 D-3 (ecostat hotel survey cohorts)",
+  "audit \u00a72 D-4 (Kerala Tourism Statistics)",
+  "audit \u00a73 D-5..D-8 (hazard & terrain)",
+  "audit \u00a74 D-9, D-10 (HEC \u2014 R1 gate)",
+  "audit \u00a75 D-11..D-19 (land systems)",
+  "audit \u00a76 D-20, D-21 (community events)"
  ],
- "last_updated": "2026-10-28"
+ "last_updated": "2026-11-03"
 }
