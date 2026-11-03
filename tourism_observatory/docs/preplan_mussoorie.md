@@ -176,6 +176,90 @@ Two naming corrections that will bite the ingest script if copied from Wayanad:
 The registry remains the open item: the portal is reachable but the approved
 list is not exposed as a document or API that this environment can see.
 
+### 4.2 R-M1 pin — registry reconnaissance (recorded before execution)
+
+**Pinned 2026-11-03, before any count was computed.** This pin fixes the recipe
+that makes G-M1 decidable. It authorises enumeration only: no change measurement,
+no arm comparison, no tourism-impact statistic.
+
+**Why this and not the state portal.** The registration portal
+(`homestay.uttarakhandtourism.gov.in`) is a *registration* system: every listing
+route returns `Frontend/Notfound` and the only public data surface it exposes is
+the booking platform it links to. The published inventory therefore lives on
+**`uttarastays.com`** ("An Initiative taken by Uttarakhand Tourism Development
+Board"), whose public property list carries name, full postal address
+(`City - X, District - Y, PIN, Uttarakhand`) and nightly rate, with infinite
+scroll instead of pagination. Its API (`api.uttarastays.com/customerui/v1/…`)
+encrypts payloads client-side; the encrypted route is **not** used — only the
+rendered public page.
+
+**Sources, in order, all attempted regardless of earlier success:**
+
+| # | source | what is counted | provenance |
+|---|---|---|---|
+| S1 | `uttarastays.com/property-list` rendered listing | listings whose address locality is inside the AOI | UTDB booking initiative |
+| S2 | OSM Overpass, `tourism=hotel\|guest_house\|apartment\|resort\|chalet` in the AOI bbox | facilities with coordinates inside the AOI polygon | ODbL |
+| S3 | Ministry of Tourism approved hotels/restaurants | inspected; recorded as available/unavailable | GoI |
+
+**Counting rules (fixed here, not after seeing numbers):**
+
+1. AOI = 8 km ring ∩ Dehradun district (`M-1` primary zone), EPSG:32644.
+2. A listing counts as *inside* if its stated locality is one of the AOI
+   localities — Mussoorie, Landour, Kempty, Barlowganj, Jharipani, Dhanolti
+   (parsed from the address line). This is **label membership, not a geocode**;
+   the limitation is recorded rather than hidden.
+3. Duplicates are removed within a source by normalised `(name, address)`.
+   Cross-source duplicates are **reported, not merged**: the gate counts
+   per-source and union separately, because a homestay on a booking platform and
+   an OSM node may be the same building.
+4. Counts are reported with the district baseline (all Uttarakhand listings) so
+   the AOI share is visible.
+5. No approval status, approval date or star rating is inferred from presence in
+   any list. Where a source does not publish dates, "no date" is the recorded
+   value — it is not imputed.
+
+**What this pin deliberately does not do:** it does not decide the treatment
+definition. It produces the counts that C-M1 uses to choose between the
+status-based and presence-based options, and the yield that G-M1 tests (≥ 40
+verified facilities in the AOI).
+
+**Outputs:** `scripts/p8_registry_recon.py` →
+`outputs/qaqc/p8_registry_recon_facts_2026-11-03.json`, plus a source memo at
+`docs/p8_registry_recon_memo.md`. Any raw listing file kept goes to `data/raw/`
+with a manifest entry.
+
+### 4.3 R-M1 result (executed 2026-11-03)
+
+Facts `d6bc656b`; listings CSV `ae8f238f` (manifest `registry_uttarastays_2026-11-03`);
+memo `docs/p8_registry_recon_memo.md`.
+
+| source | state-wide | Dehradun | **inside 8 km AOI** |
+|---|---|---|---|
+| S1 uttarastays (crawl complete: 1,034/1,034) | 1,034 | 66 | **7** |
+| S2 OSM commercial (excl. 9 institutional hostels) | — | — | **32** (40 deduped incl. hostels) |
+| S3 Ministry of Tourism | unavailable (JS shell, CMS search empty) | — | — |
+
+**G-M1 (≥ 40) fails on every source.** Mussoorie plainly holds more than 32
+accommodations, so this is *coverage failure, not town size*: S1 is a homestay
+platform (not hotels), S2 is volunteer mapping. Two consequences stand:
+
+1. **No approval dates exist in any accessible Uttarakhand source.** Wayanad's
+   timing proxy cannot be reproduced here; timing would have to come from
+   imagery first-appearance, which the Wayanad design banned pre-freeze. That is
+   a prereg-level decision.
+2. **Cross-source name overlap is 0** while `Natures Lap Homestay` (S1) and
+   `Hotel Nature's Lap` (OSM) are visibly the same business, so name matching
+   under-resolves duplicates and the union count (46) overstates distinct
+   facilities.
+
+C-M1 therefore chooses between: **(A)** presence-based treatment on the 32–39
+enumerable facilities with declared coverage bias, **(B)** a bounded census of
+the AOI from imagery + Open Buildings, restoring a near-census without dates, or
+**(C)** descriptive-only Site 2. Recommendation in the memo: B if a Site 2 test
+is wanted, C if not; A is weakest because "not mapped" is silently read as "not
+there".
+
+
 ## 5. What carries over unchanged from Wayanad
 
 - The four hypothesis *shapes*: conversion (H1), hazard-overlap of placement

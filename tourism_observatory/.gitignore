@@ -16,6 +16,7 @@ data/processed/*wdpa*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !data/processed/wayanad_boundary_32643.geojson
+!data/processed/registry_uttarastays_all_2026-11-03.csv
 !data/processed/dehradun_boundary_32644.geojson
 !data/processed/registry_homestays_wayanad_*.csv
 !data/processed/registry_geocoded_*.csv
@@ -82,6 +83,7 @@ outputs/qaqc/*
 # the facts file pins what the run read and is hash-pinned in PROJECTSTATE §9.
 !outputs/qaqc/p7_2000_vs_now_accounting_2026-11-03.json
 !outputs/qaqc/p7_500m_display_32643.tif
+!outputs/qaqc/p8_registry_recon_facts_2026-11-03.json
 # P8 preplan: Site 2 scoping facts (site-definition only, no outcome work)
 !outputs/qaqc/p8_site2_scoping_facts_2026-11-03.json
 !outputs/qaqc/.gitkeep

@@ -1,0 +1,187 @@
+{
+ "task": "P8 / R-M1 registry reconnaissance \u2014 candidate tourism accommodation",
+ "label": "feasibility counts only; no change measurement, no arm comparison, no approval status or date inferred",
+ "inferential": false,
+ "pin": "docs/preplan_mussoorie.md \u00a74.2 (written before execution)",
+ "date": "2026-11-03",
+ "run_utc": "2026-11-03T16:05:42+00:00",
+ "aoi": {
+  "rule": "8 km ring around anchor \u2229 Dehradun district (M-1)",
+  "anchor_4326": [
+   78.074,
+   30.4598
+  ],
+  "crs": "EPSG:32644",
+  "area_km2": 115.906
+ },
+ "s1_uttarastays": {
+  "source": "https://uttarastays.com/property-list",
+  "provenance": "Uttarakhand Tourism Development Board booking initiative",
+  "listings_total_state": 1034,
+  "stated_total_on_site": 1034,
+  "crawl_complete": true,
+  "district_dehradun": 66,
+  "inside_aoi": 7,
+  "inside_aoi_names": [
+   "Forest Inn Homestay",
+   "Ghais Sunrise Homestay",
+   "Hill Top Homestay",
+   "Kavi Homestay",
+   "Kotli The Paradise Homestay",
+   "Natures Lap Homestay",
+   "Sukoon Homestay"
+  ],
+  "aoi_share_pct": 0.68,
+  "membership_rule": "stated locality label in AOI_LOCALITIES; not a geocode",
+  "approval_dates_published": false,
+  "note": "infinite-scroll crawl; deduplicated on (name, address)"
+ },
+ "s2_osm_overpass": {
+  "tags": [
+   "hotel",
+   "guest_house",
+   "apartment",
+   "resort",
+   "chalet",
+   "hostel"
+  ],
+  "elements_in_bbox": 42,
+  "available": true,
+  "error": null,
+  "inside_aoi": 42,
+  "inside_aoi_named": [
+   "Ananta Prana Glamping Resort Hotel in Mussoorie",
+   "Bunkotel",
+   "Central Government Touring Officers Guest House",
+   "Clouds End",
+   "Club Mahindra",
+   "DIT boys Hostel",
+   "Doon Boulevard",
+   "FabHotel Clock View",
+   "Ganga Hostel",
+   "Girls Hostel",
+   "Hotel Mayur",
+   "Hotel Nature's Lap",
+   "Hotel Paradise Continental",
+   "Hotel Paramount",
+   "Hotel raj palace",
+   "IMS boys hostel",
+   "Kasmanda Palace",
+   "Kaveri Hostel",
+   "Kipling Trail Cottage",
+   "Lemon Tree Resort Mussoorie",
+   "Mahanadi Hostel",
+   "Monarch hotel",
+   "Narmada Hostel",
+   "Padmini Nivas",
+   "Paradise Mansion",
+   "Pine Tree Lodge",
+   "Prospect Point Lodge",
+   "Rokeby Manor",
+   "Rose paying guest house",
+   "Shivalik Hills",
+   "Stairway To Heaven",
+   "Sterling Holidays",
+   "Survey of India Guest House",
+   "The Cliffe",
+   "The KenilWorth By Stotrak",
+   "The three oaks boutique hotel",
+   "Tulip Inn",
+   "Vikas Hotel",
+   "Welcomhotel by ITC Savoy Hotel"
+  ],
+  "by_type": {
+   "chalet": {
+    "count": 2,
+    "names": [
+     "Kipling Trail Cottage",
+     "Paradise Mansion"
+    ]
+   },
+   "guest_house": {
+    "count": 7,
+    "names": [
+     "Central Government Touring Officers Guest House",
+     "Central Government Touring Officers Guest House",
+     "Doon Boulevard",
+     "Pine Tree Lodge",
+     "Prospect Point Lodge",
+     "Rose paying guest house",
+     "Survey of India Guest House"
+    ]
+   },
+   "hostel": {
+    "count": 9,
+    "names": [
+     "Bunkotel",
+     "Bunkotel",
+     "DIT boys Hostel",
+     "Ganga Hostel",
+     "Girls Hostel",
+     "IMS boys hostel",
+     "Kaveri Hostel",
+     "Mahanadi Hostel",
+     "Narmada Hostel"
+    ]
+   },
+   "hotel": {
+    "count": 24,
+    "names": [
+     "Ananta Prana Glamping Resort Hotel in Mussoorie",
+     "Clouds End",
+     "Club Mahindra",
+     "FabHotel Clock View",
+     "Hotel Mayur",
+     "Hotel Nature's Lap",
+     "Hotel Paradise Continental",
+     "Hotel Paramount",
+     "Hotel raj palace",
+     "Kasmanda Palace",
+     "Lemon Tree Resort Mussoorie",
+     "Monarch hotel",
+     "Padmini Nivas",
+     "Rokeby Manor",
+     "Shivalik Hills",
+     "Stairway To Heaven",
+     "Sterling Holidays",
+     "The Cliffe",
+     "The KenilWorth By Stotrak",
+     "The three oaks boutique hotel",
+     "Tulip Inn",
+     "Vikas Hotel",
+     "Welcomhotel by ITC Savoy Hotel"
+    ]
+   }
+  },
+  "commercial_count_excl_hostel": 32,
+  "deduplicated_total": 40,
+  "duplicates_removed": 2,
+  "hostel_count": 9,
+  "classification_note": "tourism=hostel in Mussoorie is mostly boarding-school and college hostels; the commercial count excludes them and reports them separately",
+  "licence": "ODbL 1.0 (OpenStreetMap contributors)",
+  "note": "presence in OSM is not approval; coverage is volunteer-dependent"
+ },
+ "s3_mot": {
+  "status": 200,
+  "bytes": 8683,
+  "note": "JS-rendered shell; no state-wise list in the HTML"
+ },
+ "cross_source": {
+  "name_overlap": [],
+  "overlap_count": 0,
+  "note": "reported, not merged \u2014 the gate counts per-source and union separately"
+ },
+ "gate_g_m1": {
+  "threshold": 40,
+  "s1_inside_aoi": 7,
+  "union_estimate": 46,
+  "s2_commercial": 32,
+  "passes_on_s1": false,
+  "passes_on_s2_commercial": false,
+  "caveat": "S1 is a booking platform, not a hotel register: hotels that do not list there are invisible to it"
+ },
+ "inputs_sha256": {
+  "boundary_32644": "3f3a72ab5cd998633687d1929ccfd8c110a94c069af3d9dbf22961c913da2b0d",
+  "listings_csv": "ae8f238fc536e7155dd65e482291b72b35bb755a3f684daa69b8a263d060faf1"
+ }
+}

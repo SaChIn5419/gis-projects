@@ -530,6 +530,17 @@
    "status": "verified",
    "feature_count": 1,
    "note": "Site 2 AOI frame only. UTM 44N because the AOI anchor (78.0740 E) sets the zone; the district straddles the 78 E edge (40.0 % of area east of it), so an extent/centroid rule would have chosen zone 43. No outcome layer derived from this file."
+  },
+  {
+   "id": "registry_uttarastays_2026-11-03",
+   "audit_ref": "P8 preplan \u00a74.2 R-M1 (registry reconnaissance; site 2)",
+   "path": "tourism_observatory/data/processed/registry_uttarastays_all_2026-11-03.csv",
+   "type": "table (csv)",
+   "source": "Public property listing at uttarastays.com (Uttarakhand Tourism Development Board booking initiative), crawled 2026-11-03 via the rendered page (scripts/p8_registry_recon.py). API payloads are client-side encrypted and were not used.",
+   "sha256": "ae8f238fc536e7155dd65e482291b72b35bb755a3f684daa69b8a263d060faf1",
+   "status": "verified",
+   "rows": 1034,
+   "note": "Homestay/B&B inventory only \u2014 not a hotel register and carries no approval status or date. Crawl completeness verified against the site's stated total (1,034). 7 listings fall inside the 8 km Mussoorie AOI. Feasibility evidence for G-M1; not a result."
   }
  ],
  "pending_wayanad_sources": [

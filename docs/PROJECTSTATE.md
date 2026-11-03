@@ -1040,3 +1040,53 @@ so before results, not after.
 
 **Nothing was computed about tourism, change or hazard** — §1 of the preplan is
 site description and is barred from migrating into an impact claim.
+
+### P8 / R-M1 (2026-11-03): registry reconnaissance — G-M1 fails on every source; the gate becomes a design choice
+
+**Scope:** enumeration only, pinned in `docs/preplan_mussoorie.md` §4.2 before
+execution. No change measurement, no arm comparison, no approval status or date
+inferred. Wayanad untouched at **R9**.
+
+**Artifacts**
+- `tourism_observatory/scripts/p8_registry_recon.py` (supports `--reuse-listings`)
+- `tourism_observatory/outputs/qaqc/p8_registry_recon_facts_2026-11-03.json` — **`d6bc656b`**
+- `tourism_observatory/data/processed/registry_uttarastays_all_2026-11-03.csv` —
+  **`ae8f238f`**, 1,034 rows, manifest `registry_uttarastays_2026-11-03`
+- `tourism_observatory/docs/p8_registry_recon_memo.md` — source memo + C-M1 options
+
+**Why the state portal was not the source.** `homestay.uttarakhandtourism.gov.in`
+is a registration system: every listing route returns `Frontend/Notfound`. The
+public inventory lives on the booking platform it links to (`uttarastays.com`,
+"An Initiative taken by Uttarakhand Tourism Development Board"). Its API
+(`api.uttarastays.com/customerui/v1/…`) returns client-side-encrypted payloads and
+was not used; the rendered public page was read instead.
+
+**Counts (feasibility, not results)**
+
+| source | state-wide | Dehradun | inside 8 km AOI |
+|---|---|---|---|
+| S1 uttarastays (crawl complete 1,034/1,034) | 1,034 | 66 | **7** |
+| S2 OSM commercial (excl. 9 institutional hostels) | — | — | **32** (40 deduped incl. hostels) |
+| S3 Ministry of Tourism approved hotels | unavailable — JS shell, CMS search empty | — | — |
+
+**G-M1 (≥40) fails on every source**, and the failure is *coverage*, not town
+size: S1 covers homestays on one platform, S2 covers volunteer mapping. Mussoorie
+obviously holds more than 32 accommodations.
+
+**Two hardened findings**
+1. **No approval dates anywhere accessible** for Uttarakhand. Wayanad's timing
+   proxy (Kerala approval numbers) has no equivalent here; timing would have to
+   come from imagery first-appearance, which Wayanad banned pre-freeze — a
+   prereg-level change, not a config edit.
+2. **Cross-source name overlap is 0** while `Natures Lap Homestay` (S1) and
+   `Hotel Nature's Lap` (OSM) are the same business, so name-only matching
+   under-resolves duplicates and the union (46) overstates distinct facilities.
+
+**Defect caught during the run:** the AOI locality set initially included Kanatal
+(~24 km) and Dhanolti (~16 km); both were removed after a distance check, before
+any count was reported. OSM `tourism=hostel` was also found contaminated by
+boarding-school hostels and is reported separately rather than silently dropped.
+
+**C-M1 now chooses between** presence-based treatment (32–39 facilities, declared
+coverage bias), a bounded imagery census of the AOI, or descriptive-only Site 2.
+Memo recommends the census if a Site 2 test is wanted.
